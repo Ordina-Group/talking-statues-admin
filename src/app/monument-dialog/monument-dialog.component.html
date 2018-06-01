@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">Monument</h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <tabset type="pills" class="nav-justified">
+      <tab
+        [class.active]="activeLanguage==NL"
+        (click)="activeLanguage=NL" 
+        class="nav-item nav-link"
+        heading=NL>
+        <form>
+          <div class="form-group">
+            <label for="nameInputnl">Name</label>
+            <input type="email" class="form-control" id="nameInputnl">
+          </div>
+          <div class="form-group">
+            <label for="descInputnl">Description</label>
+            <textarea class="form-control" id="descInputnl" rows="3"></textarea>
+          </div>
+        </form>
+      </tab>
+
+      <tab
+        [class.active]="activeLanguage==FR"
+        (click)="activeLanguage=FR" 
+        class="nav-item nav-link"
+        heading=FR>
+        <form>
+          <div class="form-group">
+            <label for="nameInputfr">Name</label>
+            <input type="email" class="form-control" id="nameInputfr">
+          </div>
+          <div class="form-group">
+            <label for="descInputfr">Description</label>
+            <textarea class="form-control" id="descInputfr" rows="3"></textarea>
+          </div>
+        </form>
+      </tab>
+
+      <tab
+        [class.active]="activeLanguage==EN"
+        (click)="activeLanguage=EN" 
+        class="nav-item nav-link"
+        heading=EN>
+        <form>
+          <div class="form-group">
+            <label for="nameInputen">Name</label>
+            <input type="email" class="form-control" id="nameInputen">
+          </div>
+          <div class="form-group">
+            <label for="descInputen">Description</label>
+            <textarea class="form-control" id="descInputen" rows="3"></textarea>
+          </div>
+        </form>
+      </tab>
+
+      <tab
+        [class.active]="activeLanguage==DE"
+        (click)="activeLanguage=DE" 
+        class="nav-item nav-link"
+        heading=DE>
+        <form>
+          <div class="form-group">
+            <label for="nameInputde">Name</label>
+            <input type="email" class="form-control" id="nameInputde">
+          </div>
+          <div class="form-group">
+            <label for="descInputde">Description</label>
+            <textarea class="form-control" id="descInputde" rows="3"></textarea>
+          </div>
+        </form>
+      </tab>
+    </tabset>
+      
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success">Save</button>
+    <button class="btn btn-secondary">Cancel</button>
+</div>

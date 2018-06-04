@@ -11,20 +11,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 export class MonumentDialogComponent implements OnInit {
   @Input() modalRef: BsModalRef;
   @Input() monument: Monument;
-  
-  activeLanguage:Language = Language.NL;
   monumentForm: FormGroup;
   constructor(private fb: FormBuilder) { 
     this.monumentForm = this.fb.group({
-      information:this.fb.group({
-        language:['', Validators.required ],
-        name:['', Validators.required ],
-        description:['', Validators.required ],
-        question:this.fb.group({
-          question:['', Validators.required ],
-          answer:['', Validators.required ]
-        })
-      }),
+    information:this.fb.array([]),
     longitude:['', Validators.required ],
     latitude:['', Validators.required ],
     area:['', Validators.required ]

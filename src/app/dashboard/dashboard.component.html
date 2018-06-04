@@ -4,31 +4,36 @@
     <div  *ngFor="let monument of monuments" class="col-6" >
       <div class="card mb-3">
         <ul class="list-group m-2">
-          <li *ngFor="let lang of getPosibleLanguages()" class="list-group-item d-flex justify-content-between">
+          <li *ngFor="let info of monument.information" class="list-group-item d-flex justify-content-between">
             <div class="d-flex justify-content-between">
               <div>
-                <span class="badge badge-info badge-pill">{{lang}}</span>
+                <span class="badge badge-info badge-pill">{{info.language}}</span>
               </div>
               <div>
-                <h6 class="mx-2 d-inline">{{getMonumentInformationForLanguage(monument,lang).name}}</h6>
-                <h6 class="mx-2 p-0 m-0 text-muted text-truncate"><small>{{getMonumentInformationForLanguage(monument,lang).description}}</small></h6>
+                <h6 class="mx-2 d-inline">{{info.name}}</h6>
+                <h6 class="mx-2 p-0 m-0 text-muted text-truncate"><small>{{info.description}}</small></h6>
               </div>
             </div>
           </li>
         </ul>
         <div class="mx-2 mb-2">
-          <button (click)="openModal(add)" class="btn btn-primary">Edit</button>
-            <ng-template #add>
+       <button class="btn btn-primary"
+       routerLink="/dashboard/{{monument.id}}">Edit</button>
+       <!--         <ng-template #add>
                 <app-monument-dialog 
                 [modalRef]=modalRef
                 [monument]=monument>
                 </app-monument-dialog>
-            </ng-template>
+            </ng-template>-->
             <button (click)="openModal(sure)" class="btn btn-danger">Delete</button>
             <ng-template #sure>
-                <app-sure-dialog [modalRef]=modalRef>
+                <app-sure-dialog 
+                [question]="'Are you sure?'"
+                [confirm]="'delete'"
+                [modalRef]=modalRef
+                (sure)="removeInformationObject(i)">
                 </app-sure-dialog>
-            </ng-template>
+            </ng-template> 
         </div>
       </div>
     </div>

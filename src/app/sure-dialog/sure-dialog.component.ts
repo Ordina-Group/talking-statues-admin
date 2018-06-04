@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -8,9 +8,16 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class SureDialogComponent implements OnInit {
   @Input() modalRef: BsModalRef;
+  @Input() question: string;
+  @Input() confirm: string;
+  @Output() sure = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+  agree(){
+    this.sure.emit();
+    this.modalRef.hide();
   }
 
 }

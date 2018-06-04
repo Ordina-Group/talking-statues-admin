@@ -15,9 +15,7 @@ export class DashboardComponent implements OnInit {
   modalRef: BsModalRef;
   constructor(
     private modalService: BsModalService,
-    private controller:ControllerService) { 
-
-  }
+    private controller:ControllerService) {}
 
   ngOnInit() {
     this.controller.getAllMonuments().subscribe(monuments => this.monuments = monuments);
@@ -28,8 +26,6 @@ export class DashboardComponent implements OnInit {
     })
   }
   openModal(template: TemplateRef<any>) {
-    this.ngOnInit();
-    
     this.modalRef = this.modalService.show(template);
   }
   getPosibleLanguages(){
@@ -41,7 +37,7 @@ export class DashboardComponent implements OnInit {
       return details[0];
     }
     else{
-      return new Information();
+      return new Information()
     }
   }
 

@@ -12,6 +12,7 @@ import { MonumentDialogComponent } from './monument-dialog/monument-dialog.compo
 import { SureDialogComponent } from './sure-dialog/sure-dialog.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditMonumentComponent } from './edit-monument/edit-monument.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     DashboardComponent,
     MonumentDialogComponent,
-    SureDialogComponent
+    SureDialogComponent,
+    EditMonumentComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 export class Monument {
-    id: any;
+    id: string;
     information:Information[];
     longitude: number;
     latitude: number;
@@ -10,7 +10,7 @@ export class Monument {
     language:Language;
     name: String;
     description: String;
-    questions:Question[];
+    question:Question[];
   }
   
   export class Question{

@@ -16,5 +16,8 @@ export class ControllerService {
   getAllMonuments():Observable<Monument[]>{
     return this.http.get<Monument[]>(environment.baseUrl+"/api/monuments");
   }
+  getOneMonument(id:String):Observable<Monument>{
+    return this.http.get<Monument>(environment.baseUrl+"/api/monuments/"+id);
+  }
 
 }

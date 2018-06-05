@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { environment } from './../environments/environment.prod';
 import { Monument } from './model/monument';
 import { Injectable } from '@angular/core';
@@ -19,5 +20,7 @@ export class ControllerService {
   getOneMonument(id:String):Observable<Monument>{
     return this.http.get<Monument>(environment.baseUrl+"/api/monuments/"+id);
   }
-
+  saveMonument(monumentForm:FormGroup,monument:Monument) {
+    return this.http.put(environment.baseUrl+"/api/monuments/"+monument.id,monumentForm.value);
+  }
 }

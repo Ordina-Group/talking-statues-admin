@@ -1,5 +1,5 @@
 import { ControllerService } from './../controller.service';
-import { Monument, Information, Question } from './../model/monument';
+import { Monument, Information, Question, Language } from './../model/monument';
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
@@ -15,6 +15,7 @@ export class EditMonumentComponent implements OnInit {
   modalRef: BsModalRef
   monument:Monument;
   activeInfoObjectIndex:number=0;
+  posibleLanguages:string[];
   constructor(
     private controller:ControllerService,
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class EditMonumentComponent implements OnInit {
     .subscribe(monument => {
       this.monument=monument;
       this.buildForm();
+      this.posibleLanguages=this.getPosibleLanguages();
     });
   }
 
@@ -57,6 +59,7 @@ export class EditMonumentComponent implements OnInit {
     questionArray.removeAt(index);
   }
   addEmptyInformation(){
+    this.posibleLanguages=this.getPosibleLanguages();
     const informationArray = <FormArray>this.monumentForm.controls['information'];
     informationArray.push(this.fb.group({
       language: "",
@@ -91,5 +94,15 @@ export class EditMonumentComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-
+  openAddQuestionModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  getPosibleLanguages(){
+    let informationArray = <FormArray>this.monumentForm.controls['information']
+    let usedLang:String[] = informationArray.controls.map(contr=> contr.get('language').value)
+    return Object.keys(Language).filter(lang => !usedLang.includes(lang));
+  }
+  save(){
+    this.controller.saveMonument(this.monumentForm,this.monument).subscribe();
+  }
 }

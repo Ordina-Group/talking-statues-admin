@@ -21,13 +21,13 @@
         routerLink="/dashboard/{{monument.id}}">Edit</button>
         <button (click)="openModal(sure)" class="btn btn-danger">Delete</button>
           <ng-template #sure>
-            <app-sure-dialog 
-            [question]="'Are you sure?'"
+            <app-sure-dialog
+            [question]="'Are you very sure?'"
             [confirm]="'delete'"
             [modalRef]=modalRef
             (sure)="removeInformationObject(i)">
             </app-sure-dialog>
-          </ng-template> 
+          </ng-template>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard/:id', component: EditMonumentComponent },
+  { path: 'dashboard/add', component: EditMonumentComponent }
 ];
  
 @NgModule({

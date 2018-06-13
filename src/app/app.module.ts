@@ -13,7 +13,9 @@ import { SureDialogComponent } from './sure-dialog/sure-dialog.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditMonumentComponent } from './edit-monument/edit-monument.component';
-
+import { QuestionModalComponent } from './edit-monument/question-modal/question-modal.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { InformationModalComponent } from './edit-monument/information-modal/information-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,9 @@ import { EditMonumentComponent } from './edit-monument/edit-monument.component';
     MonumentDialogComponent,
     SureDialogComponent,
     EditMonumentComponent,
+    QuestionModalComponent,
+    InformationModalComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { EditMonumentComponent } from './edit-monument/edit-monument.component';
     HttpClientModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule
   ],
   providers: [ControllerService],
   bootstrap: [AppComponent]

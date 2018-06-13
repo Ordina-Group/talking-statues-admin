@@ -1,16 +1,17 @@
 <div *ngIf="auth">{{name}}</div>
 <div class="container mt-3">
+  <button class="btn btn-primary mb-3" routerLink="/dashboard/add">Add Monument</button>
   <div *ngIf="monuments!=null" class="row">
     <div  *ngFor="let monument of monuments" class="col-6" >
       <div class="card mb-3">
         <ul class="list-group m-2">
           <li *ngFor="let info of monument.information" class="list-group-item d-flex justify-content-between">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mw-100">
               <div>
                 <span class="badge badge-info badge-pill">{{info.language}}</span>
               </div>
-              <div>
-                <h6 class="mx-2 d-inline">{{info.name}}</h6>
+              <div class="text-truncate">
+                <h6 class="mx-2 d-inline text-truncate">{{info.name}}</h6>
                 <h6 class="mx-2 p-0 m-0 text-muted text-truncate"><small>{{info.description}}</small></h6>
               </div>
             </div>
@@ -25,7 +26,7 @@
             [question]="'Are you sure?'"
             [confirm]="'delete'"
             [modalRef]=modalRef
-            (sure)="removeInformationObject(i)">
+            (sure)="removeMonument(monument)">
             </app-sure-dialog>
           </ng-template> 
         </div>

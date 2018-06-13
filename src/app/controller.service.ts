@@ -15,12 +15,21 @@ export class ControllerService {
   }
 
   getAllMonuments():Observable<Monument[]>{
-    return this.http.get<Monument[]>(environment.baseUrl+"/api/monuments");
+    return this.http.get<Monument[]>(environment.baseUrl+"/monuments");
   }
   getOneMonument(id:String):Observable<Monument>{
-    return this.http.get<Monument>(environment.baseUrl+"/api/monuments/"+id);
+    return this.http.get<Monument>(environment.baseUrl+"/monuments/"+id);
   }
   saveMonument(monumentForm:FormGroup,monument:Monument) {
-    return this.http.put(environment.baseUrl+"/api/monuments/"+monument.id,monumentForm.value);
+    return this.http.put(environment.baseUrl+"/monuments/"+monument.id,monumentForm.value);
+  }
+  addMonument(monumentForm:FormGroup){
+    return this.http.post(environment.baseUrl+"/monuments",monumentForm.value);
+  }
+  uploadImage(file: File,monument:Monument) {
+    return this.http.post(environment.baseUrl+"/images/"+monument.id,file);
+  }
+  removeMonument(monument:Monument){
+    return this.http.delete(environment.baseUrl+"/monuments/"+monument.id);
   }
 }

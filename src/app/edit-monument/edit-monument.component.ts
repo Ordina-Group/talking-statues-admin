@@ -68,20 +68,21 @@ export class EditMonumentComponent implements OnInit {
   }
   
   removeInformationObject(index){
-    const informationArray = <FormArray>this.monumentForm.controls['information']
-    informationArray.removeAt(index);
+    (<FormArray>this.monumentForm.controls['information'])
+    .removeAt(index);
     this.activeInfoObjectIndex=0;
   }
   removeQuestionObject(index){
-    const questionArray = <FormArray>this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']
-    questionArray.removeAt(index);
+    (<FormArray>this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question'])
+    .removeAt(index);
   }
   addQuestion(questionForm:FormGroup){
-    this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question'].push(questionForm);
+    this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']
+    .push(questionForm);
   }
   addInformation(informationForm:FormGroup){
-    (<FormArray>this.monumentForm.controls['information']).push(informationForm);
-    console.log(this.monumentForm.value)
+    (<FormArray>this.monumentForm.controls['information'])
+    .push(informationForm);
   }
 
   mapInformationObjectToFormGroup(information:Information){

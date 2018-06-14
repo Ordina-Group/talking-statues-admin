@@ -3,79 +3,74 @@
     <div class="row">
       <div class="col-12">
         <div class="card p-3">
-          <div class="form-row">
-            <div class="form-group col-12">
-              <label for="areaInput">Area</label>
-              <input type="text" class="form-control" id="areaInput" formControlName="area">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputLongitude">Longitude</label>
-              <input type="number" class="form-control" id="inputLongitude" formControlName="longitude">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputLatitude">Latitude</label>
-              <input type="number" class="form-control" id="inputLatitude" formControlName="latitude">
-            </div>
-          </div>
           <div class="row">
+            <div class="col-3 px-3 pb-3">
+            <div class="monument-image">
+              <img [src]="'http://localhost:8080/monuments/'+monument.id+'/image'" class="img-thumbnail">
+              <div class="over-image" (click)="fileInput.click()">
+              Upload
+              </div>
+              <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                <input type="file" #fileInput ng2FileSelect [uploader]="uploader" />
+              </span>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="areaInput">Area</label>
+                <input type="text" class="form-control" id="areaInput" formControlName="area">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputLongitude">Longitude</label>
+                <input type="number" class="form-control" id="inputLongitude" formControlName="longitude">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputLatitude">Latitude</label>
+                <input type="number" class="form-control" id="inputLatitude" formControlName="latitude">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-6 mb-2">
             <label>Information Objects</label>
-            <button (click)="addEmptyInformation()" class="btn btn-success btn-block mb-2">+</button>
-            <ul formArrayName="information"  class="list-group">
+            <button (click)="openModal(editInformation)" class="btn btn-success btn-block mb-2">+</button>
+              <ng-template #editInformation>
+                <app-information-modal
+                  [modalRef]=modalRef
+                  (save)=addInformation($event)>
+                </app-information-modal>
+              </ng-template>
+            <ul *ngIf="monumentForm.controls['information'].length > 0" formArrayName="information"  class="list-group">
               <li *ngFor="let information of monumentForm.controls['information']['controls']; let i=index" class="list-group-item list-group-item-action" [class.active]="i==activeInfoObjectIndex" (click)="activeInfoObjectIndex=i">
                 <a>
-                  <div class="d-flex justify-content-between">
-                    <div>
+                  <div class="d-flex d-flex justify-content-between">
+                    <div class="">
                       <span class="badge badge-info badge-pill">{{information.controls.language.value}}</span>
                     </div>
-                    <div>
+                    <div class="col-8">
                       <h6 class="mx-2 d-inline">{{information.controls.name.value}}</h6>
                       <h6 class="mx-2 p-0 m-0 text-muted text-truncate"><small>{{information.controls.description.value}}</small></h6>
                     </div>
-                    <div>
-                      <button  (click)="openModal(editInformation)" class="btn btn-info">Edit</button>
+                    <div class="d-inline-flex">
+                      <button  (click)="openModal(editInformation)" class="btn btn-link"><i class="far fa-edit"></i></button>
                       <ng-template #editInformation>
-                        <div class="modal-header">
-                          <h6 class="modal-title pull-left">Monument information</h6>
-                          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body" [formGroupName]="i">
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputLanguage">Language</label>
-                              <select class="form-control" id="inputLanguage" formControlName="language">
-                                <option selected>Choose...</option>
-                                <option *ngFor="let lang of posibleLanguages">{{lang}}</option>
-                              </select>
-                              <!-- <input type="text" class="form-control" id="inputLanguage" formControlName="language">-->
-                            </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputName">Name</label>
-                              <input type="text" class="form-control" id="inputName" formControlName="name">
-                            </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputDescription">Description</label>
-                              <input type="text" class="form-control" id="inputDescription" formControlName="description">
-                            </div>
-                          </div>
-                        </div>
+                        <app-information-modal
+                          [modalRef]=modalRef
+                          [oldInformation]=information>
+                        </app-information-modal>
                       </ng-template> 
-                      <button (click)="openModal(sure)" class="btn btn-danger">Delete</button>
+                      <button (click)="openModal(sure)" class="btn btn-link"><i class="fas fa-trash"></i></button>
                       <ng-template #sure>
-                          <app-sure-dialog 
+                        <app-sure-dialog 
                           [question]="'Are you sure?'"
                           [confirm]="'delete'"
                           [modalRef]=modalRef
                           (sure)="removeInformationObject(i)">
-                          </app-sure-dialog>
+                        </app-sure-dialog>
                       </ng-template>
                     </div>
                   </div>
@@ -83,42 +78,32 @@
               </li>
             </ul>
           </div>
-          <div class="col-6 mb-2">
+          <div class="col-6 mb-2" *ngIf="monumentForm.controls['information'].length > 0">
             <label>Questions for selected Language</label>
             <button (click)="openAddQuestionModal(editQuestion)" class="btn btn-success btn-block mb-2">+</button>
-            <ul class="list-group" formArrayName="information">
+            <ng-template #editQuestion>
+              <app-question-modal
+              [modalRef]=modalRef
+              (save)=addQuestion($event)>
+              </app-question-modal>
+            </ng-template>
+            <ul class="list-group">
               <li class="list-group-item" *ngFor="let question of monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']['controls']; let i=index">
                 <a>
-                  <div class="d-flex justify-content-between" formArrayName="{{this.activeInfoObjectIndex}}">
+                  <div class="d-flex justify-content-between" >
                     <div>
                       <h6 class="mx-2 d-inline">{{question.controls.question.value}}</h6>
                       <h6 class="mx-2 p-0 m-0 text-muted text-truncate"><small>{{question.controls.answer.value}}</small></h6>
                     </div>
-                    <div formArrayName="question">
-                      <button  (click)="openModal(editQuestion)" class="btn btn-primary">Edit</button>
+                    <div>
+                      <button  (click)="openModal(editQuestion)" class="btn btn-link"><i class="far fa-edit"></i></button>
                       <ng-template #editQuestion>
-                        <div class="modal-header">
-                          <h6 class="modal-title pull-left">Question</h6>
-                          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body" [formGroupName]="i" >
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputQuestion">Question</label>
-                              <input type="text" class="form-control" id="inputQuestion" formControlName="question">
-                            </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputAnswer">Answer</label>
-                              <input type="text" class="form-control" id="inputAnswer" formControlName="answer">
-                            </div>
-                          </div>
-                        </div>
+                        <app-question-modal
+                        [modalRef]=modalRef
+                        [oldQuestion]=question>
+                        </app-question-modal>
                       </ng-template>
-                      <button (click)="openModal(sure)" class="btn btn-danger">Delete</button>
+                      <button (click)="openModal(sure)" class="btn btn-link"><i class="fas fa-trash"></i></button>
                       <ng-template #sure>
                           <app-sure-dialog 
                           [question]="'Are you sure?'"

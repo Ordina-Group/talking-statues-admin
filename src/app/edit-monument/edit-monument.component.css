@@ -1,0 +1,34 @@
+.monument-image{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #ffffff00;
+    position: relative;
+    
+}
+.monument-image img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.over-image{
+    background-color:rgba(0, 0, 0, 0.514);
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    position:absolute;
+    filter: opacity(0%);
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.over-image:hover{
+    filter: opacity(100%);
+}

@@ -1,9 +1,11 @@
 import { ControllerService } from './../controller.service';
 import { Monument, Information, Question, Language } from './../model/monument';
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-edit-monument',
@@ -16,23 +18,42 @@ export class EditMonumentComponent implements OnInit {
   monument:Monument;
   activeInfoObjectIndex:number=0;
   posibleLanguages:string[];
+  public uploader: FileUploader;
   constructor(
     private controller:ControllerService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private modalService: BsModalService
-  ) {}
+    private modalService: BsModalService,
+    private router:Router) {}
 
   ngOnInit() {
-    let id:String = this.route.snapshot.paramMap.get('id');
-    this.controller.getOneMonument(id)
-    .subscribe(monument => {
-      this.monument=monument;
-      this.buildForm();
-      this.posibleLanguages=this.getPosibleLanguages();
+    if(!this.route.snapshot.url.map(i=> i.path).includes("add")){
+      let id:String = this.route.snapshot.paramMap.get('id');
+      this.controller.getOneMonument(id)
+      .subscribe(monument => {
+        this.monument=monument;
+        this.buildForm();
+        this.posibleLanguages=this.getPosibleLanguages();
+        this.uploader = new FileUploader({
+          url: environment.baseUrl+'/monuments/'+this.monument.id+'/image',
+          disableMultipart: false,
+          autoUpload: true
+        });
+    });
+    }else{
+      this.monument = new Monument();
+      this.buildEmptyForm();
+    }
+    
+  }
+  buildEmptyForm(){
+    this.monumentForm = this.fb.group({
+      information:this.fb.array([]),
+      longitude:['', Validators.required ],
+      latitude:['', Validators.required ],
+      area:['', Validators.required ]
     });
   }
-
   buildForm(){
     this.monumentForm = this.fb.group({
       information:this.fb.array([]),
@@ -46,34 +67,21 @@ export class EditMonumentComponent implements OnInit {
     }
   }
   
-  openAddInformationModal(template: TemplateRef<any>) {
-    this.addEmptyInformation();
-    this.modalRef = this.modalService.show(template);
-  }
   removeInformationObject(index){
     const informationArray = <FormArray>this.monumentForm.controls['information']
     informationArray.removeAt(index);
+    this.activeInfoObjectIndex=0;
   }
   removeQuestionObject(index){
     const questionArray = <FormArray>this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']
     questionArray.removeAt(index);
   }
-  addEmptyInformation(){
-    this.posibleLanguages=this.getPosibleLanguages();
-    const informationArray = <FormArray>this.monumentForm.controls['information'];
-    informationArray.push(this.fb.group({
-      language: "",
-      name: "",
-      description: "",
-      question:this.fb.array([])
-    }));
+  addQuestion(questionForm:FormGroup){
+    this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question'].push(questionForm);
   }
-  addEmptyQuestion(){
-    const questionArray = <FormArray>this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']['controls'];
-    questionArray.push(this.fb.group({
-      question: "test",
-      answer: "test"
-    }));
+  addInformation(informationForm:FormGroup){
+    (<FormArray>this.monumentForm.controls['information']).push(informationForm);
+    console.log(this.monumentForm.value)
   }
 
   mapInformationObjectToFormGroup(information:Information){
@@ -81,8 +89,8 @@ export class EditMonumentComponent implements OnInit {
       language: information.language,
       name: information.name,
       description: information.description,
-      question:this.fb.array(information.question
-        .map(question=>this.mapQuestionObjectToFormGroup(question)))
+      question:information.question!=null?this.fb.array(information.question
+        .map(question=>this.mapQuestionObjectToFormGroup(question))):[]
     });
   }
   mapQuestionObjectToFormGroup(question:Question){
@@ -103,6 +111,19 @@ export class EditMonumentComponent implements OnInit {
     return Object.keys(Language).filter(lang => !usedLang.includes(lang));
   }
   save(){
-    this.controller.saveMonument(this.monumentForm,this.monument).subscribe();
+    if(!this.route.snapshot.url.map(i=> i.path).includes("add")){
+      this.controller.saveMonument(this.monumentForm,this.monument).subscribe(res =>{
+        this.router.navigate(['/dashboard']);
+      });
+    }else{
+      this.controller.addMonument(this.monumentForm).subscribe(res =>{
+        this.router.navigate(['/dashboard']);
+      });
+    }
+  
+  }
+  onFileChanged(event: any) {
+    this.uploader.response.subscribe(res => {
+    });
   }
 }

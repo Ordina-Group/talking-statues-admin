@@ -40,5 +40,13 @@ export class DashboardComponent implements OnInit {
       return new Information()
     }
   }
+  removeMonument(monument:Monument){
+    this.controller.removeMonument(monument).subscribe(res => {
+      let index = this.monuments.indexOf(monument, 0);
+      if (index > -1) {
+        this.monuments.splice(index, 1);
+      }
+    });
+  }
 
 }

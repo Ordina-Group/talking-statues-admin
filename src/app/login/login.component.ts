@@ -16,4 +16,7 @@ export class LoginComponent implements OnInit {
     return environment.baseUrl+'/oauth2/authorization/facebook';
   }
 
+  getGoogleLogin(){
+    return environment.baseUrl+'/oauth2/authorization/google';
+  }
 }

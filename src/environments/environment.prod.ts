@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "http://localhost:8080"
+  baseUrl: "http://talking-statues-backend.origin.ordina-jworks.io"
 };

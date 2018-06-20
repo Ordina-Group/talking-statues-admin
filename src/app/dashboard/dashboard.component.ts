@@ -2,6 +2,7 @@ import { Monument, Language, Information } from './../model/monument';
 import { ControllerService } from './../controller.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,8 @@ export class DashboardComponent implements OnInit {
   modalRef: BsModalRef;
   constructor(
     private modalService: BsModalService,
-    private controller:ControllerService) {}
+    private controller:ControllerService,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.controller.getAllMonuments().subscribe(monuments => this.monuments = monuments);

@@ -14,114 +14,127 @@ import { environment } from '../../environments/environment';
 })
 export class EditMonumentComponent implements OnInit {
   monumentForm: FormGroup;
-  modalRef: BsModalRef
-  monument:Monument;
-  activeInfoObjectIndex:number=0;
-  posibleLanguages:string[];
+  modalRef: BsModalRef;
+  monument: Monument;
+  monumentImage: string;
+  activeInfoObjectIndex: number = 0;
+  posibleLanguages: string[];
   public uploader: FileUploader;
   constructor(
-    private controller:ControllerService,
+    private controller: ControllerService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private modalService: BsModalService,
-    private router:Router) {}
+    private router: Router) {}
 
   ngOnInit() {
-    if(!this.route.snapshot.url.map(i=> i.path).includes("add")){
-      let id:String = this.route.snapshot.paramMap.get('id');
-      this.controller.getOneMonument(id)
-      .subscribe(monument => {
-        this.monument=monument;
+    console.log('Entering ngOnInit...');
+    if (this.route.snapshot.url.map(i => i.path).includes('add')) {
+      this.monument = new Monument();
+      this.buildEmptyForm();
+    } else {
+      const id: string = this.route.snapshot.paramMap.get('id');
+      console.log('Entering ngOnInit: First subscribe...');
+      this.controller.getOneMonument(id).subscribe(monument => {
+        this.monument = monument;
         this.buildForm();
-        this.posibleLanguages=this.getPosibleLanguages();
+        this.posibleLanguages = this.getPosibleLanguages();
         this.uploader = new FileUploader({
-          url: environment.baseUrl+'/monuments/'+this.monument.id+'/image',
+          url: environment.baseUrl + '/monuments/' + this.monument.id + '/image',
           disableMultipart: false,
           autoUpload: true
         });
-    });
-    }else{
-      this.monument = new Monument();
-      this.buildEmptyForm();
+      });
+      console.log('Entering ngOnInit: Image subscribe...');
+      this.controller.getOneMonumentImage(id).subscribe(monumentImage => {
+        console.log('Content: [' + monumentImage + ']');
+        this.monumentImage = 'data:image/png;base64,' + monumentImage;
+        console.log(this.monumentImage);
+      });
     }
-    
+
   }
-  buildEmptyForm(){
+
+  buildEmptyForm() {
     this.monumentForm = this.fb.group({
-      information:this.fb.array([]),
-      longitude:['', Validators.required ],
-      latitude:['', Validators.required ],
-      area:['', Validators.required ]
+      information: this.fb.array([]),
+      longitude: ['', Validators.required ],
+      latitude: ['', Validators.required ],
+      area: ['', Validators.required ]
     });
   }
-  buildForm(){
+  buildForm() {
     this.monumentForm = this.fb.group({
-      information:this.fb.array([]),
-      longitude:[this.monument.longitude, Validators.required ],
-      latitude:[this.monument.latitude, Validators.required ],
-      area:[this.monument.area, Validators.required ]
+      information: this.fb.array([]),
+      longitude: [this.monument.longitude, Validators.required ],
+      latitude: [this.monument.latitude, Validators.required ],
+      area: [this.monument.area, Validators.required ]
     });
-    if (this.monument.information.length > 0){
-      this.monumentForm.setControl("information",this.fb.array(this.monument.information
-        .map(info=> this.mapInformationObjectToFormGroup(info))));
+    if (this.monument.information.length > 0) {
+      this.monumentForm.setControl('information', this.fb.array(this.monument.information
+        .map(info => this.mapInformationObjectToFormGroup(info))));
     }
   }
-  
-  removeInformationObject(index){
+
+  removeInformationObject(index) {
     (<FormArray>this.monumentForm.controls['information'])
     .removeAt(index);
-    this.activeInfoObjectIndex=0;
+    this.activeInfoObjectIndex = 0;
   }
-  removeQuestionObject(index){
+  removeQuestionObject(index) {
     (<FormArray>this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question'])
     .removeAt(index);
   }
-  addQuestion(questionForm:FormGroup){
+  addQuestion(questionForm: FormGroup) {
     this.monumentForm.controls['information']['controls'][this.activeInfoObjectIndex]['controls']['question']
     .push(questionForm);
   }
-  addInformation(informationForm:FormGroup){
+  addInformation(informationForm: FormGroup) {
     (<FormArray>this.monumentForm.controls['information'])
     .push(informationForm);
   }
 
-  mapInformationObjectToFormGroup(information:Information){
+  mapInformationObjectToFormGroup(information: Information) {
     return this.fb.group({
       language: information.language,
       name: information.name,
       description: information.description,
-      question:information.question!=null?this.fb.array(information.question
-        .map(question=>this.mapQuestionObjectToFormGroup(question))):[]
+      question: information.question != null ? this.fb.array(information.question
+        .map(question => this.mapQuestionObjectToFormGroup(question))) : []
     });
   }
-  mapQuestionObjectToFormGroup(question:Question){
+  mapQuestionObjectToFormGroup(question: Question) {
     return this.fb.group({
       question: question.question,
       answer: question.answer
     });
   }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
+
   openAddQuestionModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-  getPosibleLanguages(){
-    let informationArray = <FormArray>this.monumentForm.controls['information']
-    let usedLang:String[] = informationArray.controls.map(contr=> contr.get('language').value)
+
+  getPosibleLanguages() {
+    const informationArray = <FormArray>this.monumentForm.controls['information'];
+    const usedLang: String[] = informationArray.controls.map(contr => contr.get('language').value);
     return Object.keys(Language).filter(lang => !usedLang.includes(lang));
   }
-  save(){
-    if(!this.route.snapshot.url.map(i=> i.path).includes("add")){
-      this.controller.saveMonument(this.monumentForm,this.monument).subscribe(res =>{
+
+  save() {
+    if (!this.route.snapshot.url.map(i => i.path).includes('add')) {
+      this.controller.saveMonument(this.monumentForm, this.monument).subscribe(res => {
         this.router.navigate(['/dashboard']);
       });
-    }else{
-      this.controller.addMonument(this.monumentForm).subscribe(res =>{
+    } else {
+      this.controller.addMonument(this.monumentForm).subscribe(res => {
         this.router.navigate(['/dashboard']);
       });
     }
-  
+
   }
   onFileChanged(event: any) {
     this.uploader.response.subscribe(res => {

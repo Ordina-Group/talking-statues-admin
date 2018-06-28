@@ -16,6 +16,8 @@ import { EditMonumentComponent } from './edit-monument/edit-monument.component';
 import { QuestionModalComponent } from './edit-monument/question-modal/question-modal.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { InformationModalComponent } from './edit-monument/information-modal/information-modal.component';
+import { AppService } from './app.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,7 @@ import { InformationModalComponent } from './edit-monument/information-modal/inf
     SureDialogComponent,
     EditMonumentComponent,
     QuestionModalComponent,
-    InformationModalComponent,
-    
+    InformationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +37,10 @@ import { InformationModalComponent } from './edit-monument/information-modal/inf
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     ReactiveFormsModule,
-    FileUploadModule
+    FileUploadModule,
+    FormsModule
   ],
-  providers: [ControllerService],
+  providers: [ControllerService, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,23 +10,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  auth:boolean;
-  name:String;
-  monuments:Monument[];
+  auth: boolean;
+  name: String;
+  monuments: Monument[];
   modalRef: BsModalRef;
   constructor(
     private modalService: BsModalService,
-    private controller:ControllerService,
+    private controller: ControllerService,
     private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.controller.getAllMonuments().subscribe(monuments => this.monuments = monuments);
     this.auth=false;
-    this.controller.checkAuthentication().subscribe(user => {
-      this.auth = true
-      this.name = user;
-    })
   }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }

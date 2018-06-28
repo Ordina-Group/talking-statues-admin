@@ -19,7 +19,7 @@ export class AppComponent {
   logout() {
     console.log('Logout was called...');
     this.http.post(environment.baseUrl + '/logout', {}).finally(() => {
-      this.app.authenticated = false;
+      this.app.clearEncryptedCredentials();
       this.router.navigateByUrl('/login');
     }).subscribe();
   }

@@ -15,6 +15,11 @@ export class AppService {
     return this.encryptedCredentials;
   }
 
+  clearEncryptedCredentials() {
+    this.encryptedCredentials = '';
+    this.authenticated = false;
+  }
+
   authenticate(credentials, callback) {
     console.log('Trying to login with basic auth...');
     const encryptedCreds = credentials ? 'Basic ' + btoa(credentials.username + ':' + credentials.password) : '';
@@ -27,7 +32,7 @@ export class AppService {
         this.authenticated = true;
         this.encryptedCredentials = encryptedCreds;
       } else {
-        this.authenticated = false;
+        this.clearEncryptedCredentials();
       }
       return callback && callback();
     });

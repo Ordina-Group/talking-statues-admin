@@ -31,7 +31,7 @@ export class ControllerService {
   getAllMonuments(): Observable<Monument[]> {
     return this.http.get<Monument[]>(environment.baseUrl + '/monuments', {headers: this.generateHeaders()});
   }
-  getOneMonument(id:String): Observable<Monument> {
+  getOneMonument(id: string): Observable<Monument> {
     return this.http.get<Monument>(environment.baseUrl + '/monuments/' + id, {headers: this.generateHeaders()});
   }
   getOneMonumentImage(id: string): Observable<String> {
@@ -41,13 +41,16 @@ export class ControllerService {
   saveMonument(monumentForm: FormGroup, monument: Monument) {
     return this.http.put(environment.baseUrl + '/monuments/' + monument.id, monumentForm.value, {headers: this.generateHeaders()});
   }
+
   addMonument(monumentForm: FormGroup) {
-    return this.http.post(environment.baseUrl + '/monuments',monumentForm.value, {headers: this.generateHeaders()});
+    return this.http.post(environment.baseUrl + '/monuments', monumentForm.value, {headers: this.generateHeaders()});
   }
+
   uploadImage(file: File, monument: Monument) {
-    return this.http.post(environment.baseUrl + '/images/' + monument.id,file, {headers: this.generateHeaders()});
+    return this.http.post(environment.baseUrl + '/images/' + monument.id, file, {headers: this.generateHeaders()});
   }
-  removeMonument(monument: Monument){
+
+  removeMonument(monument: Monument) {
     return this.http.delete(environment.baseUrl + '/monuments/' + monument.id, {headers: this.generateHeaders()});
   }
 }

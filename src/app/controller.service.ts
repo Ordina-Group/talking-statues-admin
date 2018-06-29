@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { environment } from './../environments/environment';
-import { Monument } from './model/monument';
+import { Monument, MonumentImage } from './model/monument';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -34,8 +34,8 @@ export class ControllerService {
   getOneMonument(id: string): Observable<Monument> {
     return this.http.get<Monument>(environment.baseUrl + '/monuments/' + id, {headers: this.generateHeaders()});
   }
-  getOneMonumentImage(id: string): Observable<String> {
-    return this.http.get<string>(environment.baseUrl + '/monuments/' + id + '/image', {headers: this.generateHeadersImageCall()});
+  getOneMonumentImage(id: string): Observable<MonumentImage> {
+    return this.http.get<MonumentImage>(environment.baseUrl + '/monuments/' + id + '/image64', {headers: this.generateHeaders()});
   }
 
   saveMonument(monumentForm: FormGroup, monument: Monument) {

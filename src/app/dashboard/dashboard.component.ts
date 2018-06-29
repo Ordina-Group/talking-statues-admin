@@ -30,13 +30,12 @@ export class DashboardComponent implements OnInit {
   getPosibleLanguages(){
     return Object.keys(Language)
   }
-  getMonumentInformationForLanguage(monument: Monument,language:String):Information{
+  getMonumentInformationForLanguage(monument: Monument,language: String): Information{
     let details =  monument.information.filter(details => details.language == language);
-    if(details.length!=0){
+    if (details.length != 0) {
       return details[0];
-    }
-    else{
-      return new Information()
+    } else {
+      return new Information();
     }
   }
   removeMonument(monument:Monument){

@@ -1,5 +1,5 @@
 import { ControllerService } from './../controller.service';
-import { Monument, Information, Question, Language } from './../model/monument';
+import { Monument, MonumentImage, Information, Question, Language } from './../model/monument';
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
@@ -46,10 +46,8 @@ export class EditMonumentComponent implements OnInit {
         });
       });
       console.log('Entering ngOnInit: Image subscribe...');
-      this.controller.getOneMonumentImage(id).subscribe(monumentImage => {
-        console.log('Content: [' + monumentImage + ']');
-        this.monumentImage = 'data:image/png;base64,' + monumentImage;
-        console.log(this.monumentImage);
+      this.controller.getOneMonumentImage(id).subscribe(image => {
+        this.monumentImage = 'data:image/png;base64,' + image.content;
       });
     }
 

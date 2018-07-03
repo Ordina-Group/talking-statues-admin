@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AppService } from './app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/finally';
 import {environment} from '../environments/environment';
 
 @Component({
@@ -18,10 +17,9 @@ export class AppComponent {
   }
   logout() {
     console.log('Logout was called...');
-    this.http.post(environment.baseUrl + '/logout', {}).finally(() => {
-      this.app.clearEncryptedCredentials();
-      this.router.navigateByUrl('/login');
-    }).subscribe();
+    this.http.post(environment.baseUrl + '/logout', {}).subscribe();
+    this.app.clearEncryptedCredentials();
+    this.router.navigateByUrl('/login');
   }
 
 }

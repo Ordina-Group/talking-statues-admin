@@ -1,3 +1,8 @@
-.loginbutton {
-  padding: 5px 5px 5px 5px;
+.col-center {
+    float:none;
+    margin:0 auto;
 }
+
+small {letter-spacing: 1px;}
+
+

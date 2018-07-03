@@ -4,11 +4,11 @@ import {environment} from '../environments/environment';
 
 @Injectable()
 export class AppService {
-
   authenticated = false;
   encryptedCredentials = '';
 
   constructor(private http: HttpClient) {
+
   }
 
   getEncryptedCredentials() {
@@ -22,7 +22,7 @@ export class AppService {
 
   authenticate(credentials, callback) {
     console.log('Trying to login with basic auth...');
-    const encryptedCreds = credentials ? 'Basic ' + btoa(credentials.username + ':' + credentials.password) : '';
+    const encryptedCreds = credentials ? 'Basic ' + btoa(credentials.username.trim() + ':' + credentials.password.trim()) : '';
     const headers = new HttpHeaders(encryptedCreds ? {
       authorization : encryptedCreds
     } : {});
@@ -38,5 +38,4 @@ export class AppService {
     });
 
   }
-
 }

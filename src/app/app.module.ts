@@ -1,46 +1,54 @@
-
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ControllerService } from './controller.service';
-import { MonumentDialogComponent } from './monument-dialog/monument-dialog.component';
-import { SureDialogComponent } from './sure-dialog/sure-dialog.component';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ReactiveFormsModule } from '@angular/forms';
-import { EditMonumentComponent } from './edit-monument/edit-monument.component';
-import { QuestionModalComponent } from './edit-monument/question-modal/question-modal.component';
-import { FileUploadModule } from 'ng2-file-upload';
-import { InformationModalComponent } from './edit-monument/information-modal/information-modal.component';
-import { AppService } from './app.service';
+import { MonumentpanelComponent } from './monumentpanel/monumentpanel.component';
+import { UserpanelComponent } from './userpanel/userpanel.component';
+import { RouterModule } from '@angular/router';
+import { UsersService} from '../services/users.service';
+import { MonumentsService } from '../services/monuments.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { PanelusersComponent } from './panelusers/panelusers.component';
+import { MonumentviewComponent } from './monumentview/monumentview.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import {NavbarService} from '../services/navbar.service';
+import { EditmonumentComponent } from './monumentpanel/editmonument/editmonument.component';
+import {AppService} from './app.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    MonumentpanelComponent,
+    UserpanelComponent,
     LoginComponent,
-    DashboardComponent,
-    MonumentDialogComponent,
-    SureDialogComponent,
-    EditMonumentComponent,
-    QuestionModalComponent,
-    InformationModalComponent
+    PanelusersComponent,
+    MonumentviewComponent,
+    NavigationComponent,
+    EditmonumentComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
     HttpClientModule,
-    ModalModule.forRoot(),
-    TabsModule.forRoot(),
-    ReactiveFormsModule,
-    FileUploadModule,
-    FormsModule
+    RouterModule.forRoot([
+      {path: 'monumentpanel' , component: MonumentpanelComponent },
+      {path: 'userpanel' , component: UserpanelComponent },
+      {path: 'login', component: LoginComponent},
+      {path: '' , redirectTo: '/login', pathMatch: 'full' },
+      {path: 'editmonument', component: EditmonumentComponent},
+    ], {useHash: true})
+
   ],
-  providers: [ControllerService, AppService],
+  providers: [
+    UsersService,
+    MonumentsService,
+    NavbarService,
+    AppService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,7 +37,7 @@ export class Information {
 }
 
 export class Question{
-  question: String;
+  question?: String;
   answer: String;
 }
 

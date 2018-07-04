@@ -26,22 +26,16 @@
                 <div formArrayName="questions" class="form-group" *ngFor="let question of questions.controls; let i=index">
                   <div [formGroupName]="i">
                     <div class="form-group">
-                      <label><i class="fas fa-question"></i> Questions</label>
+                      <label><i class="fas fa-question"></i> Question {{i +1}} </label>
                       <input type="text" class="form-control" placeholder="" formControlName="question">
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label >Question</label>
-                        <input type="text" class="form-control" formControlName="question">
-                      </div>
+                      <button *ngIf="!!(editForm.controls.questions.controls.length > 0)"
+                        class="btn btn-danger mt-3" (click)="deleteQuestion(i)"><i class="fas fa-min"></i> Delete Question</button>
                     </div>
                   </div>
-                  <button
-                    class="btn btn-success mt-3" (click)="deleteQuestion(i)"><i class="fas fa-min"></i> Delete Question</button>
                 </div>
               </div>
               <div class="form-row mb-3">
-                <button class="fa fa-min" (click)="addQuestion()">Add Question</button>
+                <button class="btn btn-success" (click)="addQuestion()">Add Question</button>
               </div>
 
 

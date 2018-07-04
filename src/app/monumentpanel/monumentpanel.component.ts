@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Monument} from '../../models/AppUser';
 import { MonumentsService} from '../../services/monuments.service';
-import { map } from 'rxjs/operators';
-import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
 @Component({

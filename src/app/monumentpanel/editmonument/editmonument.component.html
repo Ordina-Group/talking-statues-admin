@@ -1,54 +1,11 @@
-<!--
 <div class="container">
   <div class="container">
-    <h2 class="mt-5 text-center"><i class="fas fa-monument"></i> {{editData.information[0].name}}</h2>
-    <div class="row mt-5">
-      <div class="col">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" *ngFor="let info of editData.information" r>
-            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">{{info.language}}</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab" *ngFor="let info of editData.information">
-           <form>
-              <div class="form-group mt-3">
-                <label for="exampleFormControlInput1"><i class="fas fa-monument"></i> Monument name</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Monument name" value="{{info.name}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1"><i class="fas fa-align-justify"></i> Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{info.description}}</textarea>
-              </div>
-              <div class="form-group">
-                <label><i class="fas fa-question"></i> Questions</label>
-                <input type="text" class="form-control" placeholder="">
-                <button class="btn btn-success mt-3"><i class="fas fa-plus"></i> Add Question</button>
-              </div>
-              <div class="form-group">
-                <label><i class="fas fa-map-marker-alt"></i> Latitude</label>
-                <input type="text" class="form-control" placeholder="38.8951" value="{{editData.latitude}}">
-                <label class="mt-2"><i class="fas fa-map-marker-alt"></i> Longitude</label>
-                <input type="text" class="form-control" placeholder="-77.0364" value="{{editData.longitude}}">
-                <label class="mt-2"><i class="fas fa-map"></i> Area</label>
-                <input type="text" class="form-control" placeholder="Area" value="{{editData.area}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlFile1"><i class="fas fa-camera"></i> Upload the picture of the monument here</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-              </div>
-              <button class="btn btn-success"><i class="fas fa-save" (click)="submitForm()"></i> Save Monument</button>
-            </form>
-            -->
-
-<div class="container">
-  <div class="container">
-    <h2 class="mt-5 text-center"><i class="fas fa-monument"></i></h2>
+    <h2 class="mt-5 text-center"><i class="fas fa-monument"></i>{{info?.name}}</h2>
     <div class="row mt-5">
       <div class="col">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">button</a>
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">{{info?.language}}</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -63,11 +20,31 @@
                 <label><i class="fas fa-align-justify"></i> Description</label>
                 <textarea class="form-control"  rows="3" formControlName="description"></textarea>
               </div>
-              <div class="form-group">
-                <label><i class="fas fa-question"></i> Questions</label>
-                <input type="text" class="form-control" placeholder="" formControlName="questions">
-                <button class="btn btn-success mt-3" (click)="addQuestion()"><i class="fas fa-plus"></i> Add Question</button>
+
+
+              <div *ngIf="questions">
+                <div formArrayName="questions" class="form-group" *ngFor="let question of questions.controls; let i=index">
+                  <div [formGroupName]="i">
+                    <div class="form-group">
+                      <label><i class="fas fa-question"></i> Questions</label>
+                      <input type="text" class="form-control" placeholder="" formControlName="question">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label >Question</label>
+                        <input type="text" class="form-control" formControlName="question">
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-success mt-3" (click)="deleteQuestion(i)"><i class="fas fa-min"></i> Delete Question</button>
+                </div>
               </div>
+              <div class="form-row mb-3">
+                <button class="fa fa-min" (click)="addQuestion()">Add Question</button>
+              </div>
+
+
               <div class="form-group">
                 <label><i class="fas fa-map-marker-alt"></i> Latitude</label>
                 <input type="text" class="form-control" placeholder="38.8951" formControlName="latitude">
@@ -88,5 +65,3 @@
     </div>
   </div>
 </div>
-
-

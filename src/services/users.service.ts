@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {AppUser} from '../models/AppUser';
 import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
+import {environment} from '../environments/environment';
 
 
 @Injectable()
@@ -14,15 +15,16 @@ export class UsersService {
 
   // http requests are asynchronous --> use observable return type
   getUsers(): Observable<AppUser[]> {
-    const dbUrl = 'http://localhost:9000/appusers';
+    const dbUrl = environment.baseUrl + '/appusers';
     return this._http.get<AppUser[]>(dbUrl).pipe(
       map( res => this.data =  res),
       tap( res => console.log(res))
     );
   }
 
+
   forgetUserById(user: AppUser) {
-    const endpoint = 'http://localhost:9000/appusers/forget/' + user.id;
+    const endpoint = environment.baseUrl + '/appusers/forget/' + user.id;
     console.log(endpoint);
 
     this._http.put(endpoint, '').subscribe();

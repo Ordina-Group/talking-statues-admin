@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { MonumentpanelComponent } from './monumentpanel/monumentpanel.component';
 import { UserpanelComponent } from './userpanel/userpanel.component';
 import { RouterModule } from '@angular/router';
 import { UsersService} from '../services/users.service';
@@ -14,6 +12,7 @@ import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
 import {AppService} from './app.service';
+import { FilterPipe } from './shared/userFilter.pipe';
 
 
 @NgModule({
@@ -23,7 +22,7 @@ import {AppService} from './app.service';
     LoginComponent,
     MonumentviewComponent,
     NavigationComponent,
-
+    FilterPipe
   ],
   imports: [
     BrowserModule,

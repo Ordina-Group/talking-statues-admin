@@ -8,7 +8,8 @@
           <div class="card-body">
             <h5 class="card-title">{{monument.information[0].name}}</h5>
             <p class="card-text">{{monument.information[0].description.substring(0, 75)}}</p>
-            <a (click)="send(monument)" class="btn btn-success">Edit Monument</a>
+            <a [routerLink]="['/monuments', monument.id]" class="btn btn-success">
+              <i class="fas fa-edit"></i> Edit Monument</a>
           </div>
         </div>
       </div>

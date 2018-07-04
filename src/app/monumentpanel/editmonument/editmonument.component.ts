@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Information, Monument } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { ActivatedRoute } from '@angular/router';
-import index from "@angular/cli/lib/cli";
+import index from '@angular/cli/lib/cli';
 
 @Component({
   selector: 'app-editmonument',
@@ -18,6 +18,7 @@ export class EditmonumentComponent implements OnInit {
   info: Information;
   editData: Monument;
   sub: Subscription;
+  monumentInformation = [];
 
   constructor(
     private monumentService: MonumentsService,
@@ -31,7 +32,6 @@ export class EditmonumentComponent implements OnInit {
       const id: string = params['id'];
       this.getMonument(id);
     });
-
   }
 
   createForm() {
@@ -50,11 +50,9 @@ export class EditmonumentComponent implements OnInit {
      this.monumentService.getMonumentById(id)
       .subscribe(
         (monument: Monument) => {
-          this.onMonumentRetrieved(monument),
-            console.log(monument.information.length);
+          this.onMonumentRetrieved(monument);
         },
       );
-
   }
 
   onMonumentRetrieved(monument: Monument): void {
@@ -62,9 +60,10 @@ export class EditmonumentComponent implements OnInit {
       this.createForm();
     }
       this.editData = monument;
-    console.log('information: ', this.editData.information[0]);
       this.editData.information.map((information: Information) => {
         this.info = information;
+        console.log('information is: ' + information.language);
+        this.monumentInformation.push(information);
       });
 
       this.editForm.patchValue({
@@ -77,6 +76,7 @@ export class EditmonumentComponent implements OnInit {
       });
 
       monument.information[0].question.map((question) => {
+        console.log('Monument information is: ' + monument.information[0].language);
         (<FormArray>this.editForm.controls['questions']).push(
           this.fb.group({
             question: new FormControl(question.question)

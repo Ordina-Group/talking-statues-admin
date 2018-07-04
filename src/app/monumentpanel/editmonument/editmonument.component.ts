@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {MonumentsService} from '../../../services/monuments.service';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Information, Monument, Question } from '../../../models/AppUser';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Information, Monument } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
+import index from "@angular/cli/lib/cli";
 
 @Component({
   selector: 'app-editmonument',
@@ -36,46 +37,52 @@ export class EditmonumentComponent implements OnInit {
   createForm() {
     const questions: FormArray = new FormArray([]);
     this.editForm = this.fb.group({
-      name: '',
-      description: '',
+      name: new FormControl(),
+      description: new FormControl(),
       questions: questions,
-      latitude: '',
-      longitude: '',
-      area: '',
+      latitude: new FormControl(),
+      longitude: new FormControl(),
+      area: new FormControl(),
     });
   }
 
   getMonument(id: string): void {
      this.monumentService.getMonumentById(id)
       .subscribe(
-        (monument: Monument) => this.onMonumentRetrieved(monument),
+        (monument: Monument) => {
+          this.onMonumentRetrieved(monument),
+            console.log(monument.information.length);
+        },
       );
+
   }
 
   onMonumentRetrieved(monument: Monument): void {
     if (this.editForm) {
       this.createForm();
     }
-    this.editData = monument;
-    this.editData.information.map((information: Information) => {
-      this.info = information;
-    });
-    console.log(this.info);
-    this.editForm.patchValue({
-      name: this.info.name,
-      description: this.info.description,
-      latitude: monument.latitude,
-      longitude: monument.longitude,
-      area: monument.area,
-      language: this.info.language
-    });
+      this.editData = monument;
+    console.log('information: ', this.editData.information[0]);
+      this.editData.information.map((information: Information) => {
+        this.info = information;
+      });
 
-    monument.information[1].question.map((question) => {
-      (<FormArray>this.editForm.controls['questions']).push(
-        this.fb.group({
-          question: [question.question]
-        }));
-    });
+      this.editForm.patchValue({
+        name: this.info.name,
+        description: this.info.description,
+        latitude: monument.latitude,
+        longitude: monument.longitude,
+        area: monument.area,
+        language: this.info.language
+      });
+
+      monument.information[0].question.map((question) => {
+        (<FormArray>this.editForm.controls['questions']).push(
+          this.fb.group({
+            question: new FormControl(question.question)
+          }));
+      });
+
   }
 
   createQuestion(): FormGroup {
@@ -85,11 +92,14 @@ export class EditmonumentComponent implements OnInit {
     );
   }
 
+  deleteQuestion(i: number): void {
+    this.questions.removeAt(i);
+  }
+
   addQuestion(): void {
     this.questions = this.editForm.get('questions') as FormArray;
     this.questions.push(this.createQuestion());
   }
-
   submitForm() {
 
   }

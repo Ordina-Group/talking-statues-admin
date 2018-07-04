@@ -40,7 +40,7 @@ import {AppService} from './app.service';
       {path: 'login', component: LoginComponent},
       {path: '' , redirectTo: '/login', pathMatch: 'full' },
       {path: 'editmonument', component: EditmonumentComponent},
-    ], {useHash: true})
+    ], {useHash: false})
 
   ],
   providers: [

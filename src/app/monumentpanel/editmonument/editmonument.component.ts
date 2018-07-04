@@ -15,7 +15,7 @@ export class EditmonumentComponent implements OnInit {
 
   ngOnInit() {
     this.editData = this.monumentService.getData();
-    console.log(this.editData);
+    console.log('EditData = ' + this.editData);
   }
 
 

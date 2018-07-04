@@ -10,7 +10,6 @@ import { MonumentsService } from '../services/monuments.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { PanelusersComponent } from './panelusers/panelusers.component';
 import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
@@ -22,7 +21,6 @@ import {AppService} from './app.service';
     AppComponent,
     UserpanelComponent,
     LoginComponent,
-    PanelusersComponent,
     MonumentviewComponent,
     NavigationComponent,
 

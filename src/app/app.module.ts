@@ -37,6 +37,7 @@ import { FilterPipe } from './shared/userFilter.pipe';
         path: 'monuments',
         loadChildren: './monumentpanel/monuments.module#MonumentsModule',
       },
+      {path: 'logout', component: LoginComponent}
     ], {useHash: false})
 
   ],

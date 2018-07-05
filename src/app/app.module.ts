@@ -13,7 +13,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
 import { EditmonumentComponent } from './monumentpanel/editmonument/editmonument.component';
 import {AuthService} from '../services/auth.service';
-import {AppService} from './app.service';
 import { FilterPipe } from './shared/userFilter.pipe';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';

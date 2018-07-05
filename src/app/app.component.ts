@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppService } from './app.service';
+import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {environment} from '../environments/environment';
@@ -12,7 +12,7 @@ import {environment} from '../environments/environment';
 
 export class AppComponent {
 //  title = 'app';
-  constructor(private app: AppService, private http: HttpClient, private router: Router) {
+  constructor(private app: AuthService, private http: HttpClient, private router: Router) {
     this.app.authenticate(undefined, undefined);
   }
   logout() {

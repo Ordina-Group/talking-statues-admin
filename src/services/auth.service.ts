@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from '../environments/environment';
 
 @Injectable()
-export class AppService {
+export class AuthService {
   authenticated = false;
   encryptedCredentials = '';
 

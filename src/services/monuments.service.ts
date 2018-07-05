@@ -15,7 +15,7 @@ export class MonumentsService {
 
   // http requests are asynchronous --> use observable return type
   getMonuments(): Observable<Monument[]> {
-    const dbUrl = 'http://localhost:9000/monuments';
+    const dbUrl = environment.baseUrl + '/monuments';
     return this._http.get<Monument[]>(dbUrl).pipe(
       map( res => this.data =  res),
       tap( res => console.log(res))

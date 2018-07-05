@@ -15,8 +15,10 @@ import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
 import { EditmonumentComponent } from './monumentpanel/editmonument/editmonument.component';
-import {AppService} from './app.service';
+import {AuthService} from '../services/auth.service';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,12 @@ import {AppService} from './app.service';
     UsersService,
     MonumentsService,
     NavbarService,
-    AppService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
 ],
   bootstrap: [AppComponent]
 })

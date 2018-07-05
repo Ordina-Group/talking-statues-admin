@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {MonumentsService} from '../../../services/monuments.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Information, Monument } from '../../../models/AppUser';
+import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import index from '@angular/cli/lib/cli';
-import { forEach } from "@angular/router/src/utils/collection";
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-editmonument',
@@ -14,7 +14,7 @@ import { forEach } from "@angular/router/src/utils/collection";
 })
 export class EditmonumentComponent implements OnInit {
 
-  questions;
+  dbQuestion: Question;
   editForm: FormGroup;
   info: Information;
   editData: Monument;
@@ -25,7 +25,12 @@ export class EditmonumentComponent implements OnInit {
     private monumentService: MonumentsService,
     private fb: FormBuilder,
     private _route: ActivatedRoute,
+    private _router: Router,
   ) { }
+
+  get questions(): FormArray {
+    return <FormArray>this.editForm.get('questions');
+  }
 
   ngOnInit() {
     this.createForm();
@@ -37,6 +42,7 @@ export class EditmonumentComponent implements OnInit {
 
   createForm() {
     const questions: FormArray = new FormArray([]);
+
     this.editForm = this.fb.group({
       name: new FormControl(),
       description: new FormControl(),
@@ -45,6 +51,14 @@ export class EditmonumentComponent implements OnInit {
       longitude: new FormControl(),
       area: new FormControl(),
     });
+  }
+
+  createQuestions(): FormGroup {
+    return this.fb.group({
+        question: [''],
+        answer: [''],
+      }
+    );
   }
 
   getMonument(id: string): void {
@@ -67,57 +81,51 @@ export class EditmonumentComponent implements OnInit {
         console.log('information is: ' + information.language);
         this.monumentInformation.push(information);
         console.log('monument information', this.monumentInformation);
+        console.log('question :', this.info.question);
+
+        // populate the questions array if there are existing questions from database
         (<FormArray>this.editForm.controls['questions']).push(
           this.fb.group({
-            question: new FormControl(information.question)
+            question: new FormControl(information.question.map(q => q.question)),
+            answer: new FormControl(information.question.map(q => q.answer))
           }));
 
-        // this.editForm.patchValue({
-        //   name: this.info.name,
-        //   description: this.info.description,
-        //   latitude: monument.latitude,
-        //   longitude: monument.longitude,
-        //   area: monument.area,
-        //   language: this.info.language
-        // });
-
-
-        // for (let i = 0; i <= this.monumentInformation.length - 1; i++) {
-        //   console.log('array value ' + i  + '= ', Object.values(this.monumentInformation[i]));
-        //   console.log('Monument language is: ' + this.monumentInformation[i].language);
-        //   // (<FormArray>this.editForm.controls['questions']).push(
-        //   //   this.fb.group({
-        //   //     question: new FormControl(this.monumentInformation[i].language)
-        //   //   }));
-        //
-        //   // this.monumentInformation[i].question.map((question) => {
-        //   //   console.log('Monument language is: ' + this.monumentInformation[i].language);
-        //   //   (<FormArray>this.editForm.controls['questions']).push(
-        //   //     this.fb.group({
-        //   //       question: new FormControl(question.question)
-        //   //     }));
-        //   // });
-        // }
+        this.editForm.patchValue({
+          name: this.info.name,
+          description: this.info.description,
+          latitude: monument.latitude,
+          longitude: monument.longitude,
+          area: monument.area,
+          language: this.info.language
+        });
       });
+
   }
 
-  createQuestion(): FormGroup {
-    return this.fb.group({
-      question: '',
-      }
-    );
+  addQuestion(question?: Question): void {
+    this.questions.push( this.createQuestions());
   }
 
   deleteQuestion(i: number): void {
     this.questions.removeAt(i);
   }
 
-  addQuestion(): void {
-    this.questions = this.editForm.get('questions') as FormArray;
-    this.questions.push(this.createQuestion());
-  }
   submitForm() {
+    console.log(this.editForm.value);
+    if (this.editForm.dirty && this.editForm.valid) {
+      let r = Object.assign({}, this.editData, this.editForm.value);
 
+      this.monumentService.editMonument(r)
+        .subscribe(
+          () => this.onSaveComplete(),
+        );
+    } else if (!this.editForm.dirty) {
+      this.onSaveComplete();
+    }
+  }
+
+  onSaveComplete() {
+    this._router.navigate(['/monuments']);
   }
 
 }

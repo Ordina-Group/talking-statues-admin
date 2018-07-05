@@ -36,9 +36,9 @@ export class Information {
   question: Question[];
 }
 
-export class Question{
-  question?: String;
-  answer: String;
+export class Question {
+  question?: string;
+  answer: string;
 }
 
 export enum Language {

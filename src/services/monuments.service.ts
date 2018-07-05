@@ -16,24 +16,26 @@ export class MonumentsService {
   // http requests are asynchronous --> use observable return type
   getMonuments(): Observable<Monument[]> {
     const dbUrl = environment.baseUrl + '/monuments';
-    return this._http.get<Monument[]>(dbUrl).pipe(
+    return this._http.get<Monument[]>(dbUrl, {withCredentials: true}).pipe(
       map( res => this.data =  res),
       tap( res => console.log(res))
     );
   }
 
   getMonumentById(id: string): Observable<Monument> {
-    return this._http.get<Monument>(environment.baseUrl + '/monuments/' + id);
+    return this._http.get<Monument>(environment.baseUrl + '/monuments/' + id, {withCredentials: true});
   }
 
   removeMonument(monument: Monument) {
-    return this._http.delete(environment.baseUrl + '/monuments/' + monument.id);
+    return this._http.delete(environment.baseUrl + '/monuments/' + monument.id, {withCredentials: true});
   }
 
-  editMonument(monument: Monument) { }
+  editMonument(monument: Monument): Observable<Monument> {
+    return this._http.put<Monument>(environment.baseUrl + '/monuments/' + monument.id, monument, {withCredentials: true});
+  }
 
   uploadImage(file: File, monument: Monument) {
-    return this._http.post(environment.baseUrl + '/images/' + monument.id, file);
+    return this._http.post(environment.baseUrl + '/images/' + monument.id, file, {withCredentials: true});
   }
 
   saveData(str) {

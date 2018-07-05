@@ -29,13 +29,13 @@
                       <label><i class="fas fa-question"></i> Question {{i +1}} </label>
                       <input type="text" class="form-control" placeholder="" formControlName="question">
                       <button *ngIf="!!(editForm.controls.questions.controls.length > 0)"
-                        class="btn btn-danger mt-3" (click)="deleteQuestion(i)"><i class="fas fa-min"></i> Delete Question</button>
+                        class="btn btn-danger mt-3" (click)="deleteQuestion(i)"><i class="fa fa-trash-alt"></i> Delete Question</button>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="form-row mb-3">
-                <button class="btn btn-success" (click)="addQuestion()">Add Question</button>
+                <button class="btn btn-success" (click)="addQuestion()"><i class="fas fa-plus-circle"></i> Add Question</button>
               </div>
 
 

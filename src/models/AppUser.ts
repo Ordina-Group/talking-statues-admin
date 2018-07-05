@@ -2,7 +2,7 @@ export class AppUser{
   id: string;
   handle: string;
   name: string;
-  lastname: string;
+  lastName: string;
   visits: Visit[];
   monuments: Monument[];
 
@@ -37,7 +37,7 @@ export class Information {
 }
 
 export class Question{
-  question: String;
+  question?: String;
   answer: String;
 }
 

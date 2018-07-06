@@ -44,39 +44,9 @@ export class EditmonumentComponent implements OnInit {
     });
   }
 
-  fillForm(monument) {
-    this.title = monument.name;
-    console.log(this.title);
-    this.editForm.reset();
-    this.questions.reset();
-    this.createQuestions().reset();
-    this.monumentInformation = [];
-    console.log(monument);
-        this.editForm.patchValue({
-          name: monument.name,
-          description: monument.description,
-          latitude: this.editData.latitude,
-          longitude: this.editData.longitude,
-          area: this.editData.area,
-          language: monument.language
-        });
-        this.monumentInformation.push(monument);
-        console.log('monument: ', this.monumentInformation);
-
-        monument.question.map((question) => {
-          // populate the questions array if there are existing questions from database
-          (<FormArray>this.editForm.controls['questions']).push(
-            this.fb.group({
-              question: [question.question],
-              answer: [question.answer]
-            }));
-          console.log(question.answer);
-        });
-  }
 
   createForm() {
     const questions: FormArray = new FormArray([]);
-
     this.editForm = this.fb.group({
       name: new FormControl(),
       description: new FormControl(),
@@ -87,8 +57,20 @@ export class EditmonumentComponent implements OnInit {
     });
   }
 
+
+  getMonument(id: string): void {
+    this.monumentService.getMonumentById(id)
+      .subscribe(
+        (monument: Monument) => {
+          this.onMonumentRetrieved(monument);
+        },
+      );
+  }
+
+
+  // form shows when clicking a language button, from the data of the monument.
   onLanguage(lang) {
-    console.log('i clicked on language: ', lang);
+    // console.log('i clicked on language: ', lang);
     this.clickedLanguage = lang;
     for (let i = 0; i <= this.editData.information.length - 1; i++) {
       if (this.editData.information[i].language === this.clickedLanguage) {
@@ -98,11 +80,37 @@ export class EditmonumentComponent implements OnInit {
     this.fillForm(this.foundInfo);
   }
 
-  createQuestions(): FormGroup {
-    return this.fb.group({
-        question: [''],
-        answer: [''],
-      });
+
+  fillForm(monument) {
+    // clear all used form values from previous clicked language button.
+    this.title = monument.name;
+    this.editForm.reset();
+    this.questions.controls = [];
+
+    this.monumentInformation = [];
+    console.log(monument);
+
+    // populate the form with the data where language is the clicked language.
+    this.editForm.patchValue({
+      name: monument.name,
+      description: monument.description,
+      latitude: this.editData.latitude,
+      longitude: this.editData.longitude,
+      area: this.editData.area,
+      language: monument.language
+    });
+    this.monumentInformation.push(monument);
+    // console.log('monument: ', this.monumentInformation);
+
+    // in case if their are questions from the db, populate the dynamic question formArray.
+    monument.question.map((question) => {
+      // populate the questions array if there are existing questions from database
+      (<FormArray>this.editForm.controls['questions']).push(
+        this.fb.group({
+          question: [question.question],
+          answer: [question.answer]
+        }));
+    });
   }
 
 
@@ -114,15 +122,9 @@ export class EditmonumentComponent implements OnInit {
     this.language = [];
     monument.information.map((info: Information) => {
       this.info = info;
-      console.log('language is: ' + info.language);
+      // console.log('language is: ' + info.language);
       this.language.push(this.info.language);
     });
-    //
-    // this.monumentInformation = [];
-    // if (this.editForm) {
-    //   this.createForm();
-    // }
-    // this.fillForm(monument);
   }
 
 
@@ -130,35 +132,37 @@ export class EditmonumentComponent implements OnInit {
     this.questions.push( this.createQuestions());
   }
 
+
+  createQuestions(): FormGroup {
+    return this.fb.group({
+      question: [''],
+      answer: [''],
+    });
+  }
+
+
   deleteQuestion(i: number): void {
     this.questions.removeAt(i);
   }
 
+
   submitForm() {
     console.log(this.editForm.value);
-    if (this.editForm.dirty && this.editForm.valid) {
-      const r = Object.assign({}, this.editData, this.editForm.value);
-
-      this.monumentService.editMonument(r)
-        .subscribe(
-          () => this.onSaveComplete(),
-        );
-    } else if (!this.editForm.dirty) {
-      this.onSaveComplete();
-    }
+    // if (this.editForm.dirty && this.editForm.valid) {
+    //   const r = Object.assign({}, this.editData, this.editForm.value);
+    //
+    //   this.monumentService.editMonument(r)
+    //     .subscribe(
+    //       () => this.onSaveComplete(),
+    //     );
+    // } else if (!this.editForm.dirty) {
+    //   this.onSaveComplete();
+    // }
   }
 
-  getMonument(id: string): void {
-    this.monumentService.getMonumentById(id)
-      .subscribe(
-        (monument: Monument) => {
-          this.onMonumentRetrieved(monument);
-        },
-      );
-  }
 
   onSaveComplete() {
-    // this._router.navigate(['/monuments']);
+    this._router.navigate(['/monuments']);
   }
 
 }

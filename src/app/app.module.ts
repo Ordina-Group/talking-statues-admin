@@ -11,9 +11,12 @@ import { LoginComponent } from './login/login.component';
 import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
-import {AppService} from './app.service';
+import { EditmonumentComponent } from './monumentpanel/editmonument/editmonument.component';
+import {AuthService} from '../services/auth.service';
 import { FilterPipe } from './shared/userFilter.pipe';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,12 @@ import { FilterPipe } from './shared/userFilter.pipe';
     UsersService,
     MonumentsService,
     NavbarService,
-    AppService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
 ],
   bootstrap: [AppComponent]
 })

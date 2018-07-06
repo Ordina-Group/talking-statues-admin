@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 
-import { AppService } from '../app.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NavbarService} from '../../services/navbar.service';
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   title = 'Management Panel - Talking Statues';
 
 
-  constructor(private app: AppService, private http: HttpClient, private router: Router, private nav: NavbarService) {
+  constructor(private app: AuthService, private http: HttpClient, private router: Router, private nav: NavbarService) {
   }
 
   ngOnInit() {

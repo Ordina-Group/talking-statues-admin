@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {MonumentsService} from '../../../services/monuments.service';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Information, Monument } from '../../../models/AppUser';
+import { FormArray, FormArrayName, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import index from '@angular/cli/lib/cli';
-import { forEach } from "@angular/router/src/utils/collection";
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-editmonument',
@@ -14,17 +14,26 @@ import { forEach } from "@angular/router/src/utils/collection";
 })
 export class EditmonumentComponent implements OnInit {
 
-  questions;
+  language = [];
   editForm: FormGroup;
   info: Information;
   editData: Monument;
   sub: Subscription;
   monumentInformation = [];
+  clickedLanguage: string;
+  foundInfo: Information;
+  title: Information;
+
+
+  get questions(): FormArray {
+    return <FormArray>this.editForm.get('questions');
+  }
 
   constructor(
     private monumentService: MonumentsService,
     private fb: FormBuilder,
     private _route: ActivatedRoute,
+    private _router: Router,
   ) { }
 
   ngOnInit() {
@@ -34,6 +43,7 @@ export class EditmonumentComponent implements OnInit {
       this.getMonument(id);
     });
   }
+
 
   createForm() {
     const questions: FormArray = new FormArray([]);
@@ -47,8 +57,9 @@ export class EditmonumentComponent implements OnInit {
     });
   }
 
+
   getMonument(id: string): void {
-     this.monumentService.getMonumentById(id)
+    this.monumentService.getMonumentById(id)
       .subscribe(
         (monument: Monument) => {
           this.onMonumentRetrieved(monument);
@@ -56,68 +67,102 @@ export class EditmonumentComponent implements OnInit {
       );
   }
 
-  onMonumentRetrieved(monument: Monument): void {
-    this.monumentInformation = [];
-    if (this.editForm) {
-      this.createForm();
-    }
-      this.editData = monument;
-      this.editData.information.map((information: Information) => {
-        this.info = information;
-        console.log('information is: ' + information.language);
-        this.monumentInformation.push(information);
-        console.log('monument information', this.monumentInformation);
-        (<FormArray>this.editForm.controls['questions']).push(
-          this.fb.group({
-            question: new FormControl(information.question)
-          }));
 
-        // this.editForm.patchValue({
-        //   name: this.info.name,
-        //   description: this.info.description,
-        //   latitude: monument.latitude,
-        //   longitude: monument.longitude,
-        //   area: monument.area,
-        //   language: this.info.language
-        // });
-
-
-        // for (let i = 0; i <= this.monumentInformation.length - 1; i++) {
-        //   console.log('array value ' + i  + '= ', Object.values(this.monumentInformation[i]));
-        //   console.log('Monument language is: ' + this.monumentInformation[i].language);
-        //   // (<FormArray>this.editForm.controls['questions']).push(
-        //   //   this.fb.group({
-        //   //     question: new FormControl(this.monumentInformation[i].language)
-        //   //   }));
-        //
-        //   // this.monumentInformation[i].question.map((question) => {
-        //   //   console.log('Monument language is: ' + this.monumentInformation[i].language);
-        //   //   (<FormArray>this.editForm.controls['questions']).push(
-        //   //     this.fb.group({
-        //   //       question: new FormControl(question.question)
-        //   //     }));
-        //   // });
-        // }
-      });
-  }
-
-  createQuestion(): FormGroup {
-    return this.fb.group({
-      question: '',
+  // form shows when clicking a language button, from the data of the monument.
+  onLanguage(lang) {
+    // console.log('i clicked on language: ', lang);
+    this.clickedLanguage = lang;
+    for (let i = 0; i <= this.editData.information.length - 1; i++) {
+      if (this.editData.information[i].language === this.clickedLanguage) {
+        this.foundInfo = this.editData.information[i];
       }
-    );
+    }
+    this.fillForm(this.foundInfo);
   }
+
+
+  fillForm(monument) {
+    // clear all used form values from previous clicked language button.
+    this.title = monument.name;
+    this.editForm.reset();
+    this.questions.controls = [];
+
+    this.monumentInformation = [];
+    console.log(monument);
+
+    // populate the form with the data where language is the clicked language.
+    this.editForm.patchValue({
+      name: monument.name,
+      description: monument.description,
+      latitude: this.editData.latitude,
+      longitude: this.editData.longitude,
+      area: this.editData.area,
+      language: monument.language
+    });
+    this.monumentInformation.push(monument);
+    // console.log('monument: ', this.monumentInformation);
+
+    // in case if their are questions from the db, populate the dynamic question formArray.
+    monument.question.map((question) => {
+      // populate the questions array if there are existing questions from database
+      (<FormArray>this.editForm.controls['questions']).push(
+        this.fb.group({
+          question: [question.question],
+          answer: [question.answer]
+        }));
+    });
+  }
+
+
+  onMonumentRetrieved(monument: Monument): void {
+    this.editData = monument;
+    console.log(monument);
+    console.log(monument.information);
+
+    this.language = [];
+    monument.information.map((info: Information) => {
+      this.info = info;
+      // console.log('language is: ' + info.language);
+      this.language.push(this.info.language);
+    });
+  }
+
+
+  addQuestion(question?: Question): void {
+    this.questions.push( this.createQuestions());
+  }
+
+
+  createQuestions(): FormGroup {
+    return this.fb.group({
+      question: [''],
+      answer: [''],
+    });
+  }
+
 
   deleteQuestion(i: number): void {
     this.questions.removeAt(i);
   }
 
-  addQuestion(): void {
-    this.questions = this.editForm.get('questions') as FormArray;
-    this.questions.push(this.createQuestion());
-  }
-  submitForm() {
 
+  submitForm() {
+    console.log(this.editForm.value);
+    // if (this.editForm.dirty && this.editForm.valid) {
+    //   const r = Object.assign({}, this.editData, this.editForm.value);
+    //
+    //   this.monumentService.editMonument(r)
+    //     .subscribe(
+    //       () => this.onSaveComplete(),
+    //     );
+    // } else if (!this.editForm.dirty) {
+    //   this.onSaveComplete();
+    // }
+  }
+
+
+  onSaveComplete() {
+    this._router.navigate(['/monuments']);
   }
 
 }

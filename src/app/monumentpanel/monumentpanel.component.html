@@ -4,7 +4,7 @@
     <div class="row mt-5">
       <div *ngFor="let monument of monuments; let idx = index" class=" mb-5 col-12 col-xs-12 col-md-6 col-lg-4">
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="http://localhost:9000/monuments/{{monument.id}}/image" alt="Card image cap">
+          <img class="card-img-top" src="http://localhost:9000/images/{{monument.id}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{monument.information[0].name}}</h5>
             <p class="card-text">{{monument.information[0].description.substring(0, 75)}}</p>

@@ -42,6 +42,7 @@ export class EditmonumentComponent implements OnInit {
       const id: string = params['id'];
       this.getMonument(id);
     });
+    console.log('Information:  ==> ' + this.editData.information.length);
   }
 
 

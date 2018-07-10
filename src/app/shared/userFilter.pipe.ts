@@ -11,4 +11,5 @@ export class FilterPipe implements PipeTransform {
       return Object.values(item).indexOf(searchText) > -1;
     });
   }
+
 }

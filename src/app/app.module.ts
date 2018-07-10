@@ -17,6 +17,7 @@ import { FilterPipe } from './shared/userFilter.pipe';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
+import {AuthguardService} from '../services/authguard.service';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,15 @@ import { AuthInterceptor } from '../services/auth.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'userpanel' , component: UserpanelComponent },
+      {path: 'userpanel' , component: UserpanelComponent, canActivate: [AuthguardService] },
       {path: 'login', component: LoginComponent},
       {path: '' , redirectTo: '/login', pathMatch: 'full' },
       {
         path: 'monuments',
-        loadChildren: './monumentpanel/monuments.module#MonumentsModule',
+        loadChildren: './monumentpanel/monuments.module#MonumentsModule', canActivate: [AuthguardService]
       },
-      {path: 'logout', component: LoginComponent}
+      {path: 'logout', component: LoginComponent},
+      {path: '**', component: LoginComponent, redirectTo: '', canActivate: [AuthguardService]}
     ], {useHash: false})
 
   ],
@@ -53,7 +55,8 @@ import { AuthInterceptor } from '../services/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    AuthguardService
 ],
   bootstrap: [AppComponent]
 })

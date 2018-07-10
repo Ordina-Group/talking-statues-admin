@@ -15,10 +15,7 @@
         <div class="form-group">
           <label><i class="fas fa-map-marked-alt"></i> Area</label>
           <select class="form-control">
-            <option>Sint-Andries</option>
-            <option>Sample Area</option>
-            <option>Sample Area</option>
-            <option>Sample Area</option>
+            <option *ngFor="let area of areas">{{area}}</option>
           </select>
         </div>
         <div class="form-group">

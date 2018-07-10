@@ -23,6 +23,7 @@ export class EditmonumentComponent implements OnInit {
   clickedLanguage: string;
   foundInfo: Information;
   title: Information;
+  areas: String[] = [];
 
 
   get questions(): FormArray {
@@ -42,9 +43,17 @@ export class EditmonumentComponent implements OnInit {
       const id: string = params['id'];
       this.getMonument(id);
     });
-    console.log('Information:  ==> ' + this.editData.information.length);
+    this.getAllAreas();
   }
 
+  getAllAreas() {
+    this.monumentService.getAreas().subscribe(data => {
+      for (let i = 0; i <= data.length; i++){
+        this.areas.push(data[i]);
+        console.log(data[i] + ' has been added.');
+      }
+    });
+  }
 
   createForm() {
     const questions: FormArray = new FormArray([]);

@@ -22,6 +22,10 @@ export class MonumentsService {
     );
   }
 
+  getAreas(): Observable<any> {
+    return this._http.get(environment.baseUrl + '/monuments/areas', {withCredentials: true});
+  }
+
   getMonumentById(id: string): Observable<Monument> {
     return this._http.get<Monument>(environment.baseUrl + '/monuments/' + id, {withCredentials: true});
   }

@@ -39,12 +39,30 @@
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">{{info.language}} Tab Here !!!!</div>
-          <div class="tab-pane fade" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">...</div>
+          <div class="tab-pane fade mt-3" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">
+            <div class="form-group">
+              <label><i class="fas fa-monument"></i> Statue Name</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-align-justify"></i> Description</label>
+              <textarea class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-question-circle"></i> Questions</label>
+            </div>
+          </div>
+          <div class="tab-pane fade mt-3" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">
+            <div class="form-group">
+              <label><i class="fas fa-globe-americas"></i> Language name </label>
+              <input type="text" class="form-control">
+              <button class="btn btn-primary btn-sm mt-3"><i class="fas fa-plus-square"></i> Add Language</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-      <button type="submit" class="btn btn-success mt-5"><i class="fas fa-save"></i> Save</button>
+      <button type="submit" class="btn btn-success mb-5"><i class="fas fa-save"></i> Save</button>
     </form>
   </div>
 </div>

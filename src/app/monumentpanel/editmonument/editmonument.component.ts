@@ -44,7 +44,7 @@ export class EditmonumentComponent implements OnInit {
       this.getMonument(id);
     });
     this.getAllAreas();
-
+    this.onLanguage('NL');
   }
 
   getAllAreas() {

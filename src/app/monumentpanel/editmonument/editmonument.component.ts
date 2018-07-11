@@ -47,7 +47,7 @@ export class EditmonumentComponent implements OnInit {
 
   getAllAreas() {
     this.monumentService.getAreas().subscribe(data => {
-      for (let i = 0; i <= data.length; i++){
+      for (let i = 0; i <= data.length; i++) {
         this.areas.push(data[i]);
         console.log(data[i] + ' has been added.');
       }
@@ -80,13 +80,16 @@ export class EditmonumentComponent implements OnInit {
   // form shows when clicking a language button, from the data of the monument.
   onLanguage(lang) {
     // console.log('i clicked on language: ', lang);
+    console.log(lang);
     this.clickedLanguage = lang;
     for (let i = 0; i <= this.editData.information.length - 1; i++) {
       if (this.editData.information[i].language === this.clickedLanguage) {
         this.foundInfo = this.editData.information[i];
+        console.log(this.foundInfo);
+        this.fillForm(this.foundInfo);
       }
     }
-    this.fillForm(this.foundInfo);
+
   }
 
 
@@ -97,8 +100,6 @@ export class EditmonumentComponent implements OnInit {
     this.questions.controls = [];
 
     this.monumentInformation = [];
-    console.log(monument);
-
     // populate the form with the data where language is the clicked language.
     this.editForm.patchValue({
       name: monument.name,
@@ -109,7 +110,6 @@ export class EditmonumentComponent implements OnInit {
       language: monument.language
     });
     this.monumentInformation.push(monument);
-    // console.log('monument: ', this.monumentInformation);
 
     // in case if their are questions from the db, populate the dynamic question formArray.
     monument.question.map((question) => {
@@ -125,9 +125,6 @@ export class EditmonumentComponent implements OnInit {
 
   onMonumentRetrieved(monument: Monument): void {
     this.editData = monument;
-    console.log(monument);
-    console.log(monument.information);
-
     this.language = [];
     monument.information.map((info: Information) => {
       this.info = info;

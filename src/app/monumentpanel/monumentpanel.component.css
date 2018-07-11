@@ -8,3 +8,5 @@ a {
 }
 
 .card { float:none; margin: 0 auto;}
+
+#filterInput {width:92.5%; margin-left:42px;}

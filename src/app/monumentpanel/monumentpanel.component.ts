@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class MonumentpanelComponent implements OnInit {
   title = 'Monument Management - Add/Edit Monuments';
   monuments: Monument[];
+  monSearchText = '';
 
   constructor(
     private monumentService: MonumentsService,

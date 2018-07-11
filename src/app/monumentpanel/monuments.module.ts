@@ -5,6 +5,7 @@ import { MonumentsRoutingModule } from './monuments-routing.module';
 import { MonumentpanelComponent } from './monumentpanel.component';
 import { EditmonumentComponent } from './editmonument/editmonument.component';
 import {TabsModule} from 'ngx-tabs';
+import { MonumentFilterPipe } from "../shared/monumentFilter.pipe";
 
 
 @NgModule({
@@ -13,12 +14,14 @@ import {TabsModule} from 'ngx-tabs';
     ReactiveFormsModule,
     MonumentsRoutingModule,
     TabsModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     MonumentpanelComponent,
     EditmonumentComponent,
+    MonumentFilterPipe,
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class MonumentsModule { }

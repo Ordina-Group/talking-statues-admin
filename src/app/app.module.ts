@@ -26,7 +26,6 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
     MonumentviewComponent,
     NavigationComponent,
     FilterPipe,
-    MonumentFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -56,7 +55,7 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
       useClass: AuthInterceptor,
       multi: true
     },
-    AuthguardService
+    AuthguardService,
 ],
   bootstrap: [AppComponent]
 })

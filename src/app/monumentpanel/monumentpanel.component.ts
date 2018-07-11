@@ -3,6 +3,7 @@ import { Monument} from '../../models/AppUser';
 import { MonumentsService} from '../../services/monuments.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-monumentpanel',
   templateUrl: './monumentpanel.component.html',

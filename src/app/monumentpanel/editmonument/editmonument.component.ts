@@ -34,7 +34,8 @@ export class EditmonumentComponent implements OnInit {
     private fb: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-  ) { }
+  ) {  }
+  // console.log('editData is: ' + this.editData.id);
 
   ngOnInit() {
     this.createForm();
@@ -43,13 +44,14 @@ export class EditmonumentComponent implements OnInit {
       this.getMonument(id);
     });
     this.getAllAreas();
+
   }
 
   getAllAreas() {
     this.monumentService.getAreas().subscribe(data => {
-      for (let i = 0; i <= data.length; i++) {
-        this.areas.push(data[i]);
-        console.log(data[i] + ' has been added.');
+      for (let i = 0; i <= (data.length - 1); i++) {
+          this.areas.push(data[i]);
+          console.log(data[i] + ' has been added.');
       }
     });
   }

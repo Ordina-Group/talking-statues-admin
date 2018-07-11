@@ -1,17 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MonumentsService} from '../../../services/monuments.service';
-import { FormArray, FormArrayName, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { ActivatedRoute, Router } from '@angular/router';
-import {TabsModule} from 'ngx-tabs';
 
 @Component({
   selector: 'app-editmonument',
   templateUrl: './editmonument.component.html',
   styleUrls: ['./editmonument.component.css']
 })
-export class EditmonumentComponent implements OnInit {
+export class EditmonumentComponent implements OnInit, AfterViewInit {
 
   language = [];
   editForm: FormGroup;
@@ -35,7 +34,7 @@ export class EditmonumentComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
   ) {  }
-  // console.log('editData is: ' + this.editData.id);
+
 
   ngOnInit() {
     this.createForm();
@@ -44,7 +43,6 @@ export class EditmonumentComponent implements OnInit {
       this.getMonument(id);
     });
     this.getAllAreas();
-    this.onLanguage('NL');
   }
 
   getAllAreas() {
@@ -82,17 +80,14 @@ export class EditmonumentComponent implements OnInit {
 
   // form shows when clicking a language button, from the data of the monument.
   onLanguage(lang) {
-    // console.log('i clicked on language: ', lang);
-    console.log(lang);
     this.clickedLanguage = lang;
     for (let i = 0; i <= this.editData.information.length - 1; i++) {
-      if (this.editData.information[i].language === this.clickedLanguage) {
+      console.log('Clicked language is: ' + lang + ' == editData.information.language is: ' + this.editData.information[i].language );
+      if (this.editData.information[i].language ===  this.clickedLanguage) {
         this.foundInfo = this.editData.information[i];
-        console.log(this.foundInfo);
         this.fillForm(this.foundInfo);
       }
     }
-
   }
 
 
@@ -175,6 +170,10 @@ export class EditmonumentComponent implements OnInit {
 
   onSaveComplete() {
     this._router.navigate(['/monuments']);
+  }
+
+  ngAfterViewInit(): void {
+    document.getElementById('NL-tab').click();
   }
 
 }

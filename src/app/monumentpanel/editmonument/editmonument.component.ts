@@ -4,8 +4,7 @@ import { FormArray, FormArrayName, FormBuilder, FormControl, FormGroup } from '@
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { ActivatedRoute, Router } from '@angular/router';
-import index from '@angular/cli/lib/cli';
-import { forEach } from '@angular/router/src/utils/collection';
+import {TabsModule} from 'ngx-tabs';
 
 @Component({
   selector: 'app-editmonument',

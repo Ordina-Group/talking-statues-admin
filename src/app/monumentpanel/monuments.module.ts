@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MonumentsRoutingModule } from './monuments-routing.module';
 import { MonumentpanelComponent } from './monumentpanel.component';
 import { EditmonumentComponent } from './editmonument/editmonument.component';
+import {TabsModule} from 'ngx-tabs';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { EditmonumentComponent } from './editmonument/editmonument.component';
     CommonModule,
     ReactiveFormsModule,
     MonumentsRoutingModule,
+    TabsModule,
   ],
   declarations: [
     MonumentpanelComponent,

@@ -80,9 +80,10 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
 
   // form shows when clicking a language button, from the data of the monument.
   onLanguage(lang) {
+    // console.log('data: ', this.editData.information);
     this.clickedLanguage = lang;
     for (let i = 0; i <= this.editData.information.length - 1; i++) {
-      console.log('Clicked language is: ' + lang + ' == editData.information.language is: ' + this.editData.information[i].language );
+      // console.log('Clicked language is: ' + lang + ' == editData.information.language is: ' + this.editData.information[i].language );
       if (this.editData.information[i].language ===  this.clickedLanguage) {
         this.foundInfo = this.editData.information[i];
         this.fillForm(this.foundInfo);
@@ -96,6 +97,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
     this.title = monument.name;
     this.editForm.reset();
     this.questions.controls = [];
+    // console.log(monument.language);
 
     this.monumentInformation = [];
     // populate the form with the data where language is the clicked language.
@@ -128,7 +130,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
       this.info = info;
       // console.log('language is: ' + info.language);
       this.language.push(this.info.language);
-
+      // console.log(this.info.language);
       // form will be populated in case if admin didnt clicked on the language tab.
       this.fillForm(this.info);
     });

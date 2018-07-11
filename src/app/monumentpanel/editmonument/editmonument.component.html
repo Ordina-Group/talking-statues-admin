@@ -37,15 +37,15 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade mt-3" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">
-              <div *ngIf="clickedLanguage" class="form-group">
+              <div class="form-group">
                 <label><i class="fas fa-monument"></i> Statue Name</label>
                 <input type="text" class="form-control" formControlName="name">
               </div>
-              <div *ngIf="clickedLanguage" class="form-group">
+              <div class="form-group">
                 <label><i class="fas fa-align-justify"></i> Description</label>
                 <textarea class="form-control" formControlName="description"></textarea>
               </div>
-              <div *ngIf="clickedLanguage" class="form-group">
+              <div class="form-group">
                 <label><i class="fas fa-question-circle"></i> Questions</label>
               </div>
             </div>

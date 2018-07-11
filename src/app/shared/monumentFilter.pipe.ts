@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Information, Monument } from '../../models/AppUser';
+import { Monument } from '../../models/AppUser';
 
 @Pipe({
   name: 'monumentFilter'

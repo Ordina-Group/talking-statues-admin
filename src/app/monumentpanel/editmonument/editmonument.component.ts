@@ -74,6 +74,7 @@ export class EditmonumentComponent implements OnInit {
       .subscribe(
         (monument: Monument) => {
           this.onMonumentRetrieved(monument);
+
         },
       );
   }
@@ -132,6 +133,9 @@ export class EditmonumentComponent implements OnInit {
       this.info = info;
       // console.log('language is: ' + info.language);
       this.language.push(this.info.language);
+
+      // form will be populated in case if admin didnt clicked on the language tab.
+      this.fillForm(this.info);
     });
   }
 

@@ -111,15 +111,17 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
     });
     this.monumentInformation.push(monument);
 
-    // in case if their are questions from the db, populate the dynamic question formArray.
-    monument.question.map((question) => {
-      // populate the questions array if there are existing questions from database
-      (<FormArray>this.editForm.controls['question']).push(
-        this.fb.group({
-          question: [question.question],
-          answer: [question.answer]
-        }));
-    });
+    if (monument.question) {
+      // in case if their are questions from the db, populate the dynamic question formArray.
+      monument.question.map((question) => {
+        // populate the questions array if there are existing questions from database
+        (<FormArray>this.editForm.controls['question']).push(
+          this.fb.group({
+            question: [question.question],
+            answer: [question.answer]
+          }));
+      });
+    }
   }
 
 

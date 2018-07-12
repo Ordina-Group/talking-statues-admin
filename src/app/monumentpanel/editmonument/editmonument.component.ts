@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MonumentsService} from '../../../services/monuments.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Information, Monument, Question } from '../../../models/AppUser';
+import { Information, Language, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -27,6 +27,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
   get questions(): FormArray {
     return <FormArray>this.editForm.get('questions');
   }
+
 
   constructor(
     private monumentService: MonumentsService,
@@ -63,6 +64,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
       latitude: new FormControl(),
       longitude: new FormControl(),
       area: new FormControl(),
+      language: '',
     });
   }
 
@@ -148,6 +150,30 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
 
   deleteQuestion(i: number): void {
     this.questions.removeAt(i);
+  }
+
+  addLanguage(language?: Language): void {
+    this.language.push(this.createLanguage().controls['language'].value);
+    this.monumentInformation.push(this.createLanguage().value);
+    console.log(this.language);
+    console.log(this.monumentInformation);
+    (<HTMLInputElement>document.getElementById('newLanguage')).value = '';
+
+  }
+
+  createLanguage() {
+    const questions: FormArray = new FormArray([]);
+    return this.fb.group({
+      name: '',
+      description: '',
+      questions: questions,
+      latitude: '',
+      longitude: '',
+      area: '',
+      language: (<HTMLInputElement>document.getElementById('newLanguage')).value,
+    });
+
+    // return (<HTMLInputElement>document.getElementById('newLanguage')).value;
   }
 
 

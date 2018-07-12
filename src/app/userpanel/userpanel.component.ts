@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AppUser} from '../../models/AppUser';
+import { AppUser} from '../../models/AppUser';
 import { UsersService} from '../../services/users.service';
-import {NavbarService} from '../../services/navbar.service';
-import {AuthService} from '../../services/auth.service';
+import { NavbarService} from '../../services/navbar.service';
+
 
 
 declare let $;

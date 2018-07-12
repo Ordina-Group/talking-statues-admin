@@ -26,14 +26,22 @@
         <hr class="my-3">
       </div>
       <div class="col-12">
+
+
+
+
+
         <h3 class="mb-4">Language specific information</h3>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" *ngFor="let info of editData.information; index as i">
             <a class="nav-link" [class.active]="i == 0" id="{{info.language}}-tab" data-toggle="tab" href="#{{info.language}}" role="tab" attr.aria-controls="{{info.language}}" (click)="onLanguage(info.language)" [attr.aria-selected]="i == 0 ? true : false"><i class="fas fa-language"></i> {{info.language}}</a>
           </li>
+
+
           <li class="nav-item">
             <a class="nav-link" id="addLanguage-tab" data-toggle="tab" href="#addLanguage" role="tab" aria-controls="addLanguage" aria-selected="false"><i class="fas fa-plus-square"></i> Add Language</a>
           </li>
+
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade mt-3" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">
@@ -45,10 +53,28 @@
                 <label><i class="fas fa-align-justify"></i> Description</label>
                 <textarea class="form-control" formControlName="description"></textarea>
               </div>
-              <div class="form-group">
-                <label><i class="fas fa-question-circle"></i> Questions</label>
+
+              <div  class="questions" *ngIf="this.editForm.controls['questions']">
+                <div formArrayName="questions" *ngFor="let question of this.editForm.controls['questions'].controls; let i =index">
+                  <div [formGroupName]="i">
+                    <div class="form-group">
+                      <label><i class="fas fa-question-circle"></i> Question {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Question..." formControlName="question">
+                    </div>
+                    <div class="form-group">
+                      <label><i class="fas fa-check-circle"></i> Answer {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Answer..." formControlName="answer">
+                    </div>
+                    <button type="button" *ngIf="(editForm.controls['questions'].controls.length > 1)"
+                            (click)="deleteQuestion(i)" class="btn btn-danger">Delete Question</button>
+                  </div>
+                </div>
               </div>
-            </div>
+              <button type="button" (click)="addQuestion()" class="fa fa-plus">Add Question</button>
+              </div>
+
+
+
           <div class="tab-pane fade mt-3" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">
             <div class="form-group">
               <label><i class="fas fa-globe-americas"></i> Language name </label>

@@ -1,62 +1,94 @@
 <div class="container">
   <div class="container">
-    <h2 *ngIf="title" class="mt-5 text-center"><i class="fas fa-monument"></i>{{title}}</h2>
+    <form [formGroup]="editForm" (ngSubmit)="submitForm()">
     <div class="row mt-5">
-      <div class="col">
+      <div class="col-12">
+        <h3 class="mb-4">Common Information</h3>
+        <div class="form-group">
+          <label><i class="fas fa-map-marker-alt"></i> Latitude</label>
+          <input type="text" class="form-control" formControlName="latitude">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-map-marker-alt"></i> Longitude</label>
+          <input type="text" class="form-control" formControlName="longitude">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-map-marked-alt"></i> Area</label>
+          <select class="form-control">
+            <option *ngFor="let area of areas">{{area}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1"><i class="far fa-file-image"></i> Upload Image here</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <hr class="my-3">
+      </div>
+      <div class="col-12">
+
+
+
+
+
+        <h3 class="mb-4">Language specific information</h3>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" *ngFor="let lang of language">
-            <a class="nav-link" id="home-tab" data-toggle="tab" (click)="onLanguage(lang)" href="#{{lang}}" role="tab" aria-controls="home" aria-selected="false">{{lang}}</a>
+          <li class="nav-item" *ngFor="let info of editData.information; index as i">
+            <a class="nav-link" [class.active]="i == 0" id="{{info.language}}-tab" data-toggle="tab" href="#{{info.language}}" role="tab" attr.aria-controls="{{info.language}}" (click)="onLanguage(info.language)" [attr.aria-selected]="i == 0 ? true : false"><i class="fas fa-language"></i> {{info.language}}</a>
           </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" id="addLanguage-tab" data-toggle="tab" href="#addLanguage" role="tab" aria-controls="addLanguage" aria-selected="false"><i class="fas fa-plus-square"></i> Add Language</a>
+          </li>
+
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade" id="{{data}}" role="tabpanel" aria-labelledby="home-tab" *ngFor="let data of language">
-            <form [formGroup]="editForm" (ngSubmit)="submitForm()" class="mb-5">
-              <div class="form-group mt-3">
-                <label><i class="fas fa-monument"></i> Monument name</label>
-                <input type="text" class="form-control" placeholder="Monument name" formControlName="name">
+            <div class="tab-pane fade mt-3" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">
+              <div class="form-group">
+                <label><i class="fas fa-monument"></i> Statue Name</label>
+                <input type="text" class="form-control" formControlName="name">
               </div>
               <div class="form-group">
                 <label><i class="fas fa-align-justify"></i> Description</label>
-                <textarea class="form-control"  rows="3" formControlName="description" ></textarea>
+                <textarea class="form-control" formControlName="description"></textarea>
               </div>
 
-                <div  formArrayName="questions" *ngFor="let question of questions.controls let i=index">
+              <div  class="questions" *ngIf="this.editForm.controls['questions']">
+                <div formArrayName="questions" *ngFor="let question of this.editForm.controls['questions'].controls; let i =index">
                   <div [formGroupName]="i">
-                    <div class="form-group" >
-                      <label><i class="fas fa-question"></i> Question {{i +1}} </label>
-                      <input type="text" class="form-control" placeholder="" formControlName="question">
-                      <label> Answer </label>
-                      <input type="text" class="form-control" placeholder="" formControlName="answer" >
-                      <button type="button" *ngIf="!!(editForm.controls.questions.controls.length > 0)"
-                        class="btn btn-danger mt-3" (click)="deleteQuestion(i)"><i class="fas fa-trash-alt"></i> Delete Question</button>
+                    <div class="form-group">
+                      <label><i class="fas fa-question-circle"></i> Question {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Question..." formControlName="question">
                     </div>
+                    <div class="form-group">
+                      <label><i class="fas fa-check-circle"></i> Answer {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Answer..." formControlName="answer">
+                    </div>
+                    <button type="button" *ngIf="(editForm.controls['questions'].controls.length > 1)"
+                            (click)="deleteQuestion(i)" class="btn btn-danger">Delete Question</button>
+                  </div>
                 </div>
-                </div>
-
-
-              <div class="form-row mb-3">
-                <button type="button" (click)="addQuestion()"  class="btn btn-success ml-1"><i class="fas fa-plus"></i> Add Question</button>
+              </div>
+              <button type="button" (click)="addQuestion()" class="fa fa-plus">Add Question</button>
               </div>
 
 
 
-              <div class="form-group">
-                <label><i class="fas fa-map-marker-alt"></i> Latitude</label>
-                <input type="text" class="form-control" placeholder="38.8951" formControlName="latitude" >
-                <label class="mt-2"><i class="fas fa-map-marker-alt"></i> Longitude</label>
-                <input type="text" class="form-control" placeholder="-77.0364" formControlName="longitude" >
-                <label class="mt-2"><i class="fas fa-map"></i> Area</label>
-                <input type="text" class="form-control" placeholder="Area" formControlName="area" >
-              </div>
-              <div class="form-group">
-                <label><i class="fas fa-camera"></i> Upload the picture of the monument here</label>
-                <input type="file" class="form-control-file">
-              </div>
-              <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save Monument</button>
-            </form>
+          <div class="tab-pane fade mt-3" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">
+            <div class="form-group">
+              <label><i class="fas fa-globe-americas"></i> Language name </label>
+              <input type="text" class="form-control">
+              <button class="btn btn-primary btn-sm mt-3"><i class="fas fa-plus-square"></i> Add Language</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+      <button type="submit" class="btn btn-success mb-5"><i class="fas fa-save"></i> Save</button>
+    </form>
   </div>
 </div>
+
+
+

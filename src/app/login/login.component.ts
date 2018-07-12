@@ -16,7 +16,7 @@ import { NavbarService} from '../../services/navbar.service';
 export class LoginComponent implements OnInit {
 
   credentials = {username: '', password: ''};
-  title = 'Management Panel - Talking Statues';
+  title = 'UGO | Management Panel';
 
 
   constructor(private app: AuthService, private http: HttpClient, private router: Router, private nav: NavbarService) {

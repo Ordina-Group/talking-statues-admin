@@ -16,6 +16,7 @@ import { FilterPipe } from './shared/userFilter.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
 import {AuthguardService} from '../services/authguard.service';
+import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {AuthguardService} from '../services/authguard.service';
     LoginComponent,
     MonumentviewComponent,
     NavigationComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,7 @@ import {AuthguardService} from '../services/authguard.service';
       useClass: AuthInterceptor,
       multi: true
     },
-    AuthguardService
+    AuthguardService,
 ],
   bootstrap: [AppComponent]
 })

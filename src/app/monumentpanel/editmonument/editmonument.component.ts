@@ -17,7 +17,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
   info: Information;
   editData: Monument;
   sub: Subscription;
-  monumentInformation = [];
+  monumentInformation: Information[] = [];
   clickedLanguage: string;
   foundInfo: Information;
   title: Information;
@@ -25,7 +25,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
 
 
   get questions(): FormArray {
-    return <FormArray>this.editForm.get('questions');
+    return <FormArray>this.editForm.get('question');
   }
 
 
@@ -60,7 +60,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
     this.editForm = this.fb.group({
       name: new FormControl(),
       description: new FormControl(),
-      questions: questions,
+      question: questions,
       latitude: new FormControl(),
       longitude: new FormControl(),
       area: new FormControl(),
@@ -114,7 +114,7 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
     // in case if their are questions from the db, populate the dynamic question formArray.
     monument.question.map((question) => {
       // populate the questions array if there are existing questions from database
-      (<FormArray>this.editForm.controls['questions']).push(
+      (<FormArray>this.editForm.controls['question']).push(
         this.fb.group({
           question: [question.question],
           answer: [question.answer]
@@ -166,29 +166,24 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
     return this.fb.group({
       name: '',
       description: '',
-      questions: questions,
-      latitude: '',
-      longitude: '',
-      area: '',
+      question: questions,
       language: (<HTMLInputElement>document.getElementById('newLanguage')).value,
     });
-
-    // return (<HTMLInputElement>document.getElementById('newLanguage')).value;
   }
 
 
   submitForm() {
     console.log(this.editForm.value);
-    // if (this.editForm.dirty && this.editForm.valid) {
-    //   const r = Object.assign({}, this.editData, this.editForm.value);
-    //
-    //   this.monumentService.editMonument(r)
-    //     .subscribe(
-    //       () => this.onSaveComplete(),
-    //     );
-    // } else if (!this.editForm.dirty) {
-    //   this.onSaveComplete();
-    // }
+    if (this.editForm.dirty && this.editForm.valid) {
+      const r = Object.assign({}, this.monumentInformation, this.editForm.value);
+
+      this.monumentService.editMonument(r)
+        .subscribe(
+          () => this.onSaveComplete(),
+        );
+    } else if (!this.editForm.dirty) {
+      this.onSaveComplete();
+    }
   }
 
 

@@ -54,8 +54,8 @@
                 <textarea class="form-control" formControlName="description"></textarea>
               </div>
 
-              <div  class="questions" *ngIf="this.editForm.controls['questions']">
-                <div formArrayName="questions" *ngFor="let question of this.editForm.controls['questions'].controls; let i =index">
+              <div  class="questions" *ngIf="this.editForm.controls['question']">
+                <div formArrayName="question" *ngFor="let question of this.editForm.controls['question'].controls; let i =index">
                   <div [formGroupName]="i">
                     <div class="form-group">
                       <label><i class="fas fa-question-circle"></i> Question {{i +1}}</label>
@@ -65,7 +65,7 @@
                       <label><i class="fas fa-check-circle"></i> Answer {{i +1}}</label>
                       <input type="text" class="form-control" placeholder="New Answer..." formControlName="answer">
                     </div>
-                    <button type="button" *ngIf="(editForm.controls['questions'].controls.length > 1)"
+                    <button type="button" *ngIf="(editForm.controls['question'].controls.length > 1)"
                             (click)="deleteQuestion(i)" class="btn btn-danger">Delete Question</button>
                   </div>
                 </div>
@@ -75,7 +75,7 @@
           <div class="tab-pane fade mt-3" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">
             <div class="form-group">
               <label><i class="fas fa-globe-americas"></i> Language name </label>
-              <input type="text" class="form-control" id="newLanguage" formControlName="language">
+              <input type="text" class="form-control" id="newLanguage">
               <button  type="button" class="btn btn-primary btn-sm mt-3" (click)="addLanguage()"><i class="fas fa-plus-square"></i> Add Language</button>
             </div>
           </div>

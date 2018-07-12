@@ -35,7 +35,8 @@ export class MonumentsService {
   }
 
   editMonument(monument: Monument): Observable<Monument> {
-    return this._http.put<Monument>(environment.baseUrl + '/monuments/' + monument.id, monument, {withCredentials: true});
+    console.log(monument);
+    return this._http.put<Monument>(environment.baseUrl + '/monuments/' +  monument.id, monument, {withCredentials: true});
   }
 
   uploadImage(file: File, monument: Monument) {

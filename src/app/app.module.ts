@@ -8,7 +8,6 @@ import { MonumentsService } from '../services/monuments.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
 import {AuthService} from '../services/auth.service';
@@ -24,7 +23,6 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AppComponent,
     UserpanelComponent,
     LoginComponent,
-    MonumentviewComponent,
     NavigationComponent,
     FilterPipe,
     PagenotfoundComponent,

@@ -41,7 +41,7 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
         loadChildren: './monumentpanel/monuments.module#MonumentsModule', canActivate: [AuthguardService]
       },
       {path: 'logout', component: LoginComponent},
-      {path: '**', component: LoginComponent, redirectTo: '', canActivate: [AuthguardService]}
+      {path: '**', component: LoginComponent, redirectTo: '', canActivate: [AuthguardService]},
     ], {useHash: false})
 
   ],

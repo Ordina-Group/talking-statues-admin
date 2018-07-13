@@ -1,20 +1,14 @@
-<div>
 <div class="container-fluid">
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col-12">
-        <app-commonform></app-commonform>
+        <app-commonform [commonData]="monumentData"></app-commonform>
       </div>
-      <div class="col-12">
-        <app-languageform></app-languageform>
+      <div class="col-12 mt-5">
+        <app-languageform [languageObject]="monumentInformation"></app-languageform>
       </div>
     </div>
+    <button class="btn btn-success">Save Monument</button>
   </div>
 </div>
 
-  <app-commonform [commonData]="monumentData">
-  </app-commonform>
-
-  <app-languageform [languageObject]="monumentInformation">
-  </app-languageform>
-</div>

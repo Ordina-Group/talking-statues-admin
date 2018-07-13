@@ -10,7 +10,8 @@ a {
 }
 
 .card { float:none; margin: 0 auto;}
-
+#upperForm { margin:0 auto;}
+#upperForm .btn {margin-left: 10px;}
 #filterInput { margin:0 auto; max-width:285px;}
 
 .mainLoginInput::-webkit-input-placeholder {

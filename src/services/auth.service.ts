@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.prod';
 
 @Injectable()
 export class AuthService {
@@ -27,7 +27,7 @@ export class AuthService {
       authorization : encryptedCreds
     } : {});
 
-    this.http.get(environment.baseUrl + '/auth/user', {headers: headers}).subscribe(response => {
+    this.http.get(environment.backendUrl + '/auth/user', {headers: headers}).subscribe(response => {
       if (response['name']) {
         this.authenticated = true;
         this.encryptedCredentials = encryptedCreds;

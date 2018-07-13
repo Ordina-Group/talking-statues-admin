@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'monumentpanel' , component: MonumentpanelComponent, canActivate: [AuthguardService] },
   {path: ':id', component: EditmonumentComponent, canActivate: [AuthguardService]},
   {
-    path: 'addmonument',
+    path: ':addmonument',
     component: AddmonumentComponent,
     canActivate: [AuthguardService]
   },

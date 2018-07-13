@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import {Observable} from 'rxjs';
-import {UsersService} from '../../services/users.service';
-import {LoginComponent} from '../login/login.component';
 import {NavbarService} from '../../services/navbar.service';
 
 @Component({

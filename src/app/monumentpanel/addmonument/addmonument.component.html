@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="container">
+    <form [formGroup]="editForm" (ngSubmit)="submitForm()">
+      <div class="row mt-5">
+        <div class="col-12">
+          <h3 class="mb-4">Common Information</h3>
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Latitude</label>
+            <input type="text" class="form-control" formControlName="latitude">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Longitude</label>
+            <input type="text" class="form-control" formControlName="longitude">
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-map-marked-alt"></i> Area</label>
+            <select class="form-control">
+              <option *ngFor="let area of areas">{{area}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1"><i class="far fa-file-image"></i> Upload Image here</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+          <hr class="my-3">
+        </div>
+        <div class="col-12">
+
+
+
+
+
+          <h3 class="mb-4">Language specific information</h3>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" *ngFor="let info of editData.information; index as i">
+              <a class="nav-link"  id="{{info.language}}-tab"
+                 data-toggle="tab" href="#{{info.language}}" role="tab" attr.aria-controls="{{info.language}}"
+                 (click)="onLanguage(info.language)"
+              ><i class="fas fa-language"></i> {{info.language}}</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" id="addLanguage-tab" data-toggle="tab" href="#addLanguage" role="tab" aria-controls="addLanguage" aria-selected="false"><i class="fas fa-plus-square"></i> Add Language</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade mt-3" *ngFor="let info of editData.information; index as y" [class.show]="y == 0" [class.active]="y==0" id="{{info.language}}" role="tabpanel" attr.aria-labelledby="{{info.language}}-tab">
+              <div class="form-group">
+                <label><i class="fas fa-monument"></i> Statue Name</label>
+                <input type="text" class="form-control" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-align-justify"></i> Description</label>
+                <textarea class="form-control" formControlName="description"></textarea>
+              </div>
+
+              <div  class="questions" *ngIf="this.editForm.controls['question']">
+                <div formArrayName="question" *ngFor="let question of this.editForm.controls['question'].controls; let i =index">
+                  <div [formGroupName]="i">
+                    <div class="form-group">
+                      <label><i class="fas fa-question-circle"></i> Question {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Question..." formControlName="question">
+                    </div>
+                    <div class="form-group">
+                      <label><i class="fas fa-check-circle"></i> Answer {{i +1}}</label>
+                      <input type="text" class="form-control" placeholder="New Answer..." formControlName="answer">
+                    </div>
+                    <button type="button" *ngIf="(editForm.controls['question'].controls.length > 1)"
+                            (click)="deleteQuestion(i)" class="btn btn-danger">Delete Question</button>
+                  </div>
+                </div>
+              </div>
+              <button type="button"class="btn btn-primary btn-sm mt-3" (click)="addQuestion()"><i class="fas fa-plus-square"></i>Add Question</button>
+            </div>
+            <div class="tab-pane fade mt-3" id="addLanguage" role="tabpanel" aria-labelledby="addLanguage-tab">
+              <div class="form-group">
+                <label><i class="fas fa-globe-americas"></i> Language name </label>
+                <input type="text" class="form-control" id="newLanguage">
+                <button  type="button" class="btn btn-primary btn-sm mt-3" (click)="addLanguage()"><i class="fas fa-plus-square"></i> Add Language</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mb-5"><i class="fas fa-save"></i> Save</button>
+    </form>
+  </div>
+</div>
+<div *ngIf="editForm.value">
+  <div *ngFor="let mon of editData">{{editForm.value | json}}</div>
+</div>
+
+
+

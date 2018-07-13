@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MonumentsRoutingModule } from './monuments-routing.module';
 import { MonumentpanelComponent } from './monumentpanel.component';
 import { EditmonumentComponent } from './editmonument/editmonument.component';
-import {TabsModule} from 'ngx-tabs';
-import { MonumentFilterPipe } from "../shared/monumentFilter.pipe";
+import { TabsModule} from 'ngx-tabs';
+import { MonumentFilterPipe } from '../shared/monumentFilter.pipe';
+import { AddmonumentComponent } from './addmonument/addmonument.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MonumentFilterPipe } from "../shared/monumentFilter.pipe";
     MonumentpanelComponent,
     EditmonumentComponent,
     MonumentFilterPipe,
+    AddmonumentComponent,
   ],
   providers: [
   ]

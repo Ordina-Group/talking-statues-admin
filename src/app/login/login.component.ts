@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
   }
 
   getFacebookLogin() {
-    return environment.baseUrl + '/oauth2/authorization/facebook';
+    return environment.backendUrl + '/oauth2/authorization/facebook';
   }
 
   getGoogleLogin() {
-    return environment.baseUrl + '/oauth2/authorization/google';
+    return environment.backendUrl + '/oauth2/authorization/google';
   }
 
 }

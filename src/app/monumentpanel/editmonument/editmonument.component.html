@@ -89,6 +89,9 @@
     </form>
   </div>
 </div>
+<div *ngIf="editForm.value">
+  <div *ngFor="let mon of editData">{{editForm.value | json}}</div>
+</div>
 
 
 

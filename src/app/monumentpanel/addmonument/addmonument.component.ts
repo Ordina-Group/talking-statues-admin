@@ -1,16 +1,16 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Subscription} from 'rxjs/index';
+import {Information, Language, Monument, Question} from '../../../models/AppUser';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {MonumentsService} from '../../../services/monuments.service';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Information, Language, Monument, Question } from '../../../models/AppUser';
-import { Subscription } from 'rxjs/index';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-editmonument',
-  templateUrl: './editmonument.component.html',
-  styleUrls: ['./editmonument.component.css']
+  selector: 'app-addmonument',
+  templateUrl: './addmonument.component.html',
+  styleUrls: ['./addmonument.component.css']
 })
-export class EditmonumentComponent implements OnInit, AfterViewInit {
+export class AddmonumentComponent implements OnInit {
 
   language = [];
   editForm: FormGroup;
@@ -49,8 +49,8 @@ export class EditmonumentComponent implements OnInit, AfterViewInit {
   getAllAreas() {
     this.monumentService.getAreas().subscribe(data => {
       for (let i = 0; i <= (data.length - 1); i++) {
-          this.areas.push(data[i]);
-          console.log(data[i] + ' has been added.');
+        this.areas.push(data[i]);
+        console.log(data[i] + ' has been added.');
       }
     });
   }

@@ -1,11 +1,14 @@
-
+#banner {background:#DD0F58; color:white; letter-spacing:1px;}
 .col-center {
   float:none;
   margin:0 auto;
 }
 
+h3 {letter-spacing: 1px; font-size:28px;}
 small {letter-spacing: 1px;}
 
 .testClass {font-size:30px;}
+
+#footerText {position:absolute; bottom:10px; right:15px;}
 
 

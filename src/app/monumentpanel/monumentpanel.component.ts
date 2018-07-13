@@ -3,6 +3,9 @@ import { Monument} from '../../models/AppUser';
 import { MonumentsService} from '../../services/monuments.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment.prod';
+
+
 
 @Component({
   selector: 'app-monumentpanel',
@@ -13,6 +16,8 @@ export class MonumentpanelComponent implements OnInit {
   title = 'Monument Management - Add/Edit Monuments';
   monuments: Monument[];
   monSearchText = '';
+  baseUrl = environment.baseUrl;
+  backEndUrl = environment.backendUrl;
 
   constructor(
     private monumentService: MonumentsService,
@@ -27,11 +32,10 @@ export class MonumentpanelComponent implements OnInit {
       data => this.monuments = data
 
     );
-    console.log(this.monuments);
   }
 
   send(data) {
-    this.monumentService.saveData(data)
+    this.monumentService.saveData(data);
     this.router.navigate(['/editmonument']);
   }
 

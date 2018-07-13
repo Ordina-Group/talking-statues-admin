@@ -8,7 +8,6 @@ import { MonumentsService } from '../services/monuments.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { MonumentviewComponent } from './monumentview/monumentview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NavbarService} from '../services/navbar.service';
 import {AuthService} from '../services/auth.service';
@@ -17,15 +16,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
 import {AuthguardService} from '../services/authguard.service';
 import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserpanelComponent,
     LoginComponent,
-    MonumentviewComponent,
     NavigationComponent,
     FilterPipe,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +41,7 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
         loadChildren: './monumentpanel/monuments.module#MonumentsModule', canActivate: [AuthguardService]
       },
       {path: 'logout', component: LoginComponent},
-      {path: '**', component: LoginComponent, redirectTo: '', canActivate: [AuthguardService]}
+      {path: '**', component: PagenotfoundComponent, redirectTo: ''}
     ], {useHash: false})
 
   ],

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddmonumentComponent } from './addmonument.component';
+import { MonumentmanagementComponent } from './monumentmanagement.component';
 
-describe('AddmonumentComponent', () => {
-  let component: AddmonumentComponent;
-  let fixture: ComponentFixture<AddmonumentComponent>;
+describe('MonumentmanagementComponent', () => {
+  let component: MonumentmanagementComponent;
+  let fixture: ComponentFixture<MonumentmanagementComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddmonumentComponent ]
+      declarations: [ MonumentmanagementComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddmonumentComponent);
+    fixture = TestBed.createComponent(MonumentmanagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

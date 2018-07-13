@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MonumentpanelComponent } from './monumentpanel.component';
-import { EditmonumentComponent } from './editmonument/editmonument.component';
 import {AuthguardService} from '../../services/authguard.service';
-import {AddmonumentComponent} from './addmonument/addmonument.component';
+import { MonumentmanagementComponent } from './monumentmanagement/monumentmanagement.component';
 
 
 const routes: Routes = [
@@ -12,19 +11,16 @@ const routes: Routes = [
     component: MonumentpanelComponent
   },
   {path: 'monumentpanel' , component: MonumentpanelComponent, canActivate: [AuthguardService] },
-  {path: ':id', component: EditmonumentComponent, canActivate: [AuthguardService]},
+  {path: ':id', component: MonumentmanagementComponent, canActivate: [AuthguardService]},
   {
-    path: 'addmonument',
-    component: AddmonumentComponent,
+    path: ':addmonument',
+    component: MonumentmanagementComponent,
     canActivate: [AuthguardService]
   },
   {
     path: ':id',
-    component: EditmonumentComponent,
+    component: MonumentmanagementComponent,
     canActivate: [AuthguardService]
-  },
-  {
-    path: '**', redirectTo: '/login'
   }
 ];
 

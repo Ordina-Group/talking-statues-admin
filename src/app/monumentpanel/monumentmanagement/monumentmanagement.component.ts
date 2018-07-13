@@ -27,7 +27,10 @@ export class MonumentmanagementComponent implements OnInit {
   fetchIdSegment() {
     this.sub = this._route.params.subscribe(params => {
       const id: string = params['id'];
-      this.getMonument(id);
+      console.log(id);
+      if (id !== 'addmonument') {
+        this.getMonument(id);
+      }
     });
   }
 
@@ -36,7 +39,7 @@ export class MonumentmanagementComponent implements OnInit {
     this._monumentService.getMonumentById(id).subscribe(
       (monument: Monument) => {
         this.monumentData.push(monument);
-        for (let i = 0; i <= monument.information.length; i++) {
+        for (let i = 0; i <= monument.information.length - 1; i++) {
           this.monumentInformation.push(monument.information[i]);
         }
       });

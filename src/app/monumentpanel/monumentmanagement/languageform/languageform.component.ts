@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Information } from '../../../../models/AppUser';
 
 @Component({
   selector: 'app-languageform',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageformComponent implements OnInit {
 
+  @Input() languageObject: Information[];
   constructor() { }
 
   ngOnInit() {
+    console.log('received languageObject: ' , this.languageObject);
   }
 
 }

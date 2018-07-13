@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Monument } from '../../../../models/AppUser';
 
 @Component({
   selector: 'app-commonform',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonformComponent implements OnInit {
 
+  @Input() commonData: Monument[];
+
   constructor() { }
 
   ngOnInit() {
+    console.log('received common data: ', this.commonData);
   }
 
 }

@@ -7,6 +7,7 @@ import { EditmonumentComponent } from './editmonument/editmonument.component';
 import { TabsModule} from 'ngx-tabs';
 import { MonumentFilterPipe } from '../shared/monumentFilter.pipe';
 import { AddmonumentComponent } from './addmonument/addmonument.component';
+import {PagenotfoundComponent} from '../pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AddmonumentComponent } from './addmonument/addmonument.component';
     MonumentpanelComponent,
     EditmonumentComponent,
     MonumentFilterPipe,
-    AddmonumentComponent,
+    AddmonumentComponent
   ],
   providers: [
   ]

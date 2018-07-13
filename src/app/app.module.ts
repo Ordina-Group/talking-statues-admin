@@ -17,6 +17,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
 import {AuthguardService} from '../services/authguard.service';
 import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
     MonumentviewComponent,
     NavigationComponent,
     FilterPipe,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
         loadChildren: './monumentpanel/monuments.module#MonumentsModule', canActivate: [AuthguardService]
       },
       {path: 'logout', component: LoginComponent},
-      {path: '**', component: LoginComponent, redirectTo: '', canActivate: [AuthguardService]}
+      {path: '**', component: PagenotfoundComponent, redirectTo: ''}
     ], {useHash: false})
 
   ],

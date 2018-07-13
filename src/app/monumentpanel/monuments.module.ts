@@ -8,6 +8,10 @@ import { TabsModule} from 'ngx-tabs';
 import { MonumentFilterPipe } from '../shared/monumentFilter.pipe';
 import { AddmonumentComponent } from './addmonument/addmonument.component';
 import {PagenotfoundComponent} from '../pagenotfound/pagenotfound.component';
+import { LanguageformComponent } from './monumentmanagement/languageform/languageform.component';
+import { CommonformComponent } from './monumentmanagement/commonform/commonform.component';
+import { QuestionformComponent } from './monumentmanagement/languageform/questionform/questionform.component';
+import { MonumentmanagementComponent } from './monumentmanagement/monumentmanagement.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import {PagenotfoundComponent} from '../pagenotfound/pagenotfound.component';
     MonumentpanelComponent,
     EditmonumentComponent,
     MonumentFilterPipe,
-    AddmonumentComponent
+    AddmonumentComponent,
+    LanguageformComponent,
+    CommonformComponent,
+    QuestionformComponent,
+    MonumentmanagementComponent
   ],
   providers: [
   ]

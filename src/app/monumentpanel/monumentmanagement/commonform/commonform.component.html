@@ -1,17 +1,20 @@
-<div class="form-group">
-  <label>Latitude</label>
-  <input type="text" placeholder="Enter Latitude">
+<div *ngIf="commonInfo">
+  <div class="form-group">
+    <label>Latitude</label>
+    <input type="text" placeholder="Enter Latitude" [(ngModel)]="commonInfo[0].latitude">
+  </div>
+  <div class="form-group">
+    <label>Longitude</label>
+    <input type="text" placeholder="Enter Longitude" [(ngModel)]="commonInfo[0].longitude">
+  </div>
+  <div class="form-group">
+    <label>Area</label>
+    <input type="text" placeholder="Enter Area">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Upload Image Here</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
 </div>
-<div class="form-group">
-  <label>Longitude</label>
-  <input type="text" placeholder="Enter Longitude">
-</div>
-<div class="form-group">
-  <label>Area</label>
-  <input type="text" placeholder="Enter Area">
-</div>
-<div class="form-group">
-  <label for="exampleFormControlFile1">Upload Image Here</label>
-  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-</div>
+
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Information, Language, Question } from '../../../../models/AppUser';
+import { Information, Language } from '../../../../models/AppUser';
 
 @Component({
   selector: 'app-languageform',
@@ -9,23 +9,22 @@ import { Information, Language, Question } from '../../../../models/AppUser';
 export class LanguageformComponent implements OnInit {
 
   @Input() infoArray: Information[];
-  question: Question[] = [];
-  language: String;
+  clickedInfo: Information[] = [];
+  clickedLanguage: Language;
   constructor() { }
 
   ngOnInit() {
     console.log('received languageObject: ' , this.infoArray);
-    this.questions();
-    this.getLanguage();
   }
 
-  questions() {
-  }
 
-  getLanguage() {
-      this.infoArray.map((lang) => {
-        this.language = lang.language;
-        console.log('monument language object: ', this.language);
-      });
+  onLanguage(lang) {
+    this.clickedLanguage = lang;
+    for (let i = 0; i <= this.infoArray.length - 1; i++) {
+      if (this.infoArray[i].language ===  this.clickedLanguage) {
+        console.log('selected language is: ' , this.clickedLanguage);
+        this.clickedInfo[0] = this.infoArray[i];
+      }
     }
+  }
 }

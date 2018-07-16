@@ -1,8 +1,14 @@
-<div class="form-group">
-  <label>Question: </label>
-  <input type="text" placeholder="Enter Question">
+<div *ngIf="questionData">
+  <div *ngFor="let question of questionData">
+    <div class="form-group">
+      <label>Question: </label>
+      <input type="text" placeholder="Enter Question" [(ngModel)]="question.question">
+    </div>
+    <div class="form-group">
+      <label>Answer: </label>
+      <input type="text" placeholder="Enter Answer" [(ngModel)]="question.answer">
+    </div>
+  </div>
 </div>
-<div class="form-group">
-  <label>Answer: </label>
-  <input type="text" placeholder="Enter Answer">
-</div>
+
+

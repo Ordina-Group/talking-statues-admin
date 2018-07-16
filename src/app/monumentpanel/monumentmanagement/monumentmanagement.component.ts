@@ -45,4 +45,8 @@ export class MonumentmanagementComponent implements OnInit {
       });
   }
 
+  submitForm() {
+    console.log('saved data: ' );
+  }
+
 }

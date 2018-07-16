@@ -1,15 +1,17 @@
-<div *ngIf="commonInfo">
+<div *ngFor="let info of commonInfo">
   <div class="form-group">
     <label>Latitude</label>
-    <input type="text" placeholder="Enter Latitude" [(ngModel)]="commonInfo[0].latitude">
+    <input type="text" placeholder="Enter Latitude" [(ngModel)]="info.latitude">
   </div>
   <div class="form-group">
     <label>Longitude</label>
-    <input type="text" placeholder="Enter Longitude" [(ngModel)]="commonInfo[0].longitude">
+    <input type="text" placeholder="Enter Longitude" [(ngModel)]="info.longitude">
   </div>
   <div class="form-group">
-    <label>Area</label>
-    <input type="text" placeholder="Enter Area">
+    <label><i class="fas fa-map-marked-alt"></i> Area</label>
+    <select class="form-control">
+      <option *ngFor="let area of areas">{{area}}</option>
+    </select>
   </div>
   <div class="form-group">
     <label for="exampleFormControlFile1">Upload Image Here</label>

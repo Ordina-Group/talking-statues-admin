@@ -1,25 +1,35 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Information, Monument } from '../../../../models/AppUser';
+import { MonumentsService } from '../../../../services/monuments.service';
 
 @Component({
   selector: 'app-commonform',
   templateUrl: './commonform.component.html',
   styleUrls: ['./commonform.component.css']
 })
-export class CommonformComponent implements OnInit, AfterViewInit{
+export class CommonformComponent implements OnInit {
 
   @Input() commonData: Monument[];
   commonInfo: Monument[];
+  areas: String[] = [];
 
-  constructor() {
+  constructor(
+    private monumentService: MonumentsService,
+  ) {
   }
 
   ngOnInit() {
     this.fetchCommonInfo();
+    this.getAllAreas();
   }
 
-  ngAfterViewInit() {
-    this.fetchCommonInfo();
+  getAllAreas() {
+    this.monumentService.getAreas().subscribe(data => {
+      for (let i = 0; i <= (data.length - 1); i++) {
+        this.areas.push(data[i]);
+        console.log(data[i] + ' has been added.');
+      }
+    });
   }
 
   fetchCommonInfo() {

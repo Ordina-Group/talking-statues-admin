@@ -1,3 +1,24 @@
-<p>
-  languageform works!
-</p>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li  *ngFor="let info of infoArray"class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+       role="tab" aria-controls="home" (click)="onLanguage(info.language)" aria-selected="true">{{info.language}}</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent" *ngIf="clickedInfo">
+  <div *ngFor="let clicked of clickedInfo" class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="form-group">
+      <label>Name: </label>
+      {{clicked.name}}
+    </div>
+    <div class="form-group">
+      <label>Description: </label>
+      {{clicked.description}}
+    </div>
+    <app-questionform [questionData]="clicked.question"></app-questionform>
+  </div>
+</div>
+
+
+
+
+

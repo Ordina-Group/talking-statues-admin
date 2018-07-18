@@ -47,6 +47,6 @@ export class MonumentsService {
   }
   getData() {
   return this.sharingData;
-}
+  }
 
 }

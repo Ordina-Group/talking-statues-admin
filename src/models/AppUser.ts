@@ -1,4 +1,4 @@
-export class AppUser{
+export class AppUser {
   id: string;
   handle: string;
   name: string;

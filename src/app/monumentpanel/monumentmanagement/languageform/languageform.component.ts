@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Information, Language } from '../../../../models/AppUser';
+import { MonumentsService} from '../../../../services/monuments.service';
+import {Information, Language, Monument} from '../../../../models/AppUser';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-languageform',
@@ -8,23 +10,91 @@ import { Information, Language } from '../../../../models/AppUser';
 })
 export class LanguageformComponent implements OnInit {
 
-  @Input() infoArray: Information[];
-  clickedInfo: Information[] = [];
-  clickedLanguage: Language;
-  constructor() { }
 
-  ngOnInit() {
-    console.log('received languageObject: ' , this.infoArray);
+  monumentInformation: Information[] = [];
+  currentMonument: Monument;
+  newInfo: Information = {
+    language: Language.DE,
+    name: 'test',
+    description: 'test',
+    question: []
+  };
+  monId: string;
+  monumentFound = false;
+  enumLang: Language;
+
+  constructor(
+    private monumentService: MonumentsService,
+    private _route: ActivatedRoute,
+  ) {
+    this.monumentInformation = [];
+    this.fetchIdFromUrl();
+    this.getMonumentInformation();
+    this.printMonInformation();
   }
 
+  ngOnInit() {
 
-  onLanguage(lang) {
-    this.clickedLanguage = lang;
-    for (let i = 0; i <= this.infoArray.length - 1; i++) {
-      if (this.infoArray[i].language ===  this.clickedLanguage) {
-        console.log('selected language is: ' , this.clickedLanguage);
-        this.clickedInfo[0] = this.infoArray[i];
+  }
+
+  getMonumentInformation() {
+    this.monumentService.getMonumentById(this.monId).subscribe(res => {
+      this.currentMonument = res;
+      for (let i = 0; i <= (res.information.length - 1); i++) {
+          this.monumentInformation.push(res.information[i]);
+          console.log('Language: '
+            + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
       }
+    });
+  }
+
+  printMonInformation() {
+    for (let i = 0; i <= this.monumentInformation.length - 1; i++) {
+      console.log('Information Array contains: ' + this.monumentInformation[i].language + ' name: ' + this.monumentInformation[i].name);
     }
+  }
+
+  fetchIdFromUrl() {
+    this._route.params.subscribe(params => {
+      this.monId = params['id'];
+      console.log('Found id in url is: ' + this.monId);
+    });
+
+    if (this.monId !== 'addmonument') {
+      this.monumentFound = true;
+    } else {
+      this.monumentFound = false;
+    }
+  }
+
+  addNewLanguage() {
+    this.newInfo.name = '';
+    this.newInfo.description = '';
+    this.newInfo.question = [];
+     document.getElementById('langCloseBtn').click();
+     let lang = (<HTMLInputElement>document.getElementById('langInput')).value;
+     console.log(lang);
+
+     switch (lang) {
+       case 'NL' :
+         this.enumLang = Language.NL;
+         break;
+       case 'EN' :
+         this.enumLang = Language.EN;
+         break;
+       case 'FR' :
+         this.enumLang = Language.FR;
+         break;
+       case 'DE' :
+         this.enumLang = Language.DE;
+         break;
+       case 'ES' :
+         this.enumLang = Language.ES;
+         break;
+     }
+     this.newInfo.language = this.enumLang;
+
+     console.log(this.newInfo);
+     this.monumentInformation.push(this.newInfo);
   }
 }

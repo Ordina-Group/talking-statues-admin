@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Information, Monument } from '../../../../models/AppUser';
-import { MonumentsService } from '../../../../services/monuments.service';
+import {Information, Monument} from '../../../../models/AppUser';
+import {MonumentsService} from '../../../../services/monuments.service';
+import {ActivatedRoute} from '@angular/router';
+import {MonumentmanagementComponent} from '../monumentmanagement.component';
 
 @Component({
   selector: 'app-commonform',
@@ -9,18 +11,40 @@ import { MonumentsService } from '../../../../services/monuments.service';
 })
 export class CommonformComponent implements OnInit {
 
-  @Input() commonData: Monument[];
-  commonInfo: Monument[];
+  monId: string;
+  currentMonument: Monument;
+  monumentFound = false;
   areas: String[] = [];
 
-  constructor(
-    private monumentService: MonumentsService,
-  ) {
+  constructor(private _route: ActivatedRoute, private monumentService: MonumentsService) {
+
   }
 
   ngOnInit() {
-    this.fetchCommonInfo();
+    this.fetchIdFromUrl();
+    this.getCurrentMonument(this.monId);
     this.getAllAreas();
+
+  }
+
+  fetchIdFromUrl() {
+    this._route.params.subscribe(params => {
+      this.monId = params['id'];
+      console.log('Found id in url is: ' + this.monId);
+    });
+
+    if (this.monId !== 'addmonument') {
+      this.monumentFound = true;
+    } else {
+      this.monumentFound = false;
+    }
+  }
+
+  getCurrentMonument(id: string) {
+    this.monumentService.getMonumentById(id).subscribe(res => {
+      this.currentMonument = res;
+      console.log('Response is: ' + this.currentMonument.information[0].name);
+    });
   }
 
   getAllAreas() {
@@ -32,9 +56,9 @@ export class CommonformComponent implements OnInit {
     });
   }
 
-  fetchCommonInfo() {
-    this.commonInfo = this.commonData;
-    console.log('received common data: ', this.commonInfo);
+  addArea() {
+    this.areas.push((<HTMLInputElement>document.getElementById('areaInput')).value);
+    document.getElementById('closeBtn').click();
   }
 
 }

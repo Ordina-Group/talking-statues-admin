@@ -1,22 +1,46 @@
-<div *ngFor="let info of commonInfo">
-  <div class="form-group">
-    <label>Latitude</label>
-    <input type="text" placeholder="Enter Latitude" class="form-item" [(ngModel)]="info.latitude">
-  </div>
-  <div class="form-group">
-    <label>Longitude</label>
-    <input type="text" placeholder="Enter Longitude" class="form-item" [(ngModel)]="info.longitude">
-  </div>
-  <div class="form-group">
-    <label><i class="fas fa-map-marked-alt"></i> Area</label>
-    <select class="form-control">
-      <option *ngFor="let area of areas">{{area}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Upload Image Here</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+<div class="form-group">
+  <label>Latitude:</label>
+  <input type="text" class="form-control" placeholder="Enter Latitude" [attr.value]="monumentFound ? currentMonument?.latitude : null">
+</div>
+<div class="form-group">
+  <label>Longitude:</label>
+  <input type="text" class="form-control" placeholder="Enter Longitude" [attr.value]="monumentFound ? currentMonument?.longitude : null">
+</div>
+<div class="form-group">
+  <label>Area:</label>
+  <select class="form-control">
+    <option *ngFor="let area of areas">
+      {{area}}
+    </option>
+  </select>
+  <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-plus-square"></i> Add New Area
+  </button>
+</div>
+<div class="form-group">
+  <label for="exampleFormControlFile1">Upload Image Here</label>
+  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Area To Dropdown List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Area Name: </label>
+          <input type="text" id="areaInput" class="form-control" placeholder="Enter Area">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="addArea()">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
-
-

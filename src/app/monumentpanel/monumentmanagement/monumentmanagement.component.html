@@ -1,21 +1,16 @@
 <div class="container-fluid">
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
-      <form (ngSubmit)="submitForm()" #monumentForm="ngForm">
-        <div class="col-12">
-          <app-commonform [commonData]="monumentData">
-
-          </app-commonform>
-        </div>
-        <div class="col-12">
-          <app-languageform [infoArray]="monumentInformation">
-
-          </app-languageform>
-        </div>
-        <button type="submit" class="btn btn-success" [disabled]="!monumentForm.valid">Save</button>
-      </form>
-
+      <div class="col-12">
+        <app-commonform></app-commonform>
+      </div>
+      <div class="col-12 mt-5">
+        <app-languageform></app-languageform>
+      </div>
     </div>
+    <button class="btn btn-success">Save Monument</button>
   </div>
 </div>
+
+
 

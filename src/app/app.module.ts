@@ -15,7 +15,6 @@ import { FilterPipe } from './shared/userFilter.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
 import {AuthguardService} from '../services/authguard.service';
-import {MonumentFilterPipe} from './shared/monumentFilter.pipe';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({

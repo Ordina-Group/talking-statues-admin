@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/index';
 })
 export class MonumentmanagementComponent implements OnInit {
 
-  sub: Subscription;
+  monId: string;
   monumentData: Monument[] = [];
   monumentInformation: Information[] = [];
 
@@ -21,19 +21,9 @@ export class MonumentmanagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fetchIdSegment();
-  }
 
-  fetchIdSegment() {
-    this.sub = this._route.params.subscribe(params => {
-      const id: string = params['id'];
-      console.log(id);
-      if (id !== 'addmonument') {
-        this.getMonument(id);
-      }
-    });
+    this.getMonument(this.monId);
   }
-
 
   getMonument(id: string): void {
     this._monumentService.getMonumentById(id).subscribe(

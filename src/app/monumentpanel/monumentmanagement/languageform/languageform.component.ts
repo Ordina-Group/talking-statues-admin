@@ -21,8 +21,12 @@ export class LanguageformComponent implements OnInit {
   };
   monId: string;
   monumentFound = false;
+  enumLang: Language;
 
-  constructor(private monumentService: MonumentsService, private _route: ActivatedRoute) {
+  constructor(
+    private monumentService: MonumentsService,
+    private _route: ActivatedRoute,
+  ) {
     this.monumentInformation = [];
     this.fetchIdFromUrl();
     this.getMonumentInformation();
@@ -38,7 +42,8 @@ export class LanguageformComponent implements OnInit {
       this.currentMonument = res;
       for (let i = 0; i <= (res.information.length - 1); i++) {
           this.monumentInformation.push(res.information[i]);
-          console.log('Language: ' + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
+          console.log('Language: '
+            + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
       }
     });
   }
@@ -63,7 +68,33 @@ export class LanguageformComponent implements OnInit {
   }
 
   addNewLanguage() {
-
+    this.newInfo.name = '';
+    this.newInfo.description = '';
+    this.newInfo.question = [];
      document.getElementById('langCloseBtn').click();
+     let lang = (<HTMLInputElement>document.getElementById('langInput')).value;
+     console.log(lang);
+
+     switch (lang) {
+       case 'NL' :
+         this.enumLang = Language.NL;
+         break;
+       case 'EN' :
+         this.enumLang = Language.EN;
+         break;
+       case 'FR' :
+         this.enumLang = Language.FR;
+         break;
+       case 'DE' :
+         this.enumLang = Language.DE;
+         break;
+       case 'ES' :
+         this.enumLang = Language.ES;
+         break;
+     }
+     this.newInfo.language = this.enumLang;
+
+     console.log(this.newInfo);
+     this.monumentInformation.push(this.newInfo);
   }
 }

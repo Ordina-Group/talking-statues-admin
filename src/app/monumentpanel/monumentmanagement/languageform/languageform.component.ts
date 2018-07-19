@@ -68,9 +68,11 @@ export class LanguageformComponent implements OnInit {
   }
 
   addNewLanguage() {
+    this.newInfo = new Information();
     this.newInfo.name = '';
     this.newInfo.description = '';
-    this.newInfo.question = [];
+    this.newInfo.language = null;
+    this.enumLang = null;
      document.getElementById('langCloseBtn').click();
      let lang = (<HTMLInputElement>document.getElementById('langInput')).value;
      console.log(lang);
@@ -96,5 +98,6 @@ export class LanguageformComponent implements OnInit {
 
      console.log(this.newInfo);
      this.monumentInformation.push(this.newInfo);
+     console.log('Language is: ' + this.monumentInformation);
   }
 }

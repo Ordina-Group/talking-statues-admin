@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
 import { ActivatedRoute } from '@angular/router';
 import { Information, Monument } from '../../../models/AppUser';
@@ -14,6 +14,10 @@ export class MonumentmanagementComponent implements OnInit {
   monId: string;
   monumentData: Monument[] = [];
   monumentInformation: Information[] = [];
+  returnedLanguageObject: Information[];
+  returnCommonData: Monument[];
+
+  @Input() returnData;
 
   constructor(
     private _monumentService: MonumentsService,
@@ -35,8 +39,20 @@ export class MonumentmanagementComponent implements OnInit {
       });
   }
 
+  getReturnedInformation(information) {
+    this.returnedLanguageObject = information;
+    this.monumentInformation.push(information);
+  }
+
+  getReturnedCommonData(common) {
+    this.returnCommonData = common;
+    this.monumentData.push(common);
+  }
+
   submitForm() {
-    console.log('saved data: ' );
+    console.log('saved commonData: ', this.returnCommonData );
+    console.log('saved informationObject: ', this.returnedLanguageObject );
+
   }
 
 }

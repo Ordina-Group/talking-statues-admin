@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {Information, Monument} from '../../../../models/AppUser';
 import {MonumentsService} from '../../../../services/monuments.service';
 import {ActivatedRoute} from '@angular/router';
@@ -11,6 +11,7 @@ import {MonumentmanagementComponent} from '../monumentmanagement.component';
 })
 export class CommonformComponent implements OnInit {
 
+  @Output() returnCommonData = new EventEmitter<Monument>();
   monId: string;
   currentMonument: Monument;
   monumentFound = false;
@@ -43,6 +44,7 @@ export class CommonformComponent implements OnInit {
   getCurrentMonument(id: string) {
     this.monumentService.getMonumentById(id).subscribe(res => {
       this.currentMonument = res;
+      this.returnCommonData.emit(this.currentMonument);
       console.log('Response is: ' + this.currentMonument.information[0].name);
     });
   }

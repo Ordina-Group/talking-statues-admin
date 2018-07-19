@@ -14,8 +14,6 @@ export class MonumentmanagementComponent implements OnInit {
   monId: string;
   monumentData: Monument[] = [];
   monumentInformation: Information[] = [];
-  returnedLanguageObject: Information[];
-  returnCommonData: Monument[];
 
   @Input() returnData;
 
@@ -40,18 +38,15 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   getReturnedInformation(information) {
-    this.returnedLanguageObject = information;
-    this.monumentInformation.push(information);
+    this.monumentData[0].information = information;
   }
 
   getReturnedCommonData(common) {
-    this.returnCommonData = common;
     this.monumentData.push(common);
   }
 
   submitForm() {
-    console.log('saved commonData: ', this.returnCommonData );
-    console.log('saved informationObject: ', this.returnedLanguageObject );
+    console.log('saved commonData: ', this.monumentData );
 
   }
 

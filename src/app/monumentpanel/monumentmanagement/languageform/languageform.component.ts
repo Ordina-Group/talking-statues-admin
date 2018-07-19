@@ -77,7 +77,7 @@ export class LanguageformComponent implements OnInit {
     this.newInfo.language = null;
     this.enumLang = null;
      document.getElementById('langCloseBtn').click();
-     let lang = (<HTMLInputElement>document.getElementById('langInput')).value;
+     const lang = (<HTMLInputElement>document.getElementById('langInput')).value;
      console.log(lang);
 
      switch (lang) {
@@ -98,9 +98,8 @@ export class LanguageformComponent implements OnInit {
          break;
      }
     (<HTMLInputElement>document.getElementById('langInput')).value = '';
-     this.newInfo.language = this.enumLang;
+    this.newInfo.language = this.enumLang;
 
-    console.log(this.newInfo);
     this.monumentInformation.push(this.newInfo);
     console.log('monumentInformation is: ' , this.monumentInformation);
     this.information.emit(this.monumentInformation);

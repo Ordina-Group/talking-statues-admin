@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'monumentpanel' , component: MonumentpanelComponent, canActivate: [AuthguardService] },
   {path: ':id', component: MonumentmanagementComponent, canActivate: [AuthguardService]},
   {
-    path: ':addmonument',
+    path: 'addmonument',
     component: MonumentmanagementComponent,
     canActivate: [AuthguardService]
   },

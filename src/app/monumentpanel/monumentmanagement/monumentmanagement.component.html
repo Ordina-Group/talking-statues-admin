@@ -2,13 +2,13 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-12">
-        <app-commonform></app-commonform>
+        <app-commonform (returnCommonData)="getReturnedCommonData($event)"></app-commonform>
       </div>
       <div class="col-12 mt-5">
-        <app-languageform></app-languageform>
+        <app-languageform (information)="getReturnedInformation($event)" ></app-languageform>
       </div>
     </div>
-    <button class="btn btn-success">Save Monument</button>
+    <button class="btn btn-success" (click)="submitForm()">Save Monument</button>
   </div>
 </div>
 

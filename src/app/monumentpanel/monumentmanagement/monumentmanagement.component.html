@@ -1,15 +1,20 @@
 <div class="container-fluid">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-12">
-        <app-commonform (returnCommonData)="getReturnedCommonData($event)"></app-commonform>
+  <form [formGroup]="monumentForm">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-12">
+
+          <app-commonform (commonFormReady)="onCommonFormReady($event)"></app-commonform>
+        </div>
+        <div class="col-12 mt-5">
+          <app-languageform (information)="getReturnedInformation($event)" ></app-languageform>
+        </div>
       </div>
-      <div class="col-12 mt-5">
-        <app-languageform (information)="getReturnedInformation($event)" ></app-languageform>
-      </div>
+      <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
     </div>
-    <button class="btn btn-success" (click)="submitForm()">Save Monument</button>
-  </div>
+  </form>
+
+  <pre>{{monumentForm.value | json }}</pre>
 </div>
 
 

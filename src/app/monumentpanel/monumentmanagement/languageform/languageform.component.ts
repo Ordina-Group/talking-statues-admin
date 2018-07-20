@@ -46,7 +46,7 @@ export class LanguageformComponent implements OnInit {
           console.log('Language: '
             + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
       }
-      console.log('monumentInformation is: ' , this.monumentInformation);
+      // console.log('monumentInformation is: ' , this.monumentInformation);
     });
   }
 
@@ -60,7 +60,7 @@ export class LanguageformComponent implements OnInit {
   fetchIdFromUrl() {
     this._route.params.subscribe(params => {
       this.monId = params['id'];
-      console.log('Found id in url is: ' + this.monId);
+      // console.log('Found id in url is: ' + this.monId);
     });
 
     if (this.monId !== 'addmonument') {

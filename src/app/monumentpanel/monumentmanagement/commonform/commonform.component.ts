@@ -1,28 +1,34 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {Information, Monument} from '../../../../models/AppUser';
-import {MonumentsService} from '../../../../services/monuments.service';
-import {ActivatedRoute} from '@angular/router';
-import {MonumentmanagementComponent} from '../monumentmanagement.component';
+import { Monument} from '../../../../models/AppUser';
+import { MonumentsService } from '../../../../services/monuments.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-commonform',
   templateUrl: './commonform.component.html',
   styleUrls: ['./commonform.component.css']
 })
-export class CommonformComponent implements OnInit, AfterViewInit {
+export class CommonformComponent implements OnInit {
 
-  @Output() returnCommonData = new EventEmitter<Monument>();
+  @Output() commonFormReady = new EventEmitter<FormGroup>();
   monId: string;
   currentMonument: Monument;
-  returnMonument: Monument;
   monumentFound = false;
   areas: String[] = [];
 
-  lat: number;
-  long: number;
+  commonForm = new FormGroup ({
+    latitude: new FormControl(''),
+    longitude: new FormControl(''),
+    area: new FormControl(''),
+    monument_id: new FormControl('')
+  });
 
-
-  constructor(private _route: ActivatedRoute, private monumentService: MonumentsService) {
+  constructor(
+    private _route: ActivatedRoute,
+    private monumentService: MonumentsService,
+    private fb: FormBuilder,
+    ) {
 
   }
 
@@ -32,14 +38,6 @@ export class CommonformComponent implements OnInit, AfterViewInit {
     this.getAllAreas();
   }
 
-  ngAfterViewInit() {
-    this.returnMonument = this.currentMonument;
-    const latStr = (<HTMLInputElement>document.getElementById('latitude')).value;
-    const longStr = (<HTMLInputElement>document.getElementById('longitude')).value;
-    this.returnMonument.latitude = Number(latStr);
-    this.returnMonument.longitude = Number(longStr);
-
-  }
 
   fetchIdFromUrl() {
     this._route.params.subscribe(params => {
@@ -57,13 +55,28 @@ export class CommonformComponent implements OnInit, AfterViewInit {
   getCurrentMonument(id: string) {
     this.monumentService.getMonumentById(id).subscribe(res => {
       this.currentMonument = res;
-      console.log('Response is: ' + this.currentMonument.information[0].name);
-
-
-      this.returnCommonData.emit(this.currentMonument);
-
+      if (res) {
+        this.fillCommonForm(this.currentMonument);
+      } else {
+        this.initializeCommonForm();
+      }
     });
   }
+
+  fillCommonForm(common) {
+    console.log('monument: ', common);
+    console.log('monument id:',  common.id);
+
+    this.commonForm.patchValue({
+      latitude: [common.latitude],
+      longitude: [common.longitude],
+      area: [this.areas],
+      monument_id: [common.id]
+    });
+    this.commonFormReady.emit(this.commonForm);
+
+  }
+
 
   getAllAreas() {
     this.monumentService.getAreas().subscribe(data => {
@@ -77,6 +90,16 @@ export class CommonformComponent implements OnInit, AfterViewInit {
   addArea() {
     this.areas.push((<HTMLInputElement>document.getElementById('areaInput')).value);
     document.getElementById('closeBtn').click();
+  }
+
+
+  initializeCommonForm() {
+    this.commonForm = this.fb.group({
+      latitude: new FormControl(''),
+      longitude: new FormControl(''),
+      area: this.areas,
+      monument_id: new FormControl('')
+    });
   }
 
 }

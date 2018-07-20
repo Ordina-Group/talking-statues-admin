@@ -3,6 +3,7 @@ import { MonumentsService } from '../../../services/monuments.service';
 import { ActivatedRoute } from '@angular/router';
 import { Information, Monument } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
+import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-monumentmanagement',
@@ -13,7 +14,10 @@ export class MonumentmanagementComponent implements OnInit {
 
   monId: string;
   monumentData: Monument[] = [];
+  returnedCommon: Monument[] = [];
   monumentInformation: Information[] = [];
+
+  monumentForm: FormGroup;
 
   @Input() returnData;
 
@@ -42,11 +46,17 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   getReturnedCommonData(common) {
-    this.monumentData.push(common);
+    this.returnedCommon = common;
+  }
+
+  onCommonFormReady(childForm: FormGroup) {
+    this.monumentForm = new FormGroup({
+      childFormGroup: childForm
+    });
   }
 
   submitForm() {
-    console.log('saved commonData: ', this.monumentData );
+    console.log('saved commonData: ', this.monumentForm.value );
 
   }
 

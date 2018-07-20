@@ -14,8 +14,9 @@ export class MonumentmanagementComponent implements OnInit {
 
   monId: string;
   monumentData: Monument[] = [];
-  returnedCommon: Monument[] = [];
   monumentInformation: Information[] = [];
+
+  submitMonument: Monument[] = [];
 
   monumentForm: FormGroup;
 
@@ -41,22 +42,19 @@ export class MonumentmanagementComponent implements OnInit {
       });
   }
 
-  getReturnedInformation(information) {
-    this.monumentData[0].information = information;
-  }
-
-  getReturnedCommonData(common) {
-    this.returnedCommon = common;
-  }
-
-  onCommonFormReady(childForm: FormGroup) {
+  onCommonFormReady(commonForm: FormGroup) {
     this.monumentForm = new FormGroup({
-      childFormGroup: childForm
+      commonForm
     });
   }
 
+  onInformationFormReady(informationForm: FormGroup) {
+    this.monumentForm.addControl('', informationForm);
+  }
+
   submitForm() {
-    console.log('saved commonData: ', this.monumentForm.value );
+    console.log('saved commonData: ', this.monumentForm.value);
+    this._monumentService.editMonument(this.monumentForm.value);
 
   }
 

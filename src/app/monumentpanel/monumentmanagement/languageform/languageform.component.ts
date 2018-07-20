@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MonumentsService} from '../../../../services/monuments.service';
 import {Information, Language, Monument} from '../../../../models/AppUser';
 import {ActivatedRoute} from '@angular/router';
+import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-languageform',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class LanguageformComponent implements OnInit {
 
-  @Output() information = new EventEmitter<Information[]>();
+  @Output() informationFormReady = new EventEmitter<FormGroup>();
 
   monumentInformation: Information[] = [];
   currentMonument: Monument;
@@ -24,9 +25,16 @@ export class LanguageformComponent implements OnInit {
   monumentFound = false;
   enumLang: Language;
 
+  informationForm = new FormGroup ({
+  });
+
+  get information(): FormArray {
+    return <FormArray>this.informationForm.get('information');
+  }
   constructor(
     private monumentService: MonumentsService,
     private _route: ActivatedRoute,
+    private fb: FormBuilder,
   ) {
     this.monumentInformation = [];
     this.fetchIdFromUrl();
@@ -46,7 +54,45 @@ export class LanguageformComponent implements OnInit {
           console.log('Language: '
             + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
       }
+      if (res.information) {
+        this.fillInformationForm(res);
+      } else {
+        this.initializeCommonForm();
+      }
       // console.log('monumentInformation is: ' , this.monumentInformation);
+    });
+  }
+
+  fillInformationForm(monument: Monument): void {
+
+    monument.information.map((information) => {
+      (<FormArray>this.informationForm.controls['information']).push(
+        this.fb.group({
+          language: information.language,
+          name: information.name,
+          description: information.description
+        }));
+      console.log('information form value: ', this.informationForm.controls['information'].value);
+    });
+
+
+    // console.log('information[] : ', information);
+    // for ( let i = 0; i <= information.length; i++) {
+    //   this.informationForm.patchValue({
+    //     name: information[i].name,
+    //     description: information[i].description,
+    //     language: information[i].language
+    //   });
+    //   console.log('information form value: ', this.informationForm.value);
+    //   this.informationFormReady.emit(this.informationForm);
+    // }
+  }
+
+  buildInformation(): FormGroup {
+    return this.fb.group({
+      language: [''],
+      name: [''],
+      description: [''],
     });
   }
 
@@ -102,6 +148,15 @@ export class LanguageformComponent implements OnInit {
 
     this.monumentInformation.push(this.newInfo);
     console.log('monumentInformation is: ' , this.monumentInformation);
-    this.information.emit(this.monumentInformation);
+    this.informationFormReady.emit(this.informationForm);
+  }
+
+  initializeCommonForm() {
+    let informationObjects: FormArray = new FormArray([]);
+
+    this.informationForm = this.fb.group({
+      information: informationObjects
+    });
+    this.informationFormReady.emit(this.informationForm);
   }
 }

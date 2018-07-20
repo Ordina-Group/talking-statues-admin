@@ -21,7 +21,7 @@ export class CommonformComponent implements OnInit {
     latitude: new FormControl(''),
     longitude: new FormControl(''),
     area: new FormControl(''),
-    monument_id: new FormControl('')
+    id: new FormControl('')
   });
 
   constructor(
@@ -68,13 +68,12 @@ export class CommonformComponent implements OnInit {
     console.log('monument id:',  common.id);
 
     this.commonForm.patchValue({
-      latitude: [common.latitude],
-      longitude: [common.longitude],
-      area: [this.areas],
-      monument_id: [common.id]
+      latitude: common.latitude,
+      longitude: common.longitude,
+      area: this.areas,
+      id: common.id
     });
     this.commonFormReady.emit(this.commonForm);
-
   }
 
 
@@ -98,8 +97,9 @@ export class CommonformComponent implements OnInit {
       latitude: new FormControl(''),
       longitude: new FormControl(''),
       area: this.areas,
-      monument_id: new FormControl('')
+      id: new FormControl('')
     });
+    this.commonFormReady.emit(this.commonForm);
   }
 
 }

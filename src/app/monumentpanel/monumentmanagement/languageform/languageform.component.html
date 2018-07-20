@@ -1,47 +1,87 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" *ngFor="let info of monumentInformation; let i = index">
-    <a class="nav-link" [ngClass]="i == 0 ? 'active' : ''" id="{{info?.language}}-tab" data-toggle="tab" href="#{{info?.language}}" role="tab" [attr.aria-controls]="info?.language" [attr.aria-selected]="i == 0 ? true : false">{{info?.language}}</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="addLanguage-tab" data-toggle="modal" data-target="#languageModal" href="#addLanguage" ><i class="fas fa-plus-square"></i> Add Language</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div *ngFor="let inf of monumentInformation; let i = index" class="tab-pane fade mt-3" [ngClass]="i == 0 ? 'active show' : ''" id="{{inf?.language}}" role="tabpanel" [attr.aria-labelledby]="inf?.language">
-    <div class="form-group">
-      <label>Name: </label>
-      <input type="text" id="name" class="form-control" placeholder="Enter Name" value="{{inf?.name}}">
-    </div>
-    <div class="form-group">
-      <label>Description: </label>
-      <textarea class="form-control" id="description" placeholder="Enter Description">{{inf?.description}}</textarea>
-    </div>
-    <app-questionform ></app-questionform>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<form [formGroup]="informationForm">
+    <!--<div>-->
+      <!--<label>Information Language-->
+        <!--<input type="text" class="form-control" formControlName="language">-->
+      <!--</label>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<label>Name-->
+        <!--<input type="text" class="form-control" formControlName="name">-->
+      <!--</label>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<label>Description-->
+        <!--<input type="text" class="form-control" formControlName="description">-->
+      <!--</label>-->
+    <!--</div>-->
 
+  <!--<div formArrayName="informationObjects" *ngFor="let information of information.controls; let i=index" class="card mb-3">-->
+    <!--<div [formGroupName]="i">-->
+      <!--<div class="form-group">-->
+        <!--<label>Information Language</label>-->
+        <!--<input type="text" class="form-control"  formControlName="language">-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label>Name</label>-->
+        <!--<input type="text" class="form-control"  formControlName="name">-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label>Description</label>-->
+        <!--<input type="text" class="form-control"  formControlName="description">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add a New Language</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Language: </label>
-          <input type="text" id="langInput" class="form-control" placeholder="Example. NL, FR, EN">
+</form>
+
+<pre>{{informationForm.value | json}}</pre>
+
+<!--<ul class="nav nav-tabs" id="myTab" role="tablist">-->
+  <!--<li class="nav-item" *ngFor="let info of monumentInformation; let i = index">-->
+    <!--<a class="nav-link" [ngClass]="i == 0 ? 'active' : ''" id="{{info?.language}}-tab" data-toggle="tab" href="#{{info?.language}}" role="tab" [attr.aria-controls]="info?.language" [attr.aria-selected]="i == 0 ? true : false">{{info?.language}}</a>-->
+  <!--</li>-->
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link" id="addLanguage-tab" data-toggle="modal" data-target="#languageModal" href="#addLanguage" ><i class="fas fa-plus-square"></i> Add Language</a>-->
+  <!--</li>-->
+<!--</ul>-->
+<!--<div class="tab-content" id="myTabContent">-->
+  <!--<div *ngFor="let inf of monumentInformation; let i = index" class="tab-pane fade mt-3" [ngClass]="i == 0 ? 'active show' : ''" id="{{inf?.language}}" role="tabpanel" [attr.aria-labelledby]="inf?.language">-->
+    <!--<div class="form-group">-->
+      <!--<label>Name: </label>-->
+      <!--<input type="text" id="name" class="form-control" placeholder="Enter Name" value="{{inf?.name}}">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label>Description: </label>-->
+      <!--<textarea class="form-control" id="description" placeholder="Enter Description">{{inf?.description}}</textarea>-->
+    <!--</div>-->
+    <!--<app-questionform ></app-questionform>-->
+  <!--</div>-->
+<!--</div>-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a New Language</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Language: </label>
+            <input type="text" id="langInput" class="form-control" placeholder="Example. NL, FR, EN">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="langCloseBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" (click)="addNewLanguage()">Save changes</button>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" id="langCloseBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="addNewLanguage()">Save changes</button>
-      </div>
     </div>
   </div>
-</div>
+
+
+
 

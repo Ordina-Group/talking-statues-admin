@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MonumentsService} from '../../../../services/monuments.service';
 import {Information, Language, Monument} from '../../../../models/AppUser';
 import {ActivatedRoute} from '@angular/router';
@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class LanguageformComponent implements OnInit {
 
+  @Output() information = new EventEmitter<Information[]>();
 
   monumentInformation: Information[] = [];
   currentMonument: Monument;
@@ -45,12 +46,14 @@ export class LanguageformComponent implements OnInit {
           console.log('Language: '
             + res.information[i].language + ' has been added. Length is: ' + this.monumentInformation.length);
       }
+      console.log('monumentInformation is: ' , this.monumentInformation);
     });
   }
 
   printMonInformation() {
     for (let i = 0; i <= this.monumentInformation.length - 1; i++) {
-      console.log('Information Array contains: ' + this.monumentInformation[i].language + ' name: ' + this.monumentInformation[i].name);
+      console.log('Information Array contains: '
+        + this.monumentInformation[i].language + ' name: ' + this.monumentInformation[i].name);
     }
   }
 
@@ -74,7 +77,7 @@ export class LanguageformComponent implements OnInit {
     this.newInfo.language = null;
     this.enumLang = null;
      document.getElementById('langCloseBtn').click();
-     let lang = (<HTMLInputElement>document.getElementById('langInput')).value;
+     const lang = (<HTMLInputElement>document.getElementById('langInput')).value;
      console.log(lang);
 
      switch (lang) {
@@ -94,10 +97,11 @@ export class LanguageformComponent implements OnInit {
          this.enumLang = Language.ES;
          break;
      }
-     this.newInfo.language = this.enumLang;
+    (<HTMLInputElement>document.getElementById('langInput')).value = '';
+    this.newInfo.language = this.enumLang;
 
-     console.log(this.newInfo);
-     this.monumentInformation.push(this.newInfo);
-     console.log('Language is: ' + this.monumentInformation);
+    this.monumentInformation.push(this.newInfo);
+    console.log('monumentInformation is: ' , this.monumentInformation);
+    this.information.emit(this.monumentInformation);
   }
 }

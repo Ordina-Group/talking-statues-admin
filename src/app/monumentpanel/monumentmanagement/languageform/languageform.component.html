@@ -1,10 +1,11 @@
 <form [formGroup]="informationForm">
-    <div formArrayName="information" *ngFor="let lang of informationForm.get('information').value; let i=index">
-      <div [formGroupName]="i" class="card-body">
-        <div class="form-group">
-          <label>Information Language</label>
-          <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
-        </div>
+
+  <div formArrayName="information" *ngFor="let information of information.value; let i=index" class="card mb-3">
+    <div [formGroupName]="i" class="card-body">
+      <div class="form-group">
+        <label>Language</label>
+        <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
+      </div>
         <div class="form-group">
           <label>Name</label>
           <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
@@ -13,26 +14,20 @@
           <label>Description</label>
           <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
         </div>
-      </div>
-      <button *ngIf="(informationForm.controls.information.controls.length > 1)"
+      <button type="button" *ngIf="(informationForm.controls.information.controls.length > 1)"
               (click)="deleteInformation(i)" class="btn btn-danger">Delete Information</button>
     </div>
+  </div>
 
   <div class="form-row mb-3">
     <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addInformation()">Add Information</button>
   </div>
   <br>
 
-  <pre>
-  informationForm Values:
-  {{ informationForm.get('information').value | json }}
-  </pre>
-
-
-
-
-
-
+  <!--<pre>-->
+  <!--informationForm Values:-->
+  <!--{{ informationForm.get('information').value | json }}-->
+  <!--</pre>-->
 
 </form>
 

@@ -14,10 +14,15 @@
           <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
         </div>
       </div>
-
+      <button *ngIf="(informationForm.controls.information.controls.length > 1)"
+              (click)="deleteInformation(i)" class="btn btn-danger">Delete Information</button>
     </div>
+
+  <div class="form-row mb-3">
+    <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addInformation()">Add Information</button>
+  </div>
   <br>
-  
+
   <pre>
   informationForm Values:
   {{ informationForm.get('information').value | json }}
@@ -26,11 +31,8 @@
 
 
 
-  <!--<button *ngIf="(informationForm.controls.information.controls.length > 1)"-->
-          <!--(click)="deleteInformation(i)" class="btn btn-danger">Delete Information</button>-->
-  <!--<div class="form-row mb-3">-->
-    <!--<button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addInformation()">Add Information</button>-->
-  <!--</div>-->
+
+
 
 </form>
 

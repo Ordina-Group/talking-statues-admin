@@ -12,11 +12,10 @@ import { FormGroup } from "@angular/forms";
 })
 export class MonumentmanagementComponent implements OnInit {
 
-  monId: string;
-  monumentData: Monument[] = [];
-  monumentInformation: Information[] = [];
-
-  submitMonument: Monument[] = [];
+  monumentID: string;
+  monument;
+  information;
+  submitMonument: Monument;
 
   monumentForm: FormGroup;
 
@@ -28,18 +27,9 @@ export class MonumentmanagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this.getMonument(this.monId);
-  }
-
-  getMonument(id: string): void {
-    this._monumentService.getMonumentById(id).subscribe(
-      (monument: Monument) => {
-        this.monumentData.push(monument);
-        for (let i = 0; i <= monument.information.length - 1; i++) {
-          this.monumentInformation.push(monument.information[i]);
-        }
-      });
+    this._route.params.subscribe(params => {
+      this.monumentID = params['id'];
+    });
   }
 
   onCommonFormReady(commonForm: FormGroup) {
@@ -49,12 +39,28 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   onInformationFormReady(informationForm: FormGroup) {
-    this.monumentForm.addControl('', informationForm);
+    console.log('returned informationObjects: ', informationForm);
+    // this.monumentForm = new FormGroup({
+    //   informationForm
+    // });
   }
 
   submitForm() {
+    // let information = new FormGroup({
+    //   language: this.information.language,
+    //   name: this.information.name,
+    //   description: this.information.description,
+    // });
+    //
+    // this.monumentForm = new FormGroup({
+    //   area: this.monument.area,
+    //   id: this.monument.id,
+    //   latitude: this.monument.latitude,
+    //   longitude: this.monument.longitude,
+    //   information : information
+    // });
     console.log('saved commonData: ', this.monumentForm.value);
-    this._monumentService.editMonument(this.monumentForm.value);
+    // this._monumentService.editMonument(this.monumentForm.value);
 
   }
 

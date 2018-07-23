@@ -1,40 +1,62 @@
 <form [formGroup]="informationForm">
-    <!--<div>-->
-      <!--<label>Information Language-->
-        <!--<input type="text" class="form-control" formControlName="language">-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<div>-->
-      <!--<label>Name-->
-        <!--<input type="text" class="form-control" formControlName="name">-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<div>-->
-      <!--<label>Description-->
-        <!--<input type="text" class="form-control" formControlName="description">-->
-      <!--</label>-->
+
+  <!--<mat-tab-group *ngFor="let information of information.value; let i=index">-->
+    <!--<mat-tab title="{{information.language}}">-->
+
+
+
     <!--</div>-->
 
-  <!--<div formArrayName="informationObjects" *ngFor="let information of information.controls; let i=index" class="card mb-3">-->
-    <!--<div [formGroupName]="i">-->
-      <!--<div class="form-group">-->
-        <!--<label>Information Language</label>-->
-        <!--<input type="text" class="form-control"  formControlName="language">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Name</label>-->
-        <!--<input type="text" class="form-control"  formControlName="name">-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label>Description</label>-->
-        <!--<input type="text" class="form-control"  formControlName="description">-->
-      <!--</div>-->
     <!--</div>-->
+    <!--</mat-tab>-->
+    <!--</mat-tab-group>-->
+
+  <!--<ng-container *ngIf="(information) === null">-->
+    <!--Loading Language Tabs-->
+  <!--</ng-container>-->
+
+
+    <!--<mat-tab-group>-->
+  <div formArrayName="information">
+    <div *ngFor="let lang of information.value; let i=index" [formGroupName]="i">
+          <!--<ng-template mat-tab-label>{{lang.language}}</ng-template>-->
+      <div class="form-group">
+        <label>Information Language</label>
+        <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
+      </div>
+    </div>
+  </div>
+    <!--</mat-tab-group>-->
+
+    <br>
+
+
+
+  <pre>
+  informationForm Values:
+  {{ informationForm.get('information').value | json }}
+  </pre>
+
+
+
+
+  <!--<button *ngIf="(informationForm.controls.information.controls.length > 1)"-->
+          <!--(click)="deleteInformation(i)" class="btn btn-danger">Delete Information</button>-->
+  <!--<div class="form-row mb-3">-->
+    <!--<button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addInformation()">Add Information</button>-->
   <!--</div>-->
 
 </form>
 
-<pre>{{informationForm.value | json}}</pre>
+<!--<pre>{{informationForm.value | json}}</pre>-->
 
 <!--<ul class="nav nav-tabs" id="myTab" role="tablist">-->
   <!--<li class="nav-item" *ngFor="let info of monumentInformation; let i = index">-->
@@ -58,29 +80,29 @@
   <!--</div>-->
 <!--</div>-->
 
-  <!-- Modal -->
-  <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add a New Language</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Language: </label>
-            <input type="text" id="langInput" class="form-control" placeholder="Example. NL, FR, EN">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="langCloseBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success" (click)="addNewLanguage()">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--&lt;!&ndash; Modal &ndash;&gt;-->
+  <!--<div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModal" aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+          <!--<h5 class="modal-title" id="exampleModalLabel">Add a New Language</h5>-->
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--<div class="form-group">-->
+            <!--<label>Language: </label>-->
+            <!--<input type="text" id="langInput" class="form-control" placeholder="Example. NL, FR, EN">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--<button type="button" id="langCloseBtn" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+          <!--<button type="button" class="btn btn-success" (click)="addNewLanguage()">Save changes</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
 

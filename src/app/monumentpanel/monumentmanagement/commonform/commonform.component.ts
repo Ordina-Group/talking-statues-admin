@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Monument} from '../../../../models/AppUser';
 import { MonumentsService } from '../../../../services/monuments.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,8 +11,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class CommonformComponent implements OnInit {
 
+  @Input() id: string;
   @Output() commonFormReady = new EventEmitter<FormGroup>();
-  monId: string;
   currentMonument: Monument;
   monumentFound = false;
   areas: String[] = [];
@@ -33,40 +33,26 @@ export class CommonformComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchIdFromUrl();
-    this.getCurrentMonument(this.monId);
+    this.inputId(this.id);
     this.getAllAreas();
   }
 
 
-  fetchIdFromUrl() {
-    this._route.params.subscribe(params => {
-      this.monId = params['id'];
-      console.log('Found id in url is: ' + this.monId);
-    });
-
-    if (this.monId !== 'addmonument') {
+  inputId(id) {
+    if (id !== 'addmonument') {
       this.monumentFound = true;
+      this.monumentService.getMonumentById(id).subscribe(res => {
+        this.currentMonument = res;
+        this.fillCommonForm(this.currentMonument);
+      });
     } else {
       this.monumentFound = false;
+      this.initializeCommonForm();
     }
-  }
-
-  getCurrentMonument(id: string) {
-    this.monumentService.getMonumentById(id).subscribe(res => {
-      this.currentMonument = res;
-      if (res) {
-        this.fillCommonForm(this.currentMonument);
-      } else {
-        this.initializeCommonForm();
-      }
-    });
   }
 
   fillCommonForm(common) {
     console.log('monument: ', common);
-    console.log('monument id:',  common.id);
-
     this.commonForm.patchValue({
       latitude: common.latitude,
       longitude: common.longitude,
@@ -81,7 +67,7 @@ export class CommonformComponent implements OnInit {
     this.monumentService.getAreas().subscribe(data => {
       for (let i = 0; i <= (data.length - 1); i++) {
         this.areas.push(data[i]);
-        console.log(data[i] + ' has been added.');
+        // console.log(data[i] + ' has been added.');
       }
     });
   }

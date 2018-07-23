@@ -1,18 +1,16 @@
 <div class="container-fluid">
-  <form >
     <div class="container mt-5">
       <div class="row">
         <div class="col-12">
 
-          <app-commonform (commonFormReady)="onCommonFormReady($event)"></app-commonform>
+          <app-commonform [id]="monumentID"  (commonFormReady)="onCommonFormReady($event)"></app-commonform>
         </div>
         <div class="col-12 mt-5">
-          <!--<app-languageform (informationFormReady)="onInformationFormReady($event)"></app-languageform>-->
+          <app-languageform  [id]="monumentID" (informationFormReady)="onInformationFormReady($event)"></app-languageform>
         </div>
       </div>
       <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
     </div>
-  </form>
 
   <div *ngIf="monumentForm">
     <pre>{{monumentForm.value | json }}</pre>

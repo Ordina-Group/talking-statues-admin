@@ -12,7 +12,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class LanguageformComponent implements OnInit {
 
   @Input() id: string;
-  @Output() informationFormReady = new EventEmitter<FormGroup>();
+  @Output() informationFormReady: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   monumentData: Monument;
   monumentInformation: Information[];
@@ -62,8 +62,7 @@ export class LanguageformComponent implements OnInit {
     this.informationForm = this.fb.group({
       information: informations,
     });
-    this.informationFormReady.emit(this.informationForm.get('information').value);
-    // console.log('info emitter: ', this.informationFormReady);
+    this.informationFormReady.emit(this.informationForm.value);
   }
 
   fillInformationForm(monument: Monument): void {
@@ -78,8 +77,7 @@ export class LanguageformComponent implements OnInit {
             description: info.description
           }));
     });
-    this.informationFormReady.emit(this.informationForm);
-    // console.log('information: ', this.informationForm.get('information').value);
+    this.informationFormReady.emit(this.informationForm.value);
   }
 
   buildInformation(): FormGroup {
@@ -92,12 +90,12 @@ export class LanguageformComponent implements OnInit {
 
   addInformation(information?: Information): void {
     this.information.push(this.buildInformation());
-    this.informationFormReady.emit(this.informationForm.get('information').value);
+    this.informationFormReady.emit(this.informationForm);
   }
 
   deleteInformation(index: number): void {
     this.information.removeAt(index);
-    this.informationFormReady.emit(this.informationForm.get('information').value);
+    this.informationFormReady.emit(this.informationForm);
   }
 
   // method needed to keep focus in current changing input field. a bug in case if you work with arrays.

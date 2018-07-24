@@ -31,9 +31,9 @@ export class CommonformComponent implements OnInit {
     this.getAllAreas();
     this.commonGroup  = this.fb.group({
       id: [''],
-      // latitude: [''],
-      // longitude: [''],
-      // area: [''],
+      latitude: [''],
+      longitude: [''],
+      area: [''],
     });
   }
 
@@ -52,7 +52,7 @@ export class CommonformComponent implements OnInit {
   }
 
   fillCommonForm(common) {
-    console.log('monument: ', common);
+    // console.log('monument: ', common);
     this.commonGroup.patchValue({
       latitude: common.latitude,
       longitude: common.longitude,

@@ -1,6 +1,6 @@
 <form [formGroup]="informationForm">
 
-  <div formArrayName="information" *ngFor="let information of information.value; let i=index" class="card mb-3">
+  <div formArrayName="information" *ngFor="let information of information.value; let i=index; trackBy:trackByFn" class="card mb-3">
     <div [formGroupName]="i" class="card-body">
       <div class="form-group">
         <label>Language</label>

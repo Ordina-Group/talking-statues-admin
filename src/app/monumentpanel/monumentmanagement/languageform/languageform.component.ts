@@ -12,7 +12,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class LanguageformComponent implements OnInit {
 
   @Input() id: string;
-  @Output() informationFormReady = new EventEmitter<FormArray>();
+  @Output() informationFormReady = new EventEmitter<FormGroup>();
 
   monumentData: Monument;
   monumentInformation: Information[];
@@ -63,7 +63,7 @@ export class LanguageformComponent implements OnInit {
       information: informations,
     });
     this.informationFormReady.emit(this.informationForm.get('information').value);
-    console.log('info emitter: ', this.informationFormReady);
+    // console.log('info emitter: ', this.informationFormReady);
   }
 
   fillInformationForm(monument: Monument): void {
@@ -78,8 +78,8 @@ export class LanguageformComponent implements OnInit {
             description: info.description
           }));
     });
-    this.informationFormReady.emit(this.informationForm.get('information').value);
-    console.log('information: ', this.informationForm.get('information').value);
+    this.informationFormReady.emit(this.informationForm);
+    // console.log('information: ', this.informationForm.get('information').value);
   }
 
   buildInformation(): FormGroup {
@@ -92,11 +92,18 @@ export class LanguageformComponent implements OnInit {
 
   addInformation(information?: Information): void {
     this.information.push(this.buildInformation());
+    this.informationFormReady.emit(this.informationForm.get('information').value);
   }
 
   deleteInformation(index: number): void {
     this.information.removeAt(index);
+    this.informationFormReady.emit(this.informationForm.get('information').value);
   }
+
+  // method needed to keep focus in current changing input field. a bug in case if you work with arrays.
+  trackByFn(index: any, item: any) {
+    return index;
+}
 
   // addNewLanguage() {
   //   // this.newInfo = new Information();

@@ -1,21 +1,35 @@
+<!--<div class="container-fluid">-->
+    <!--<form [formGroup]="monumentForm" class="container mt-5">-->
+      <!--<div class="row">-->
+        <!--<div class="col-12">-->
+          <!--<app-commonform [id]="monumentID" (commonFormReady)="onCommonFormReady($event)"></app-commonform>-->
+        <!--</div>-->
+        <!--<div class="col-12 mt-5">-->
+          <!--<app-languageform  [id]="monumentID" (informationFormReady)="onInformationFormReady($event)"></app-languageform>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>-->
+      <!--<div *ngIf="monumentForm">-->
+        <!--<pre>{{monumentForm.value | json }}</pre>-->
+      <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
+
 <div class="container-fluid">
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-12">
-
-          <app-commonform [id]="monumentID"  (commonFormReady)="onCommonFormReady($event)"></app-commonform>
-        </div>
-        <div class="col-12 mt-5">
-          <app-languageform  [id]="monumentID" (informationFormReady)="onInformationFormReady($event)"></app-languageform>
-        </div>
+  <form [formGroup]="monumentForm" class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <app-commonform formGroupName="common" [commonGroup]="monumentForm" [id]="monumentID"></app-commonform>
       </div>
-      <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
+      <div class="col-12 mt-5">
+        <app-languageform formGroupName="info" [id]="monumentID" (informationFormReady)="onInformationFormReady($event)"></app-languageform>
+      </div>
     </div>
-
-  <div *ngIf="monumentForm">
-    <pre>{{monumentForm.value | json }}</pre>
-  </div>
-
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
+    <div *ngIf="monumentForm">
+      <pre>{{monumentForm.value | json }}</pre>
+    </div>
+  </form>
 </div>
 
 

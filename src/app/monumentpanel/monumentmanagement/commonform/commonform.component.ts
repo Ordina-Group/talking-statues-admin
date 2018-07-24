@@ -12,17 +12,11 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class CommonformComponent implements OnInit {
 
   @Input() id: string;
+  @Input() commonGroup: FormGroup;
   @Output() commonFormReady = new EventEmitter<FormGroup>();
-  currentMonument: Monument;
+  @Output() currentMonument: Monument;
   monumentFound = false;
   areas: String[] = [];
-
-  commonForm = new FormGroup ({
-    latitude: new FormControl(''),
-    longitude: new FormControl(''),
-    area: new FormControl(''),
-    id: new FormControl('')
-  });
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,6 +29,12 @@ export class CommonformComponent implements OnInit {
   ngOnInit() {
     this.inputId(this.id);
     this.getAllAreas();
+    this.commonGroup  = this.fb.group({
+      id: [''],
+      // latitude: [''],
+      // longitude: [''],
+      // area: [''],
+    });
   }
 
 
@@ -53,13 +53,13 @@ export class CommonformComponent implements OnInit {
 
   fillCommonForm(common) {
     console.log('monument: ', common);
-    this.commonForm.patchValue({
+    this.commonGroup.patchValue({
       latitude: common.latitude,
       longitude: common.longitude,
       area: this.areas,
       id: common.id
     });
-    this.commonFormReady.emit(this.commonForm);
+    // this.commonFormReady.emit(this.commonGroup);
   }
 
 
@@ -79,13 +79,13 @@ export class CommonformComponent implements OnInit {
 
 
   initializeCommonForm() {
-    this.commonForm = this.fb.group({
-      latitude: new FormControl(''),
-      longitude: new FormControl(''),
-      area: this.areas,
-      id: new FormControl('')
+    this.commonGroup = this.fb.group({
+      id: [''],
+      latitude: [''],
+      longitude: [''],
+      area: [''],
     });
-    this.commonFormReady.emit(this.commonForm);
+    // this.commonFormReady.emit(this.commonGroup);
   }
 
 }

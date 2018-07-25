@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MonumentsRoutingModule } from './monuments-routing.module';
 import { MonumentpanelComponent } from './monumentpanel.component';
 import { MonumentFilterPipe } from '../shared/monumentFilter.pipe';
-import {PagenotfoundComponent} from '../pagenotfound/pagenotfound.component';
 import { LanguageformComponent } from './monumentmanagement/languageform/languageform.component';
 import { CommonformComponent } from './monumentmanagement/commonform/commonform.component';
 import { QuestionformComponent } from './monumentmanagement/languageform/questionform/questionform.component';
@@ -27,6 +26,7 @@ import { MaterialModule } from '../material.module';
     CommonformComponent,
     QuestionformComponent,
     MonumentmanagementComponent,
+
   ],
   providers: [
   ]

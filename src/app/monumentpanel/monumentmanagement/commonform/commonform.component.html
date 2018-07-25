@@ -1,34 +1,34 @@
 <form [formGroup]="commonGroup">
   <div>
-    <label>Monument ID
+    <label i18n>Monument ID
       <input type="text" class="form-control" formControlName="id" readonly>
     </label>
   </div>
   <div>
-    <label>Latitude
+    <label i18n>Latitude
       <input type="text" class="form-control" formControlName="latitude">
     </label>
   </div>
   <div>
-    <label>Longitude
+    <label i18n>Longitude
       <input type="text" class="form-control" formControlName="longitude">
     </label>
   </div>
   <div class="form-group">
-    <label>Area:</label>
+    <label i18n>Area:</label>
     <select class="form-control" formControlName="area">
       <option *ngFor="let area of areas">
         {{area}}
       </option>
     </select>
-    <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal" i18n>
       <i class="fas fa-plus-square"></i> Add New Area
     </button>
   </div>
 </form>
 
 <div class="form-group">
-  <label for="exampleFormControlFile1">Upload Image Here</label>
+  <label for="exampleFormControlFile1" i18n>Upload Image Here</label>
   <input type="file" class="form-control-file" id="exampleFormControlFile1">
 </div>
 <!-- Modal -->
@@ -36,20 +36,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Area To Dropdown List</h5>
+        <h5 class="modal-title" id="exampleModalLabel" i18n>Add Area To Dropdown List</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label>Area Name: </label>
-          <input type="text" id="areaInput" class="form-control" placeholder="Enter Area">
+          <label i18n>Area Name: </label>
+          <input type="text" id="areaInput" class="form-control" i18n-placeholder placeholder="Enter Area">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="addArea()">Save changes</button>
+        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal" i18n>Close</button>
+        <button type="button" class="btn btn-success" (click)="addArea()" i18n>Save changes</button>
       </div>
     </div>
   </div>

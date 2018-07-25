@@ -21,7 +21,7 @@ export class MonumentpanelComponent implements OnInit {
 
   constructor(
     private monumentService: MonumentsService,
-    private nav: NavbarService,
+    public nav: NavbarService,
     private router: Router,
   ) {
   }

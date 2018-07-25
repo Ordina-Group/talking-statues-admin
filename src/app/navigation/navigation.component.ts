@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit{
 
   path = '';
   constructor(
-    private nav: NavbarService,
+    public nav: NavbarService,
     private router: Router,
     private location: Location,
   ) {

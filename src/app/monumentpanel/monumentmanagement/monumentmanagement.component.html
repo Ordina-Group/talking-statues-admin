@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label>Description</label>
-                  <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
+                  <textarea type="text" class="form-control" placeholder="Add Description" formControlName="description"></textarea>
                 </div>
 
                 <!-- QUESTIONS PART -->
@@ -80,7 +80,7 @@
                           (click)="addnewQuestion(information.controls.question)">Add new Question</button>
                 </div>
               </div>
-            <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language</button>
+            <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language {{information.get('language').value}}</button>
         </div>
       </div>
     </div>

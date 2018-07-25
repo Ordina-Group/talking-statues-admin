@@ -1,75 +1,73 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {Information, Monument} from '../../../../models/AppUser';
-import {MonumentsService} from '../../../../services/monuments.service';
-import {ActivatedRoute} from '@angular/router';
-import {MonumentmanagementComponent} from '../monumentmanagement.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Monument} from '../../../../models/AppUser';
+import { MonumentsService } from '../../../../services/monuments.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-commonform',
   templateUrl: './commonform.component.html',
   styleUrls: ['./commonform.component.css']
 })
-export class CommonformComponent implements OnInit, AfterViewInit {
+export class CommonformComponent implements OnInit {
 
-  @Output() returnCommonData = new EventEmitter<Monument>();
-  monId: string;
-  currentMonument: Monument;
-  returnMonument: Monument;
+  @Input() id: string;
+  @Input() commonGroup: FormGroup;
+  @Output() commonFormReady = new EventEmitter<FormGroup>();
+  @Output() currentMonument: Monument;
   monumentFound = false;
   areas: String[] = [];
 
-  lat: number;
-  long: number;
-
-
-  constructor(private _route: ActivatedRoute, private monumentService: MonumentsService) {
+  constructor(
+    private _route: ActivatedRoute,
+    private monumentService: MonumentsService,
+    private fb: FormBuilder,
+    ) {
 
   }
 
   ngOnInit() {
-    this.fetchIdFromUrl();
-    this.getCurrentMonument(this.monId);
+    this.inputId(this.id);
     this.getAllAreas();
-  }
-
-  ngAfterViewInit() {
-    this.returnMonument = this.currentMonument;
-    const latStr = (<HTMLInputElement>document.getElementById('latitude')).value;
-    const longStr = (<HTMLInputElement>document.getElementById('longitude')).value;
-    this.returnMonument.latitude = Number(latStr);
-    this.returnMonument.longitude = Number(longStr);
-
-  }
-
-  fetchIdFromUrl() {
-    this._route.params.subscribe(params => {
-      this.monId = params['id'];
-      console.log('Found id in url is: ' + this.monId);
+    this.commonGroup  = this.fb.group({
+      id: [''],
+      latitude: [''],
+      longitude: [''],
+      area: [''],
     });
+  }
 
-    if (this.monId !== 'addmonument') {
+
+  inputId(id) {
+    if (id !== 'addmonument') {
       this.monumentFound = true;
+      this.monumentService.getMonumentById(id).subscribe(res => {
+        this.currentMonument = res;
+        this.fillCommonForm(this.currentMonument);
+      });
     } else {
       this.monumentFound = false;
+      this.initializeCommonForm();
     }
   }
 
-  getCurrentMonument(id: string) {
-    this.monumentService.getMonumentById(id).subscribe(res => {
-      this.currentMonument = res;
-      console.log('Response is: ' + this.currentMonument.information[0].name);
-
-
-      this.returnCommonData.emit(this.currentMonument);
-
+  fillCommonForm(common) {
+    // console.log('monument: ', common);
+    this.commonGroup.patchValue({
+      latitude: common.latitude,
+      longitude: common.longitude,
+      area: this.areas,
+      id: common.id
     });
+    // this.commonFormReady.emit(this.commonGroup);
   }
+
 
   getAllAreas() {
     this.monumentService.getAreas().subscribe(data => {
       for (let i = 0; i <= (data.length - 1); i++) {
         this.areas.push(data[i]);
-        console.log(data[i] + ' has been added.');
+        // console.log(data[i] + ' has been added.');
       }
     });
   }
@@ -77,6 +75,17 @@ export class CommonformComponent implements OnInit, AfterViewInit {
   addArea() {
     this.areas.push((<HTMLInputElement>document.getElementById('areaInput')).value);
     document.getElementById('closeBtn').click();
+  }
+
+
+  initializeCommonForm() {
+    this.commonGroup = this.fb.group({
+      id: [''],
+      latitude: [''],
+      longitude: [''],
+      area: [''],
+    });
+    // this.commonFormReady.emit(this.commonGroup);
   }
 
 }

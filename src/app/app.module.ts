@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UserpanelComponent } from './userpanel/userpanel.component';
@@ -16,6 +17,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
 import {AuthguardService} from '../services/authguard.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { MaterialModule } from './material.module';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   ],
   imports: [
     BrowserModule,
+    NoopAnimationsModule,
+    MaterialModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -41,7 +46,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
       },
       {path: 'logout', component: LoginComponent},
       {path: '**', component: PagenotfoundComponent, redirectTo: ''}
-    ], {useHash: false})
+    ], {useHash: false}),
 
   ],
   providers: [

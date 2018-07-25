@@ -1,10 +1,15 @@
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Monument} from '../models/AppUser';
 import {environment} from '../environments/environment.prod';
 import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': `${localStorage.getItem('JSESSIONID')}`
+  })
+};
 
 @Injectable()
 export class MonumentsService {
@@ -35,7 +40,11 @@ export class MonumentsService {
   }
 
   editMonument(monument: Monument): Observable<Monument> {
-    return this._http.put<Monument>(environment.backendUrl + '/monuments/' +  monument.id, monument, {withCredentials: true});
+    httpOptions.headers = httpOptions.headers.append('Accept', 'application/json');
+    console.log('ready to send edited monument: ', monument);
+    // return this._http.put<Monument>('', monument, {withCredentials: true});
+    return this._http.put<Monument>(environment.backendUrl + '/monuments/' +  monument.id, monument,
+      httpOptions);
   }
 
   uploadImage(file: File, monument: Monument) {

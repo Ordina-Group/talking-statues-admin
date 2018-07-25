@@ -28,6 +28,34 @@
             "scripts": []
           },
           "configurations": {
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/my-project-fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/my-project-fr/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en"
+            },
+            "de": {
+              "aot": true,
+              "outputPath": "dist/my-project-fr/",
+              "i18nFile": "src/locale/messages.de.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "de"
+            },
+            "nl": {
+              "aot": true,
+              "outputPath": "dist/my-project-fr/",
+              "i18nFile": "src/locale/messages.nl.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "nl"
+            }
             "production": {
               "fileReplacements": [
                 {
@@ -53,6 +81,18 @@
             "browserTarget": "ManagementPanel:build"
           },
           "configurations": {
+            "fr": {
+              "browserTarget": "*ManagementPanel*:build:fr"
+            },
+            "en": {
+              "browserTarget": "*ManagementPanel*:build:en"
+            },
+            "de": {
+              "browserTarget": "*ManagementPanel*:build:de"
+            },
+            "nl": {
+              "browserTarget": "*ManagementPanel*:build:nl"
+            },
             "production": {
               "browserTarget": "ManagementPanel:build:production"
             }

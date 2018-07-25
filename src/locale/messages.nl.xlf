@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1a6a07066bb54b0f570f64dfd725ba3ed0b19832" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> <x id="INTERPOLATION" equiv-text="{{title}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0872be8f0e088400e34a76eb50465400246497bd" datatype="html">
+        <source>  Search for name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentpanel.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62b6c66981335ca6eecc36b331103c60f09d1026" datatype="html">
+        <source>First name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ce3dadf53dda1a1ab0c3167a8ed8dced471b0dc" datatype="html">
+        <source>Last name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bd5e17c9582661e20763a7634ef07881e33bbd7" datatype="html">
+        <source>Action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fc6b4ede6f7d962f757717d79ed481c51d21d9d5" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Forget user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fde58a8144f823f16729f24315c006525e6cdfd7" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Confirm Action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="82cd9859f532f228f291413c179e75e5e696e0d9" datatype="html">
+        <source>
+                Are you sure you want to anonymize this user? <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> <x id="INTERPOLATION" equiv-text="{{user.name}}"/> <x id="INTERPOLATION_1" equiv-text="{{user.lastName}}"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="338983986efb704cd92547b19b103ede325a9d19" datatype="html">
+        <source>Yes, I&apos;m sure!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de0a22e18b86c70c5cd231b70fd1c52b3bd7d4fe" datatype="html">
+        <source>No, cancel action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/userpanel/userpanel.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ad696b65a0ee4f879311dc9b30b9314953c2a975" datatype="html">
+        <source>Login here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="54fb94b79e1c18a9d174bcc67b62caa17dd61859" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
+        <source>Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87fc78c3fdaddf3430b4e2f52667d6dcc265656f" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7bb919fd8459b310f78a320eded0497a524303e9" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/> Login<x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f54988ab45bb85bc03914ed3c98984c0e1428494" datatype="html">
+        <source>All rights reserved. Copyright © 2018 - Antwerp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8279aece9acc41100022c649c03251f8b08fb28b" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Monument Management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/navigation/navigation.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="473b06512e1ee3dee236a38d779ffc3012b52590" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> User Management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/navigation/navigation.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b6fcc3c0c882b08d7f3b768f925b9e03dd2144a0" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/navigation/navigation.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7084732716afaa0d65210c552470df781ef204b" datatype="html">
+        <source>Error 404 - Page not found! <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/> Return <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> here<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pagenotfound/pagenotfound.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ea08242eece666bc593c9e686a39a9633ea4454" datatype="html">
+        <source>Add New Monument</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentpanel.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="874445e8146efca7535cc42a710ee016ee920adc" datatype="html">
+        <source>Monument ID
+            <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e07fc8fe6897546b21df16da421e6f859aaa9743" datatype="html">
+        <source>Latitude
+            <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24e92dc0235d825653827a3a7ea3857f8fb9dacb" datatype="html">
+        <source>Longitude
+            <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0693810fe4d35a2962ffeb981c699622e6442933" datatype="html">
+        <source>Area:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bf5de13e73d3a452ac1c0ca4e240fe4ff1722ea6" datatype="html">
+        <source>
+            <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Add New Area
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b97639f73dc087799c920fb5f4e5f6161f68f36f" datatype="html">
+        <source>Upload Image Here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de9ffc82676e03cc1a4354f4717588cb1e699dbb" datatype="html">
+        <source>LANGUAGE INFORMATION <x id="INTERPOLATION" equiv-text="{{i+1}}"/>: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fe46ccaae902ce974e2441abe752399288298619" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7aac97a519cd282cc1ecd7fda5d136091ccc1012" datatype="html">
+        <source>Add Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e64bfdf88bcce0c0b1e6f1d3413403f6f34bc5b7" datatype="html">
+        <source>Add Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71e275f86dbded3ed029421992e13800e15c1ecb" datatype="html">
+        <source>Add Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2fa3b16b569acf67b1d1a29e8083acc8d07b0595" datatype="html">
+        <source>Question</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4188ef67a196ca21d68f20405b99fb6b2f6476c7" datatype="html">
+        <source>Add Question</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="39e2f6830dc13614ba02ee49b60d4f008f597a13" datatype="html">
+        <source>Add Answer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6253ef6a810d57c9c0e00a10cff0cc989117d199" datatype="html">
+        <source>Delete Question</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a80682d27a7580d6b710ca2438dbe02594460e20" datatype="html">
+        <source>Add new Question</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="afc5b494dc39186dd638aa512c0f45084f428b07" datatype="html">
+        <source>Delete Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60cfe344472c427b32cad44fa2d841c5176899b0" datatype="html">
+        <source>Add new Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7b85e27f56089b59d214f927676b8e2243fdb682" datatype="html">
+        <source>Save Monument</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="42133da9bb512027111bd5a5349da2c5a7fea62d" datatype="html">
+        <source>Add Area To Dropdown List</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="26597f37e7baa0e9b3fd4a190b7ee61062da5311" datatype="html">
+        <source>Area Name: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b760ed8e9ae296f44c35f61fe2d771efe3786c7c" datatype="html">
+        <source>Enter Area</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5b3075e8dc3f3921ec316b0bd83b6d14a06c1a4f" datatype="html">
+        <source>Save changes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5d4b1c78c1510fc0c64799282f483a332dcabfd6" datatype="html">
+        <source>Delete Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e16ddd0d5f816e38875145e8b8997b113ba41b6" datatype="html">
+        <source>Add Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/languageform.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24dca0007e470b9658db749e1f9c51ea8223b74f" datatype="html">
+        <source>Monument ID
+      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72aab18da2dbc217efc1567bfc4c435f4b986f01" datatype="html">
+        <source>Latitude
+      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f46759a76a2efd5e4d136e1b9c7a03415d59049b" datatype="html">
+        <source>Longitude
+      <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/>
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a38fec52d5bdde47ff409f20ac5a1d48435f9160" datatype="html">
+        <source>
+      <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Add New Area
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="74be78ca84dd0796fb8ede9354b922c2bc71bd7e" datatype="html">
+        <source>Question: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/questionform/questionform.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0fac2395a609e903129d86334559da7f64c479a" datatype="html">
+        <source>Enter Question</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/questionform/questionform.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f169e4d010fbf4b62caa7ceb5f9040229ef303db" datatype="html">
+        <source>Answer: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/questionform/questionform.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0c7372f6571bd560e3c6b32436993cef4e397fc4" datatype="html">
+        <source>Enter Answer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/languageform/questionform/questionform.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

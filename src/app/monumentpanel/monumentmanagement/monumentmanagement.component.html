@@ -38,7 +38,8 @@
 
       <!-- LANGUAGE INFORMATION PART -->
       <div class="col-12 mt-5">
-          <div formArrayName="information"*ngFor="let information of monumentForm.get('information').controls; let i=index" class="card mb-3">
+        <!--- Om error te omzeilen hier. Doet exact hetzelfde maar krijg geen data terug ---->
+          <div formArrayName="information"*ngFor="let information of getFormData().controls; let i=index" class="card mb-3">
               <legend><h3 i18n>LANGUAGE INFORMATION {{i+1}}: </h3></legend>
               <div [formGroupName]="i">
                 <div class="form-group">

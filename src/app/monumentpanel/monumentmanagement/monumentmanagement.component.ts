@@ -170,4 +170,9 @@ export class MonumentmanagementComponent implements OnInit {
       });
     }
   }
+
+  // Om error te omzeilen in template
+  getFormData(){
+    return <FormArray>this.monumentForm.get('information');
+  }
 }

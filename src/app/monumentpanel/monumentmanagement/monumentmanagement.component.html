@@ -1,5 +1,7 @@
 <div class="container-fluid">
   <form [formGroup]="monumentForm" class="container mt-5">
+
+    <!-- COMMON PART -->
     <div class="row">
       <div class="col-12">
         <div>
@@ -28,45 +30,69 @@
             <i class="fas fa-plus-square"></i> Add New Area
           </button>
         </div>
-
         <div class="form-group">
           <label for="exampleFormControlFile1">Upload Image Here</label>
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
       </div>
-      <div class="col-12 mt-5">
-        <div formArrayName="information" *ngFor="let information of information.value; let i=index; trackBy:trackByFn" class="card mb-3">
-          <div [formGroupName]="i" class="card-body">
-            <div class="form-group">
-              <label>Language</label>
-              <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
-            </div>
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
-            </div>
-            <div class="form-group">
-              <label>Description</label>
-              <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
-            </div>
-            <button type="button" *ngIf="(monumentForm.controls.information.controls.length > 1)"
-                    (click)="deleteInformation(i)" class="btn btn-danger">Delete Information</button>
-          </div>
-        </div>
 
-        <div class="form-row mb-3">
-          <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addInformation()">Add Information</button>
+      <!-- LANGUAGE INFORMATION PART -->
+      <div class="col-12 mt-5">
+          <div formArrayName="information"*ngFor="let information of monumentForm.get('information').controls; let i=index" class="card mb-3">
+              <legend><h3>LANGUAGE INFORMATION {{i+1}}: </h3></legend>
+              <div [formGroupName]="i">
+                <div class="form-group">
+                  <label>Language</label>
+                  <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
+                </div>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
+                </div>
+
+                <!-- QUESTIONS PART -->
+                <div *ngIf="information.get('question').value" class="col-12 mt-5">
+                  <div formArrayName="question" >
+                    <div *ngFor="let question of information.get('question').value; let j=index; trackBy:trackByFn" class="card mb-3">
+                      <legend><h4>QUESTION {{j+1}}</h4></legend>
+                      <div [formGroupName]="j">
+                        <div class="form-group">
+                          <label>Question</label>
+                          <input type="text" class="form-control" placeholder="Add Question" formControlName="question">
+                        </div>
+                        <div class="form-group">
+                          <label>Answer</label>
+                          <input type="text" class="form-control" placeholder="Add Answer" formControlName="answer">
+                        </div>
+                        <button (click)="deleteQuestion(information.controls.question, j)"
+                                class="btn btn-danger">Delete Question</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row mb-3">
+                  <button class="btn btn-outline-info float-right ml-1"
+                          type="button" role="button"
+                          (click)="addnewQuestion(information.controls.question)">Add new Question</button>
+                </div>
+              </div>
+            <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language</button>
         </div>
-        <br>
-        <!--<app-languageform formGroupName="information" [id]="monumentID" (informationFormReady)="getInformation($event)" ></app-languageform>-->
       </div>
     </div>
-    <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
-    <div *ngIf="monumentForm">
-      <pre>{{monumentForm.value | json }}</pre>
+    <div class="form-row mb-3">
+      <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addNewLanguage()">Add new Language</button>
     </div>
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
   </form>
+
+  <pre>{{monumentForm.value | json}}</pre>
 </div>
+
 
 
 <!-- Modal -->

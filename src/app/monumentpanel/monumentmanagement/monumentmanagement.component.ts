@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
 import { ActivatedRoute } from '@angular/router';
-import { Information, Monument } from '../../../models/AppUser';
+import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -13,70 +13,50 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class MonumentmanagementComponent implements OnInit {
 
   monumentID: string;
-  monument: Monument;
   monumentFound = false;
   areas: String[] = [];
-  submitMonument: Monument;
+  monument: Monument;
+  informationQuestions: Question[] = [];
 
+
+  data = {
+    id: '123344566',
+    latitude: '',
+    longitude: '',
+    area: '',
+    information: [
+      {
+        language: 'EN',
+        name: 'name',
+        description: 'description',
+        question: [
+          {
+            question: 'example question',
+            answer: 'example answer'
+          }
+        ]
+      }
+    ]
+  };
   monumentForm: FormGroup;
 
-  @Input() returnData;
-
-  get information(): FormArray {
-    return <FormArray>this.monumentForm.get('information');
-  }
-
   constructor(
-    private _fb: FormBuilder,
+    private fb: FormBuilder,
     private _monumentService: MonumentsService,
     private _route: ActivatedRoute,
-  ) { }
+  ) {
+    this.monumentForm = this.fb.group({
+      information: this.fb.array([])
+    });
+  }
 
   ngOnInit() {
     this._route.params.subscribe(params => {
-      this.monumentID = params['id'];
-    });
-    this.initializeMonumentForm();
-    this.getAllAreas();
-    this.inputId(this.monumentID);
-    this.onChanges();
-  }
-
-  inputId(id) {
-    if (id !== 'addmonument') {
-      this.monumentFound = true;
-      this._monumentService.getMonumentById(id).subscribe(res => {
-        this.monument = res;
-        this.fillMonumentForm(this.monument);
-      });
-    } else {
-      this.monumentFound = false;
-      this.initializeMonumentForm();
-    }
-  }
-
-  fillMonumentForm(monument) {
-    console.log('information: ', this.information);
-    this.monumentForm.patchValue({
-      latitude: monument.latitude,
-      longitude: monument.longitude,
-      area: [this.areas, Validators.required],
-      id: monument.id,
-    });
-    monument.information.map((info) => {
-      (<FormArray>this.monumentForm.get('information')).push(
-        this._fb.group({
-          language: info.language,
-          name: info.name,
-          description: info.description
-        }));
-    });
-  }
-
-  onChanges() {
-    this.monumentForm.valueChanges.subscribe(val => {
-      this.monumentForm.patchValue(val, {emitEvent: false});
-    });
+          this.monumentID = params['id'];
+        });
+        this.initializeMonumentForm();
+        this.getAllAreas();
+        this.inputId(this.monumentID);
   }
 
   getAllAreas() {
@@ -87,26 +67,94 @@ export class MonumentmanagementComponent implements OnInit {
       }
     });
   }
-
   addArea() {
     this.areas.push((<HTMLInputElement>document.getElementById('areaInput')).value);
     document.getElementById('closeBtn').click();
   }
 
-  buildInformation(): FormGroup {
-    return this._fb.group({
-      language: '',
-      name: '',
-      description: '',
+  inputId(id) {
+    if (id !== 'addmonument') {
+      this.monumentFound = true;
+      this._monumentService.getMonumentById(id).subscribe(res => {
+        this.monument = res;
+
+        this.fillForm(this.monument);
+      });
+    } else {
+      this.monumentFound = false;
+      this.initializeMonumentForm();
+    }
+  }
+
+  fillForm(monument) {
+    this.monumentForm = this.fb.group({
+      id: [monument ? monument.id : ''],
+      latitude: [monument ? monument.latitude : ''],
+      longitude: [monument ? monument.longitude : ''],
+      area: [monument ? monument.area : ''],
+      information: this.fb.array([])
+    });
+    this.setLanguages();
+  }
+
+  initializeMonumentForm() {
+    this.monumentForm = this.fb.group({
+      id: [''],
+      latitude: [''],
+      longitude: [''],
+      area: this.areas,
+      information: this.fb.array([])
+    });
+  }
+  addNewLanguage() {
+    let control = <FormArray>this.monumentForm.controls.information;
+    control.push(
+      this.fb.group({
+        language: [''],
+        name: [''],
+        description: [''],
+        question: this.fb.array([])
+      })
+    );
+  }
+
+  deleteLanguage(index) {
+    let control = <FormArray>this.monumentForm.controls.information;
+    control.removeAt(index);
+  }
+
+  addnewQuestion(control) {
+    control.push(
+      this.fb.group({
+        question: [''],
+        answer: ['']
+      }));
+  }
+
+  deleteQuestion(control, index) {
+    control.removeAt(index);
+  }
+
+  setLanguages() {
+    let control = <FormArray>this.monumentForm.controls.information;
+    this.monument.information.forEach(x => {
+      control.push(this.fb.group({
+        language: x.language,
+        name: x.name,
+        description: x.description,
+        question: this.setQuestions(x) }));
     });
   }
 
-  addInformation(information?: Information): void {
-    this.information.push(this.buildInformation());
-  }
-
-  deleteInformation(index: number): void {
-    this.information.removeAt(index);
+  setQuestions(x) {
+    let arr = new FormArray([])
+    x.question.forEach(y => {
+      arr.push(this.fb.group({
+        question: y.question ,
+        answer: y.answer
+      }));
+    });
+    return arr;
   }
 
   // method needed to keep focus in current changing input field. a bug in case if you work with arrays.
@@ -114,25 +162,12 @@ export class MonumentmanagementComponent implements OnInit {
     return index;
   }
 
-
-  initializeMonumentForm() {
-    let information: FormArray = new FormArray([]);
-
-    this.monumentForm = this._fb.group({
-      id: [''],
-      latitude: [''],
-      longitude: [''],
-      area: [''],
-      information: information
-    });
-  }
   submitForm() {
     if (this.monumentForm.get('area').touched) {
-      console.log('saved Data: ', this.monumentForm.value);
-      // this._monumentService.editMonument(this.monumentForm.value).subscribe( _ => {
-      //   console.log('Making call to endpoint editMonument');
-      // });
+      // console.log('saved Data: ', this.monumentForm.value);
+      this._monumentService.editMonument(this.monumentForm.value).subscribe( _ => {
+        console.log('Making call to endpoint editMonument');
+      });
     }
   }
-
 }

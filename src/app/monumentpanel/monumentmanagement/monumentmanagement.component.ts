@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { log } from 'util';
 
 @Component({
   selector: 'app-monumentmanagement',
@@ -16,7 +17,6 @@ export class MonumentmanagementComponent implements OnInit {
   monumentFound = false;
   areas: String[] = [];
   monument: Monument;
-  informationQuestions: Question[] = [];
 
 
   data = {
@@ -29,7 +29,7 @@ export class MonumentmanagementComponent implements OnInit {
         language: 'EN',
         name: 'name',
         description: 'description',
-        question: [
+        conversations: [
           {
             question: 'example question',
             answer: 'example answer'
@@ -87,6 +87,8 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   fillForm(monument) {
+    console.log('monument data: ', monument);
+    console.log('monument id: ', monument.id);
     this.monumentForm = this.fb.group({
       id: [monument ? monument.id : ''],
       latitude: [monument ? monument.latitude : ''],
@@ -113,7 +115,7 @@ export class MonumentmanagementComponent implements OnInit {
         language: [''],
         name: [''],
         description: [''],
-        question: this.fb.array([])
+        conversations: this.fb.array([])
       })
     );
   }
@@ -142,13 +144,13 @@ export class MonumentmanagementComponent implements OnInit {
         language: x.language,
         name: x.name,
         description: x.description,
-        question: this.setQuestions(x) }));
+        conversations: this.setQuestions(x) }));
     });
   }
 
   setQuestions(x) {
-    let arr = new FormArray([])
-    x.question.forEach(y => {
+    let arr = new FormArray([]);
+    x.conversations.forEach(y => {
       arr.push(this.fb.group({
         question: y.question ,
         answer: y.answer
@@ -164,10 +166,18 @@ export class MonumentmanagementComponent implements OnInit {
 
   submitForm() {
     if (this.monumentForm.get('area').touched) {
-      // console.log('saved Data: ', this.monumentForm.value);
-      this._monumentService.editMonument(this.monumentForm.value).subscribe( _ => {
-        console.log('Making call to endpoint editMonument');
-      });
+      console.log('saved Data: ', this.monumentForm.value);
+
+      if (this.monumentForm.get('id').value !== '') {
+        this._monumentService.editMonument(this.monumentForm.value).subscribe( _ => {
+          console.log('Making call to endpoint editMonument');
+        });
+      } else {
+        this._monumentService.addMonument(this.monumentForm.value).subscribe( __ => {
+          console.log('Making call to endpoint addMonument');
+        });
+      }
+
     }
   }
 }

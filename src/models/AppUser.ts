@@ -33,11 +33,11 @@ export class Information {
   language: Language;
   name: String;
   description: String;
-  question: Question[];
+  conversations: Question[];
 }
 
 export class Question {
-  question?: string;
+  question: string;
   answer: string;
 }
 

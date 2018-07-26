@@ -4,7 +4,12 @@
     <!-- COMMON PART -->
     <div class="row">
       <div class="col-12">
-        <div>
+        <div *ngIf="monumentForm.get('id').value == ''">
+          <label hidden>Monument ID
+            <input type="text" class="form-control" formControlName="id" hidden>
+          </label>
+        </div>
+        <div *ngIf="monumentForm.get('id').value !== ''">
           <label>Monument ID
             <input type="text" class="form-control" formControlName="id" readonly>
           </label>
@@ -54,11 +59,11 @@
                   <textarea type="text" class="form-control" placeholder="Add Description" formControlName="description"></textarea>
                 </div>
 
-                <!-- QUESTIONS PART -->
-                <div *ngIf="information.get('question').value" class="col-12 mt-5">
-                  <div formArrayName="question" >
-                    <div *ngFor="let question of information.get('question').value; let j=index; trackBy:trackByFn" class="card mb-3">
-                      <legend><h4>QUESTION {{j+1}}</h4></legend>
+                <!-- CONVERSATIONS PART -->
+                <div *ngIf="information.get('conversations').value" class="col-12 mt-5">
+                  <div formArrayName="conversations" >
+                    <div *ngFor="let conversations of information.get('conversations').value; let j=index; trackBy:trackByFn" class="card mb-3">
+                      <legend><h4>CONVERSATION {{j+1}}</h4></legend>
                       <div [formGroupName]="j">
                         <div class="form-group">
                           <label>Question</label>
@@ -68,8 +73,8 @@
                           <label>Answer</label>
                           <input type="text" class="form-control" placeholder="Add Answer" formControlName="answer">
                         </div>
-                        <button (click)="deleteQuestion(information.controls.question, j)"
-                                class="btn btn-danger">Delete Question</button>
+                        <button (click)="deleteQuestion(information.controls.conversations, j)"
+                                class="btn btn-danger">Delete Conversation</button>
                       </div>
                     </div>
                   </div>
@@ -77,7 +82,7 @@
                 <div class="form-row mb-3">
                   <button class="btn btn-outline-info float-right ml-1"
                           type="button" role="button"
-                          (click)="addnewQuestion(information.controls.question)">Add new Question</button>
+                          (click)="addnewQuestion(information.controls.conversations)">Add new Conversation</button>
                 </div>
               </div>
             <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language {{information.get('language').value}}</button>

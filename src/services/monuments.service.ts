@@ -35,6 +35,12 @@ export class MonumentsService {
     return this._http.get<Monument>(environment.backendUrl + '/monuments/' + id, {withCredentials: true});
   }
 
+  addMonument(monument: Monument) {
+    httpOptions.headers = httpOptions.headers.append('Accept', 'application/json');
+    return this._http.put(environment.backendUrl + '/monuments', monument,
+      httpOptions);
+  }
+
   removeMonument(monument: Monument) {
     return this._http.delete(environment.backendUrl + '/monuments/' + monument.id, {withCredentials: true});
   }

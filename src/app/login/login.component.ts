@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 import { environment } from '../../environments/environment.prod';
 
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { NavbarService} from '../../services/navbar.service';
-import { TranslateService } from '../../../node_modules/@ngx-translate/core';
+import { TranslatorService } from '../shared/services/translator.service';
 
 
 @Component({
@@ -16,24 +18,24 @@ import { TranslateService } from '../../../node_modules/@ngx-translate/core';
 export class LoginComponent implements OnInit {
 
   credentials = {username: '', password: ''};
-  title = 'UGO | Management Panel';
-
+  // title = 'UGO | Management Panel';
 
   constructor(
-    public translate: TranslateService,
+    public translate: TranslatorService,
     private app: AuthService,
     private router: Router,
     private nav: NavbarService
   ) {
-    translate.addLangs(['de', 'en', 'es', 'fr', 'nl']);
-    translate.setDefaultLang('en');
+    // translate.addLangs(['de', 'en', 'es', 'fr', 'nl']);
+    // translate.setDefaultLang('en');
 
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/de|en|es|fr|nl/) ? browserLang : 'en');
+    // const browserLang = translate.getBrowserLang();
+    // translate.use(browserLang.match(/de|en|es|fr|nl/) ? browserLang : 'en');
   }
 
   ngOnInit() {
     this.nav.hide();
+    this.translate.initTranslate();
   }
 
   login() {

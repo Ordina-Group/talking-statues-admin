@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppUser} from '../../models/AppUser';
 import { UsersService} from '../../services/users.service';
 import { NavbarService} from '../../services/navbar.service';
-import { TranslateService } from '../../../node_modules/@ngx-translate/core';
+import { TranslatorService } from '../shared/services/translator.service';
 
 
 
@@ -14,27 +14,22 @@ declare let $;
   styleUrls: ['./userpanel.component.css']
 })
 export class UserpanelComponent implements OnInit {
-  title = 'User Management | Anonymize Users';
   searchText = '';
   users: AppUser[];
   errorMessage = '';
 
   constructor(
-    public translate: TranslateService,
     private userService: UsersService,
     private nav: NavbarService,
+    private _translate: TranslatorService
   ) {
-    translate.addLangs(['en', 'fr', 'nl', 'de']);
-    translate.setDefaultLang('en');
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr|nl|de/) ? browserLang : 'en');
   }
 
   ngOnInit(): void {
 
     this.nav.show();
     this.findUsers();
+    this._translate.initTranslate();
   }
 
   findUsers() {

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import {NavbarService} from '../../services/navbar.service';
+import { NavbarService } from '../../services/navbar.service';
+import { TranslatorService } from '../shared/services/translator.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
 
   // isLoggedIn$: Observable<boolean>;
 
@@ -16,6 +17,7 @@ export class NavigationComponent implements OnInit{
   path = '';
   constructor(
     public nav: NavbarService,
+    public translate: TranslatorService,
     private router: Router,
     private location: Location,
   ) {
@@ -25,6 +27,7 @@ export class NavigationComponent implements OnInit{
   }
   ngOnInit() {
     this.nav.show();
+    this.translate.initTranslate();
   }
 
 

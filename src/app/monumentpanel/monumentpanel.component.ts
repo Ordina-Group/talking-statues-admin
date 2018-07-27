@@ -4,6 +4,7 @@ import { MonumentsService} from '../../services/monuments.service';
 import {NavbarService} from '../../services/navbar.service';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment.prod';
+import { TranslatorService } from '../shared/services/translator.service';
 
 
 
@@ -20,8 +21,9 @@ export class MonumentpanelComponent implements OnInit {
   backEndUrl = environment.backendUrl;
 
   constructor(
-    private monumentService: MonumentsService,
+    public translate: TranslatorService,
     public nav: NavbarService,
+    private monumentService: MonumentsService,
     private router: Router,
   ) {
   }
@@ -30,8 +32,8 @@ export class MonumentpanelComponent implements OnInit {
     this.nav.show();
     this.monumentService.getMonuments().subscribe(
       data => this.monuments = data
-
     );
+    this.translate.initTranslate();
   }
 
   send(data) {

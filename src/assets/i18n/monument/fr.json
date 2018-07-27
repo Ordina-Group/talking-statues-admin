@@ -1,0 +1,41 @@
+{
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Zone:",
+    "AREA_SELECT": "zone",
+    "ADD_AREA": "Ajouter une nouvelle zone",
+    "UPLOAD_IMG": "Télécharger l’Image ici",
+    "INFORMATION_LEGEND": "INFORMATIONS DE LANGAGE",
+    "LANGUAGE": "Langue",
+    "LANGUAGE_PLACEHOLDER": "Ajouter Langue",
+    "NANE": "Nom",
+    "NAME_PLACEHOLDER": "Ajouter Nom",
+    "DESCRIPTION": "Description",
+    "DESC_PLACEHOLDER": "Ajouter Description",
+    "QUESTION_LEGEND": "QUESTION",
+    "QUESTION": "Question",
+    "QUESTION_PLACEHOLDER": "Ajouter Question",
+    "ANSWER": "Résponse",
+    "ANSWER_PLACEHOLDER": "Ajouter Résponse",
+    "DELETE_QUESTION": "Supprimer la Question",
+    "ADD_QUESTION": "Ajouter nouvelle Question",
+    "DELETE_LANGUAGE": "Supprimer la Langue",
+    "ADD_LANGUAGE": "Ajouter nouvelle Langue",
+    "SAVE_MONUMENT": "Enregistrer le Monument",
+    "MODAL_TITLE": "Ajouter la zone de liste déroulante",
+    "MODAL_AREA": "Nome de la zone",
+    "MODAL_AREA_PLACE": "Entrer Zone",
+    "MODAL_CLOSE": "Fermer",
+    "MODAL_SAVE": "Enregistrer les modifications"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "Gestion de monument - Ajouter/Modifier monuments",
+    "SEARCH": "&#61442;  Recherche de nom",
+    "ADD_LINK": "Ajouter nouveau Monument",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Modifier Monument"
+  }
+}

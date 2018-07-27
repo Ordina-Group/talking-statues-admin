@@ -1,5 +1,5 @@
 <nav *ngIf="nav.visible" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><i class="fas fa-users-cog"></i> Management Panel</a>
+  <a class="navbar-brand" href="#"><i class="fas fa-users-cog"></i> {{ 'NAVIGATION.NAV_BRAND' | translate }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,19 +8,25 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-link">|</li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/monuments']"><i class="fas fa-monument"></i> Monument Management</a>
+        <a class="nav-link" [routerLink]="['/monuments']"><i class="fas fa-monument"></i> {{ 'NAVIGATION.NAV_MONUMENT' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/userpanel']"><i class="fas fa-user-circle"></i> User Management</a>
+        <a class="nav-link" [routerLink]="['/userpanel']"><i class="fas fa-user-circle"></i> {{ 'NAVIGATION.NAV_USER' | translate }}</a>
       </li>
     </ul>
     <ul class="navbar-nav navbar-right">
       <!--<li class="nav-item">-->
         <!--<a class="nav-link" [routerLink]="['/login']"><i class="fas fa-sign-in-alt"></i> Login</a>-->
       <!--</li>-->
-      <li class="nav-item">
-      <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> logout</a>
-    </li>
+      <li class="nav-item  ml-3 my-3">
+        <select #langSelect (change)="translate.use(langSelect.value)" class="custom-select-sm ml-3 my-3">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+            [selected]="lang===translate.currentLang()">{{ lang.toLocaleUpperCase() }}</option>
+        </select>
+      </li>
+      <li class="nav-item ml-3 my-3">
+        <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> {{ 'NAVIGATION.NAV_LOGOUT' | translate }}</a>
+      </li>
     </ul>
   </div>
 </nav>

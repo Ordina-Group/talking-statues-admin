@@ -1,0 +1,41 @@
+{
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Area:",
+    "AREA_SELECT": "area",
+    "ADD_AREA": "Add New Area",
+    "UPLOAD_IMG": "Upload Images Here",
+    "INFORMATION_LEGEND": "LAGUAGE INFORMATION {{i+1}}",
+    "LANGUAGE": "Language",
+    "LANGUAGE_PLACEHOLDER": "Add Language",
+    "NANE": "Name",
+    "NAME_PLACEHOLDER": "Add Name",
+    "DESCRIPTION": "Description",
+    "DESC_PLACEHOLDER": "Add Description",
+    "QUESTION_LEGEND": "QUESTION {{i+1}}",
+    "QUESTION": "Question",
+    "QUESTION_PLACEHOLDER": "Add Question",
+    "ANSWER": "Answer",
+    "ANSWER_PLACEHOLDER": "Add Answer",
+    "DELETE_QUESTION": "Delete Question",
+    "ADD_QUESTION": "Add new Question",
+    "DELETE_LANGUAGE": "Delete Language",
+    "ADD_LANGUAGE": "Add new Language",
+    "SAVE_MONUMENT": "Save Monument",
+    "MODAL_TITLE": "Add Area To Dropdown List",
+    "MODAL_AREA": "Area Name",
+    "MODAL_AREA_PLACE": "Enter Area",
+    "MODAL_CLOSE": "Close",
+    "MODAL_SAVE": "Save changes"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Search for name",
+    "ADD_LINK": "Add New Monument",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Edit Monument"
+  }
+}

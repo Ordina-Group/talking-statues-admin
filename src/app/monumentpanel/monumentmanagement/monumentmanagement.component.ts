@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslatorService } from '../../shared/services/translator.service';
 
 @Component({
   selector: 'app-monumentmanagement',
@@ -41,6 +42,7 @@ export class MonumentmanagementComponent implements OnInit {
   monumentForm: FormGroup;
 
   constructor(
+    public translate: TranslatorService,
     private fb: FormBuilder,
     private _monumentService: MonumentsService,
     private _route: ActivatedRoute,
@@ -53,10 +55,11 @@ export class MonumentmanagementComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe(params => {
           this.monumentID = params['id'];
-        });
-        this.initializeMonumentForm();
-        this.getAllAreas();
-        this.inputId(this.monumentID);
+      });
+    this.initializeMonumentForm();
+    this.getAllAreas();
+    this.inputId(this.monumentID);
+    this.translate.initTranslate();
   }
 
   getAllAreas() {
@@ -172,7 +175,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   // Om error te omzeilen in template
-  getFormData(){
+  getFormData() {
     return <FormArray>this.monumentForm.get('information');
   }
 }

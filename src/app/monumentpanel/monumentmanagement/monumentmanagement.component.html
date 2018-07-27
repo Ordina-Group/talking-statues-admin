@@ -24,6 +24,20 @@
             <input type="text" class="form-control" formControlName="longitude">
           </label>
         </div>
+
+
+        <div *ngIf="monumentForm.get('picture').value || img">
+          <img [src]="img" src="{{backEndUrl}}/images/{{monumentForm.get('id').value}}">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Upload Image Here</label>
+          <input type="file" (change)="onFileSelected($event)" class="form-control-file" id="exampleFormControlFile1"
+                 file-model="myFile" accept="image/*">
+        </div>
+
+
+
+
         <div class="form-group">
           <label>Area:</label>
           <select class="form-control" formControlName="area" required>
@@ -34,10 +48,6 @@
           <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-plus-square"></i> Add New Area
           </button>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Upload Image Here</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
       </div>
 

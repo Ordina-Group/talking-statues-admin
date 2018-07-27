@@ -1,0 +1,76 @@
+{
+  "LOGIN" : {
+    "TITLE": "{{title}}",
+    "SUBTITLE": "Connectez-vous ici",
+    "USERNAME": "Nom d’utilisateur",
+    "USERNAME_PLACEHOLDER": "nom d’utilisateur",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD_PLACEHOLDER": "mot de passe",
+    "LOGIN_BTN": "Ouverture de session",
+    "FOOTER": "Tous droits réservés. Copyright © 2018 - Anvers"
+  },
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Zone:",
+    "AREA_SELECT": "zone",
+    "ADD_AREA": "Ajouter une nouvelle zone",
+    "UPLOAD_IMG": "Télécharger l’Image ici",
+    "INFORMATION_LEGEND": "INFORMATIONS DE LANGAGE",
+    "LANGUAGE": "Langue",
+    "LANGUAGE_PLACEHOLDER": "Ajouter Langue",
+    "NANE": "Nom",
+    "NAME_PLACEHOLDER": "Ajouter Nom",
+    "DESCRIPTION": "Description",
+    "DESC_PLACEHOLDER": "Ajouter Description",
+    "QUESTION_LEGEND": "QUESTION",
+    "QUESTION": "Question",
+    "QUESTION_PLACEHOLDER": "Ajouter Question",
+    "ANSWER": "Résponse",
+    "ANSWER_PLACEHOLDER": "Ajouter Résponse",
+    "DELETE_QUESTION": "Supprimer la Question",
+    "ADD_QUESTION": "Ajouter nouvelle Question",
+    "DELETE_LANGUAGE": "Supprimer la Langue",
+    "ADD_LANGUAGE": "Ajouter nouvelle Langue",
+    "SAVE_MONUMENT": "Enregistrer le Monument",
+    "MODAL_TITLE": "Ajouter la zone de liste déroulante",
+    "MODAL_AREA": "Nome de la zone",
+    "MODAL_AREA_PLACE": "Entrer Zone",
+    "MODAL_CLOSE": "Fermer",
+    "MODAL_SAVE": "Enregistrer les modifications"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Recherche de nom",
+    "ADD_LINK": "Ajouter nouveau Monument",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Modifier Monument"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Panneau de gestion",
+    "NAV_MONUMENT": "Gestion de monument",
+    "NAV_USER": "Gestion des utilisateurs",
+    "NAV_LOGOUT": "Logout"
+  },
+  "404": {
+    "ERROR": "Erreur 404 - Page non trouvée !",
+    "RETURN": "Revenir",
+    "HERE": "ici"
+  },
+  "USERPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Recherche de nom",
+    "ID": "ID",
+    "FIRSTNAME": "Prénom",
+    "LASTNAME": "Nom de famille",
+    "HANDLE": "Handle",
+    "ACTION": "Action",
+    "FORGET_BTN": "Oubliez l’utilisateur",
+    "MODAL_TITLE": "Confirmer l'action",
+    "MODAL_BODY": "Êtes-vous sûr de que vouloir d’anonymiser cet utilisateur?",
+    "MODAL_YES": "Oui, je suis sûr!",
+    "MODAL_NO": "Aucune action annuler"
+  }
+}

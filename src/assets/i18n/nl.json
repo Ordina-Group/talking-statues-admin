@@ -1,0 +1,76 @@
+{
+  "LOGIN" : {
+    "TITLE": "{{title}}",
+    "SUBTITLE": "Login hier",
+    "USERNAME": "Gebruikersnaam",
+    "USERNAME_PLACEHOLDER": "gebruikersnaam",
+    "PASSWORD": "Paswoord",
+    "PASSWORD_PLACEHOLDER": "paswoord",
+    "LOGIN_BTN": "Login",
+    "FOOTER": "Alle rechten voorbehouden. Copyright © 2018 - Antwerpen"
+  },
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Area:",
+    "AREA_SELECT": "area",
+    "ADD_AREA": "Niewe Area Toevoegen",
+    "UPLOAD_IMG": "Upload Foto Hier",
+    "INFORMATION_LEGEND": "TAAL INFORMATIE",
+    "LANGUAGE": "TAAL",
+    "LANGUAGE_PLACEHOLDER": "Taal Toevoegen",
+    "NANE": "Naam",
+    "NAME_PLACEHOLDER": "Naam Toevoegen",
+    "DESCRIPTION": "Beschrijving",
+    "DESC_PLACEHOLDER": "Beschrijving Toevoegen",
+    "QUESTION_LEGEND": "VRAAG",
+    "QUESTION": "Vraag",
+    "QUESTION_PLACEHOLDER": "Vraag Toevoegen",
+    "ANSWER": "Antwoord",
+    "ANSWER_PLACEHOLDER": "Antwoord Toevoegen",
+    "DELETE_QUESTION": "Verwijder Vraag",
+    "ADD_QUESTION": "Nieuwe Vraag Toevoegen",
+    "DELETE_LANGUAGE": "Verwijder Taal",
+    "ADD_LANGUAGE": "Nieuwe Taal Toevoegen",
+    "SAVE_MONUMENT": "Monument Opslaan",
+    "MODAL_TITLE": "Nieuwe Area toevoegen aan Keuzelijst",
+    "MODAL_AREA": "Area Naam",
+    "MODAL_AREA_PLACE": "Geef Area in",
+    "MODAL_CLOSE": "Sluiten",
+    "MODAL_SAVE": "Wijzigingen Opslaan"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Search for name",
+    "ADD_LINK": "Nieuw Monument Toevoegen",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Monument Wijzigen"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Beheer Paneel",
+    "NAV_MONUMENT": "Monument Beheer",
+    "NAV_USER": "Gebruiker Beheer",
+    "NAV_LOGOUT": "Loguit"
+  },
+  "404": {
+    "ERROR": "Error 404 - Pagina niet gevonden!",
+    "RETURN": "Keer terug",
+    "HERE": "hier"
+  },
+  "USERPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Zoek naam",
+    "ID": "ID",
+    "FIRSTNAME": "Voornaam",
+    "LASTNAME": "Achternaam",
+    "HANDLE": "Handle",
+    "ACTION": "Actie",
+    "FORGET_BTN": "Gebruiker vergeten",
+    "MODAL_TITLE": "Actie Bevestigen",
+    "MODAL_BODY": "Bent u zeker dat u deze gebruiker wil anonimiseren?",
+    "MODAL_YES": "Ja, Ik ben zeker!",
+    "MODAL_NO": "Neen, anuleer actie"
+  }
+}

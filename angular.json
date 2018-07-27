@@ -55,7 +55,7 @@
               "i18nFile": "src/locale/messages.nl.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "nl"
-            }
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -82,16 +82,16 @@
           },
           "configurations": {
             "fr": {
-              "browserTarget": "*ManagementPanel*:build:fr"
+              "browserTarget": "ManagementPanel:build:fr"
             },
             "en": {
-              "browserTarget": "*ManagementPanel*:build:en"
+              "browserTarget": "ManagementPanel:build:en"
             },
             "de": {
-              "browserTarget": "*ManagementPanel*:build:de"
+              "browserTarget": "ManagementPanel:build:de"
             },
             "nl": {
-              "browserTarget": "*ManagementPanel*:build:nl"
+              "browserTarget": "ManagementPanel:build:nl"
             },
             "production": {
               "browserTarget": "ManagementPanel:build:production"

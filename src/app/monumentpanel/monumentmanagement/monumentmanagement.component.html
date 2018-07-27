@@ -5,54 +5,54 @@
     <div class="row">
       <div class="col-12">
         <div>
-          <label i18n>Monument ID
+          <label>Monument ID
             <input type="text" class="form-control" formControlName="id" readonly>
           </label>
         </div>
         <div>
-          <label i18n>Latitude
+          <label>Latitude
             <input type="text" class="form-control" formControlName="latitude">
           </label>
         </div>
         <div>
-          <label i18n>Longitude
+          <label>Longitude
             <input type="text" class="form-control" formControlName="longitude">
           </label>
         </div>
         <div class="form-group">
-          <label i18n>Area:</label>
+          <label>Area:</label>
           <select class="form-control" formControlName="area" required>
             <option *ngFor="let area of areas; let i=index" [attr.selected]="i == 0 ? 'selected': '' ">
               {{area}}
             </option>
           </select>
-          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal" i18n>
+          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-plus-square"></i> Add New Area
           </button>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlFile1" i18n>Upload Image Here</label>
+          <label for="exampleFormControlFile1">Upload Image Here</label>
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
       </div>
 
       <!-- LANGUAGE INFORMATION PART -->
       <div class="col-12 mt-5">
-        <!--- Om error te omzeilen hier. Doet exact hetzelfde maar krijg geen data terug ---->
+        <!-- Om error te omzeilen hier. Doet exact hetzelfde maar krijg geen data terug -->
           <div formArrayName="information"*ngFor="let information of getFormData().controls; let i=index" class="card mb-3">
-              <legend><h3 i18n>LANGUAGE INFORMATION {{i+1}}: </h3></legend>
+              <legend><h3>LANGUAGE INFORMATION {{i+1}}: </h3></legend>
               <div [formGroupName]="i">
                 <div class="form-group">
-                  <label i18n>Language</label>
-                  <input type="text" class="form-control" i18n-placeholder placeholder="Add Language" formControlName="language">
+                  <label>Language</label>
+                  <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
                 </div>
                 <div class="form-group">
-                  <label i18n>Name</label>
-                  <input type="text" class="form-control" i18n-placeholder placeholder="Add Name" formControlName="name">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
                 </div>
                 <div class="form-group">
-                  <label i18n>Description</label>
-                  <input type="text" class="form-control" i18n-placeholder placeholder="Add Description" formControlName="description">
+                  <label>Description</label>
+                  <input type="text" class="form-control" placeholder="Add Description" formControlName="description">
                 </div>
 
                 <!-- QUESTIONS PART -->
@@ -62,15 +62,15 @@
                       <legend><h4>QUESTION {{j+1}}</h4></legend>
                       <div [formGroupName]="j">
                         <div class="form-group">
-                          <label i18n>Question</label>
-                          <input type="text" class="form-control" i18n-placeholder placeholder="Add Question" formControlName="question">
+                          <label>Question</label>
+                          <input type="text" class="form-control" placeholder="Add Question" formControlName="question">
                         </div>
                         <div class="form-group">
                           <label>Answer</label>
-                          <input type="text" class="form-control" i18n-placeholder placeholder="Add Answer" formControlName="answer">
+                          <input type="text" class="form-control" placeholder="Add Answer" formControlName="answer">
                         </div>
                         <button (click)="deleteQuestion(information.controls.question, j)"
-                                class="btn btn-danger" i18n>Delete Question</button>
+                                class="btn btn-danger">Delete Question</button>
                       </div>
                     </div>
                   </div>
@@ -78,17 +78,17 @@
                 <div class="form-row mb-3">
                   <button class="btn btn-outline-info float-right ml-1"
                           type="button" role="button"
-                          (click)="addnewQuestion(information.controls.question)" i18n>Add new Question</button>
+                          (click)="addnewQuestion(information.controls.question)">Add new Question</button>
                 </div>
               </div>
-            <button (click)="deleteLanguage(i)" class="btn btn-danger" i18n>Delete Language</button>
+            <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language</button>
         </div>
       </div>
     </div>
     <div class="form-row mb-3">
-      <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addNewLanguage()" i18n>Add new Language</button>
+      <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addNewLanguage()">Add new Language</button>
     </div>
-    <button type="submit" class="btn btn-success" (click)="submitForm()" i18n>Save Monument</button>
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
   </form>
 
   <pre>{{monumentForm.value | json}}</pre>
@@ -101,20 +101,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" i18n>Add Area To Dropdown List</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Area To Dropdown List</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label i18n>Area Name: </label>
-          <input type="text" id="areaInput" class="form-control" i18n-placeholder placeholder="Enter Area">
+          <label>Area Name: </label>
+          <input type="text" id="areaInput" class="form-control" placeholder="Enter Area">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal" i18n>Close</button>
-        <button type="button" class="btn btn-success" (click)="addArea()" i18n>Save changes</button>
+        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="addArea()">Save changes</button>
       </div>
     </div>
   </div>

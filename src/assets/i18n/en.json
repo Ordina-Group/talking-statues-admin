@@ -1,0 +1,76 @@
+{
+  "LOGIN" : {
+    "TITLE": "{{title}}",
+    "SUBTITLE": "Login here",
+    "USERNAME": "Username",
+    "USERNAME_PLACEHOLDER": "username",
+    "PASSWORD": "Password",
+    "PASSWORD_PLACEHOLDER": "password",
+    "LOGIN_BTN": "Login",
+    "FOOTER": "All rights reserved. Copyright © 2018 - Antwerp"
+  },
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Area:",
+    "AREA_SELECT": "area",
+    "ADD_AREA": "Add New Area",
+    "UPLOAD_IMG": "Upload Images Here",
+    "INFORMATION_LEGEND": "LAGUAGE INFORMATION",
+    "LANGUAGE": "Language",
+    "LANGUAGE_PLACEHOLDER": "Add Language",
+    "NANE": "Name",
+    "NAME_PLACEHOLDER": "Add Name",
+    "DESCRIPTION": "Description",
+    "DESC_PLACEHOLDER": "Add Description",
+    "QUESTION_LEGEND": "QUESTION",
+    "QUESTION": "Question",
+    "QUESTION_PLACEHOLDER": "Add Question",
+    "ANSWER": "Answer",
+    "ANSWER_PLACEHOLDER": "Add Answer",
+    "DELETE_QUESTION": "Delete Question",
+    "ADD_QUESTION": "Add new Question",
+    "DELETE_LANGUAGE": "Delete Language",
+    "ADD_LANGUAGE": "Add new Language",
+    "SAVE_MONUMENT": "Save Monument",
+    "MODAL_TITLE": "Add Area To Dropdown List",
+    "MODAL_AREA": "Area Name",
+    "MODAL_AREA_PLACE": "Enter Area",
+    "MODAL_CLOSE": "Close",
+    "MODAL_SAVE": "Save changes"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Search for name",
+    "ADD_LINK": "Add New Monument",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Edit Monument"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Mangement Panel",
+    "NAV_MONUMENT": "Monument Management",
+    "NAV_USER": "User Management",
+    "NAV_LOGOUT": "Logout"
+  },
+  "404": {
+    "ERROR": "Error 404 - Page not found!",
+    "RETURN": "Return",
+    "HERE": "here"
+  },
+  "USERPANEL": {
+    "TITLE": "{{ title }}",
+    "SEARCH": "&#61442;  Search for name",
+    "ID": "ID",
+    "FIRSTNAME": "Firstname",
+    "LASTNAME": "Lastname",
+    "HANDLE": "Handle",
+    "ACTION": "Action",
+    "FORGET_BTN": "Forget user",
+    "MODAL_TITLE": "Confirm Action",
+    "MODAL_BODY": "Are you sure you want to anonymize this user?",
+    "MODAL_YES": "Yes, I'm sure!",
+    "MODAL_NO": "No, cancel action"
+  }
+}

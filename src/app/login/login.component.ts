@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 
 import { AuthService } from '../../services/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NavbarService} from '../../services/navbar.service';
+import { TranslateService } from '../../../node_modules/@ngx-translate/core';
 
 
 @Component({
@@ -19,7 +19,17 @@ export class LoginComponent implements OnInit {
   title = 'UGO | Management Panel';
 
 
-  constructor(private app: AuthService, private http: HttpClient, private router: Router, private nav: NavbarService) {
+  constructor(
+    public translate: TranslateService,
+    private app: AuthService,
+    private router: Router,
+    private nav: NavbarService
+  ) {
+    translate.addLangs(['de', 'en', 'es', 'fr', 'nl']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/de|en|es|fr|nl/) ? browserLang : 'en');
   }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppUser} from '../../models/AppUser';
 import { UsersService} from '../../services/users.service';
 import { NavbarService} from '../../services/navbar.service';
+import { TranslateService } from '../../../node_modules/@ngx-translate/core';
 
 
 
@@ -19,9 +20,16 @@ export class UserpanelComponent implements OnInit {
   errorMessage = '';
 
   constructor(
+    public translate: TranslateService,
     private userService: UsersService,
     private nav: NavbarService,
-  ) {}
+  ) {
+    translate.addLangs(['en', 'fr', 'nl', 'de']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr|nl|de/) ? browserLang : 'en');
+  }
 
   ngOnInit(): void {
 

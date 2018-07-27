@@ -131,6 +131,13 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="08cdeee959c92e2c799e989c56d2f77e6f1c3e3e" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Management Panel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/navigation/navigation.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8279aece9acc41100022c649c03251f8b08fb28b" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Monument Management</source>
         <context-group purpose="location">
@@ -164,6 +171,20 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/monumentpanel/monumentpanel.component.ts</context>
           <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cecbc5e03d94eb7665273dad44052b6d7c6915c3" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{monument.information[0].name}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentpanel.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d4f4132ff7f8e100afffbdb79b957d9e49149d90" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{monument.information[0].description.substring(0, 75)}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentpanel.component.ts</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="874445e8146efca7535cc42a710ee016ee920adc" datatype="html">
@@ -202,6 +223,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/monumentpanel/monumentmanagement/commonform/commonform.component.ts</context>
           <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f94cbc1576e10505aae17fbff620f1921d5d0241" datatype="html">
+        <source>
+            <x id="START_TAG_OPTION" ctype="x-option" equiv-text="&lt;option&gt;"/>
+              <x id="INTERPOLATION" equiv-text="{{area}}"/>
+            <x id="CLOSE_TAG_OPTION" ctype="x-option" equiv-text="&lt;/option&gt;"/>
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/monumentpanel/monumentmanagement/monumentmanagement.component.ts</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bf5de13e73d3a452ac1c0ca4e240fe4ff1722ea6" datatype="html">

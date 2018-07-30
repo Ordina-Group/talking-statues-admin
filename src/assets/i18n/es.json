@@ -1,37 +1,37 @@
 {
   "LOGIN" : {
-    "TITLE": "{{ title }}",
-    "SUBTITLE": "Login here",
-    "USERNAME": "Username",
-    "USERNAME_PLACEHOLDER": "username",
-    "PASSWORD": "Password",
-    "PASSWORD_PLACEHOLDER": "password",
-    "LOGIN_BTN": "Login",
-    "FOOTER": "All rights reserved. Copyright © 2018 - Antwerp"
+    "TITLE": "UGO | Panel de administración",
+    "SUBTITLE": "Inicio de sesión aquí",
+    "USERNAME": "Nombre de usuario",
+    "USERNAME_PLACEHOLDER": "nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_PLACEHOLDER": "contraseña",
+    "LOGIN_BTN": "Inicio de sesión",
+    "FOOTER": "Todos los derechos reservados. Copyright © 2018 - Antwerp"
   },
   "NAVIGATION": {
-    "NAV_BRAND": "Mangement Panel",
-    "NAV_MONUMENT": "Monument Management",
-    "NAV_USER": "User Management",
-    "NAV_LOGOUT": "Logout"
+    "NAV_BRAND": "Panel de administración",
+    "NAV_MONUMENT": "Manejo del monumento",
+    "NAV_USER": "Gestión de usuarios",
+    "NAV_LOGOUT": "Cierre de sesión"
   },
   "404": {
-    "ERROR": "Error 404 - Page not found!",
-    "RETURN": "Return",
-    "HERE": "here"
+    "ERROR": "Error 404 - página no encontrada!",
+    "RETURN": "Volver",
+    "HERE": "aquí"
   },
   "USERPANEL": {
-    "TITLE": "{{ title }}",
-    "SEARCH": "&#61442;  Search for name",
+    "TITLE": "Administración de usuarios | Anonimizar los usuarios",
+    "SEARCH": "  Búsqueda por nombre",
     "ID": "ID",
-    "FIRSTNAME": "Firstname",
-    "LASTNAME": "Lastname",
-    "HANDLE": "Handle",
-    "ACTION": "Action",
-    "FORGET_BTN": "Forget user",
-    "MODAL_TITLE": "Confirm Action",
-    "MODAL_BODY": "Are you sure you want to anonymize this user?",
-    "MODAL_YES": "Yes, I'm sure!",
-    "MODAL_NO": "No, cancel action"
+    "FIRSTNAME": "Apellido",
+    "LASTNAME": "Apellidos",
+    "HANDLE": "nombre de usuario",
+    "ACTION": "Acción",
+    "FORGET_BTN": "Olvide usuario",
+    "MODAL_TITLE": "Confirmar acción",
+    "MODAL_BODY": "¿Está seguro que desea anonimizar este usuario?",
+    "MODAL_YES": "¡Sí, estoy seguro!",
+    "MODAL_NO": "No, cancelar acción"
   }
 }

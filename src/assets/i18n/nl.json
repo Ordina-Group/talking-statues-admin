@@ -1,7 +1,7 @@
 {
   "LOGIN" : {
     "TITLE": "UGO | beheerders paneel",
-    "SUBTITLE": "Login hier",
+    "SUBTITLE": "Meld hier aan",
     "USERNAME": "Gebruikersnaam",
     "USERNAME_PLACEHOLDER": "gebruikersnaam",
     "PASSWORD": "Wachtwoord",
@@ -13,7 +13,7 @@
     "NAV_BRAND": "Beheer Paneel",
     "NAV_MONUMENT": "Monument Beheer",
     "NAV_USER": "Gebruiker Beheer",
-    "NAV_LOGOUT": "Loguit"
+    "NAV_LOGOUT": "Afmelden"
   },
   "404": {
     "ERROR": "Error 404 - Pagina niet gevonden!",
@@ -22,7 +22,7 @@
   },
   "USERPANEL": {
     "TITLE": "Gebruiker Beheer |  Anonimiseren van gebruikers",
-    "SEARCH": "&#61442;  Zoek naam",
+    "SEARCH": "  Zoek naam",
     "ID": "ID",
     "FIRSTNAME": "Voornaam",
     "LASTNAME": "Achternaam",

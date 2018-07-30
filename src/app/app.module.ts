@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
-import { TranslateModule, TranslateLoader, TranslateCompiler, TranslateParser, MissingTranslationHandler } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { UserpanelComponent } from './userpanel/userpanel.component';
@@ -19,10 +19,11 @@ import { AuthInterceptor } from '../services/auth.interceptor';
 import { AuthguardService } from '../services/authguard.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MaterialModule } from './material.module';
+import { TranslatorService } from './shared/services/translator.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       multi: true
     },
     AuthguardService,
-],
+    TranslatorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

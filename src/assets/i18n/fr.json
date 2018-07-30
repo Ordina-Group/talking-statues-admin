@@ -22,7 +22,7 @@
   },
   "USERPANEL": {
     "TITLE": "Gestion des utilisateurs | Anonymiser les utilisateurs",
-    "SEARCH": "&#61442;  Recherche de nom",
+    "SEARCH": "  Recherche de nom",
     "ID": "ID",
     "FIRSTNAME": "Prénom",
     "LASTNAME": "Nom de famille",

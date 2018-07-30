@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MonumentsRoutingModule } from './monuments-routing.module';
@@ -29,7 +29,7 @@ export function createTranlateLoader(http: HttpClient) {
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranlateLoader),
+        useFactory: createTranlateLoader,
         deps: [HttpClient]
       },
       isolate: true
@@ -47,4 +47,14 @@ export function createTranlateLoader(http: HttpClient) {
   providers: [
   ]
 })
-export class MonumentsModule { }
+export class MonumentsModule {
+  constructor(private _translate: TranslateService) {
+    // const browserLang = this._translate.getBrowserLang();
+    // this._translate.use(browserLang.match(/de|en|es|fr|nl/) ? browserLang : 'en');
+    // this._translate.use('de');
+    // this._translate.use('en');
+    // this._translate.use('es');
+    // this._translate.use('fr');
+    // this._translate.use('nl');
+  }
+}

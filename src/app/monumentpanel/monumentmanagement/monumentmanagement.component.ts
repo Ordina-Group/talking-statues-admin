@@ -5,6 +5,7 @@ import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslatorService } from '../../shared/services/translator.service';
+import { TranslateService } from '../../../../node_modules/@ngx-translate/core';
 
 @Component({
   selector: 'app-monumentmanagement',
@@ -46,6 +47,7 @@ export class MonumentmanagementComponent implements OnInit {
     private fb: FormBuilder,
     private _monumentService: MonumentsService,
     private _route: ActivatedRoute,
+    private _translate: TranslateService
   ) {
     this.monumentForm = this.fb.group({
       information: this.fb.array([])
@@ -53,6 +55,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._translate.get('MONUMENT_ADD_DETAIL');
     this._route.params.subscribe(params => {
           this.monumentID = params['id'];
       });

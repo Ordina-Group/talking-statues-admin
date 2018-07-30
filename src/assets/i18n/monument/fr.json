@@ -32,7 +32,7 @@
   },
   "MONUMENTPANEL": {
     "TITLE": "Gestion de monument - Ajouter/Modifier monuments",
-    "SEARCH": "&#61442;  Recherche de nom",
+    "SEARCH": "  Recherche de nom",
     "ADD_LINK": "Ajouter nouveau Monument",
     "CARD_TITLE": "{{monument.information[0].name}}",
     "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",

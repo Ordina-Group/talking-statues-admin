@@ -1,37 +1,37 @@
 {
   "LOGIN" : {
-    "TITLE": "{{ title }}",
-    "SUBTITLE": "Login here",
-    "USERNAME": "Username",
-    "USERNAME_PLACEHOLDER": "username",
-    "PASSWORD": "Password",
-    "PASSWORD_PLACEHOLDER": "password",
+    "TITLE": "UGO | Management-Panel",
+    "SUBTITLE": "Melden Sie sich hier",
+    "USERNAME": "Benutzername",
+    "USERNAME_PLACEHOLDER": "benutzername",
+    "PASSWORD": "Passwort",
+    "PASSWORD_PLACEHOLDER": "passwort",
     "LOGIN_BTN": "Login",
-    "FOOTER": "All rights reserved. Copyright © 2018 - Antwerp"
+    "FOOTER": "Alle Rechte vorbehalten. Copyright © 2018 - Antwerpen"
   },
   "NAVIGATION": {
-    "NAV_BRAND": "Mangement Panel",
-    "NAV_MONUMENT": "Monument Management",
-    "NAV_USER": "User Management",
+    "NAV_BRAND": "Mangement-Panel",
+    "NAV_MONUMENT": "Denkmal-Management",
+    "NAV_USER": "Benutzerverwaltung",
     "NAV_LOGOUT": "Logout"
   },
   "404": {
-    "ERROR": "Error 404 - Page not found!",
-    "RETURN": "Return",
-    "HERE": "here"
+    "ERROR": "Fehler 404 - Seite nicht gefunden!",
+    "RETURN": "Rückkehr",
+    "HERE": "Hier"
   },
   "USERPANEL": {
-    "TITLE": "{{ title }}",
-    "SEARCH": "&#61442;  Search for name",
+    "TITLE": "User-Management | Benutzer zu anonymisieren",
+    "SEARCH": " Suche nach Namen",
     "ID": "ID",
-    "FIRSTNAME": "Firstname",
-    "LASTNAME": "Lastname",
-    "HANDLE": "Handle",
-    "ACTION": "Action",
-    "FORGET_BTN": "Forget user",
-    "MODAL_TITLE": "Confirm Action",
-    "MODAL_BODY": "Are you sure you want to anonymize this user?",
-    "MODAL_YES": "Yes, I'm sure!",
-    "MODAL_NO": "No, cancel action"
+    "FIRSTNAME": "Vorname",
+    "LASTNAME": "Nachname",
+    "HANDLE": "Benutzername",
+    "ACTION": "Aktion",
+    "FORGET_BTN": "Vergessen Benutzer",
+    "MODAL_TITLE": "Bestätigen",
+    "MODAL_BODY": "Sind Sie sicher, dass Sie diesen Benutzer zu anonymisieren möchten?",
+    "MODAL_YES": "Ja, ich bin sicher!",
+    "MODAL_NO": "Nein, die Aktion abzubrechen"
   }
 }

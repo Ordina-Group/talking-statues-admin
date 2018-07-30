@@ -15,7 +15,6 @@ import { TranslateService, LangChangeEvent } from '../../../node_modules/@ngx-tr
   styleUrls: ['./monumentpanel.component.css']
 })
 export class MonumentpanelComponent implements OnInit, DoCheck {
-  title = 'Monument Management - Add/Edit Monuments';
   monuments: Monument[];
   monSearchText = '';
   baseUrl = environment.baseUrl;

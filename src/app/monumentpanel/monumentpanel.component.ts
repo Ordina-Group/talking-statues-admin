@@ -1,24 +1,24 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { Monument} from '../../models/AppUser';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Monument } from '../../models/AppUser';
 import { MonumentsService} from '../../services/monuments.service';
-import {NavbarService} from '../../services/navbar.service';
-import {Router} from '@angular/router';
-import {environment} from '../../environments/environment.prod';
+import { NavbarService } from '../../services/navbar.service';
+import { environment } from '../../environments/environment.prod';
 import { TranslatorService } from '../shared/services/translator.service';
-import { TranslateService, LangChangeEvent } from '../../../node_modules/@ngx-translate/core';
-
-
 
 @Component({
   selector: 'app-monumentpanel',
   templateUrl: './monumentpanel.component.html',
   styleUrls: ['./monumentpanel.component.css']
 })
-export class MonumentpanelComponent implements OnInit, DoCheck {
+export class MonumentpanelComponent implements OnInit {
   monuments: Monument[];
   monSearchText = '';
   baseUrl = environment.baseUrl;
   backEndUrl = environment.backendUrl;
+
+  lang: string;
 
   constructor(
     public translate: TranslatorService,
@@ -39,17 +39,13 @@ export class MonumentpanelComponent implements OnInit, DoCheck {
     this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
       console.log(`LangChangeEvent: ${JSON.stringify(event)}`);
       this._translate.use(event.lang);
+      this.lang = this._translate.currentLang;
     });
-  }
-
-  ngDoCheck(): void {
-
   }
 
   send(data) {
     this.monumentService.saveData(data);
     this.router.navigate(['/editmonument']);
   }
-
 }
 

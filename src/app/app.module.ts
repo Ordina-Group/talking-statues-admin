@@ -1,24 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { UserpanelComponent } from './userpanel/userpanel.component';
-import { RouterModule } from '@angular/router';
 import { UsersService} from '../services/users.service';
 import { MonumentsService } from '../services/monuments.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import {NavbarService} from '../services/navbar.service';
-import {AuthService} from '../services/auth.service';
+import { NavbarService } from '../services/navbar.service';
+import { AuthService } from '../services/auth.service';
 import { FilterPipe } from './shared/userFilter.pipe';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../services/auth.interceptor';
-import {AuthguardService} from '../services/authguard.service';
+import { AuthguardService } from '../services/authguard.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MaterialModule } from './material.module';
+import { TranslatorService } from './shared/services/translator.service';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -47,7 +53,13 @@ import { MaterialModule } from './material.module';
       {path: 'logout', component: LoginComponent},
       {path: '**', component: PagenotfoundComponent, redirectTo: ''}
     ], {useHash: false}),
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     UsersService,
@@ -60,7 +72,8 @@ import { MaterialModule } from './material.module';
       multi: true
     },
     AuthguardService,
-],
+    TranslatorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

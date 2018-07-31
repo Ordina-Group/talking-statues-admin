@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppUser} from '../../models/AppUser';
 import { UsersService} from '../../services/users.service';
 import { NavbarService} from '../../services/navbar.service';
+import { TranslatorService } from '../shared/services/translator.service';
 
 
 
@@ -13,7 +14,6 @@ declare let $;
   styleUrls: ['./userpanel.component.css']
 })
 export class UserpanelComponent implements OnInit {
-  title = 'User Management | Anonymize Users';
   searchText = '';
   users: AppUser[];
   errorMessage = '';
@@ -21,12 +21,15 @@ export class UserpanelComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private nav: NavbarService,
-  ) {}
+    private _translate: TranslatorService
+  ) {
+  }
 
   ngOnInit(): void {
 
     this.nav.show();
     this.findUsers();
+    this._translate.initTranslate();
   }
 
   findUsers() {

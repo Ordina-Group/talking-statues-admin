@@ -4,57 +4,62 @@
     <!-- COMMON PART -->
     <div class="row">
       <div class="col-12">
-        <div *ngIf="monumentForm.get('id').value == ''">
-          <label hidden>Monument ID
-            <input type="text" class="form-control" formControlName="id" hidden>
+        <div>
+          <label>{{ 'MONUMENT_ADD_DETAIL.MONUMENT_ID' | translate }}
           </label>
-        </div>
-        <div *ngIf="monumentForm.get('id').value !== ''">
-          <label>Monument ID
             <input type="text" class="form-control" formControlName="id" readonly>
-          </label>
         </div>
         <div>
-          <label>Latitude
+          <label>{{ 'MONUMENT_ADD_DETAIL.LATITUDE' | translate }}
             <input type="text" class="form-control" formControlName="latitude">
           </label>
         </div>
         <div>
-          <label>Longitude
+          <label>{{ 'MONUMENT_ADD_DETAIL.LONGITUDE' | translate }}
             <input type="text" class="form-control" formControlName="longitude">
           </label>
         </div>
         <div class="form-group">
-          <label>Area:</label>
+          <label>{{ 'MONUMENT_ADD_DETAIL.AREA' | translate }}</label>
           <select class="form-control" formControlName="area" required>
             <option *ngFor="let area of areas; let i=index" [attr.selected]="i == 0 ? 'selected': '' ">
               {{area}}
             </option>
           </select>
           <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-plus-square"></i> Add New Area
+            <i class="fas fa-plus-square"></i> {{ 'MONUMENT_ADD_DETAIL.ADD_AREA' | translate }}
           </button>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlFile1">Upload Image Here</label>
+          <label for="exampleFormControlFile1">{{ 'MONUMENT_ADD_DETAIL.UPLOAD_IMG' | translate }}</label>
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
       </div>
 
       <!-- LANGUAGE INFORMATION PART -->
       <div class="col-12 mt-5">
-          <div formArrayName="information"*ngFor="let information of monumentForm.get('information').controls; let i=index" class="card mb-3">
-              <legend><h3>LANGUAGE INFORMATION {{i+1}}: </h3></legend>
+        <!-- Om error te omzeilen hier. Doet exact hetzelfde maar krijg geen data terug -->
+          <div formArrayName="information"*ngFor="let information of getFormData().controls; let i=index" class="card mb-3">
+              <legend><h3>{{ 'MONUMENT_ADD_DETAIL.INFORMATION_LEGEND' | translate }} {{i+1}}: </h3></legend>
               <div [formGroupName]="i">
                 <div class="form-group">
-                  <label>Language</label>
-                  <input type="text" class="form-control" placeholder="Add Language" formControlName="language">
+                  <label>{{ 'MONUMENT_ADD_DETAIL.LANGUAGE' | translate }}</label>
+                  <input type="text" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.LANGUAGE_PLACEHOLDER' | translate }}" formControlName="language">
                 </div>
                 <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" class="form-control" placeholder="Add Name" formControlName="name">
+                  <label>{{ 'MONUMENT_ADD_DETAIL.NAME' | translate }}</label>
+                  <input type="text" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.NAME_PLACEHOLDER' | translate }}" formControlName="name">
                 </div>
                 <div class="form-group">
+                  <label>{{ 'MONUMENT_ADD_DETAIL.DESCRIPTION' | translate }}</label>
+                  <input type="text" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.DESC_PLACEHOLDER' | translate }}" formControlName="description">
+                </div>
+
+                <!-- QUESTIONS PART -->
+                <div *ngIf="information.get('question').value" class="col-12 mt-5">
+                  <div formArrayName="question" >
+                    <div *ngFor="let question of information.get('question').value; let j=index; trackBy:trackByFn" class="card mb-3">
+                      <legend><h4>{{ 'MONUMENT_ADD_DETAIL.QUESTION_LEGEND' | translate }} {{j+1}}</h4></legend>
                   <label>Description</label>
                   <textarea type="text" class="form-control" placeholder="Add Description" formControlName="description"></textarea>
                 </div>
@@ -66,15 +71,15 @@
                       <legend><h4>CONVERSATION {{j+1}}</h4></legend>
                       <div [formGroupName]="j">
                         <div class="form-group">
-                          <label>Question</label>
-                          <input type="text" class="form-control" placeholder="Add Question" formControlName="question">
+                          <label>{{ 'MONUMENT_ADD_DETAIL.QUESTION' | translate }}</label>
+                          <input type="text" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.QUESTION_PLACEHOLDER' | translate }}" formControlName="question">
                         </div>
                         <div class="form-group">
-                          <label>Answer</label>
-                          <input type="text" class="form-control" placeholder="Add Answer" formControlName="answer">
+                          <label>{{ 'MONUMENT_ADD_DETAIL.ANSWER' | translate }}</label>
+                          <input type="text" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.ANSWER_PLACEHOLDER' | translate }}" formControlName="answer">
                         </div>
-                        <button (click)="deleteQuestion(information.controls.conversations, j)"
-                                class="btn btn-danger">Delete Conversation</button>
+                        <button (click)="deleteQuestion(information.controls.question, j)"
+                                class="btn btn-danger">{{ 'MONUMENT_ADD_DETAIL.DELETE_QUESTION' | translate }}</button>
                       </div>
                     </div>
                   </div>
@@ -82,17 +87,17 @@
                 <div class="form-row mb-3">
                   <button class="btn btn-outline-info float-right ml-1"
                           type="button" role="button"
-                          (click)="addnewQuestion(information.controls.conversations)">Add new Conversation</button>
+                          (click)="addnewQuestion(information.controls.question)">{{ 'MONUMENT_ADD_DETAIL.ADD_QUESTION' | translate }}</button>
                 </div>
               </div>
-            <button (click)="deleteLanguage(i)" class="btn btn-danger">Delete Language {{information.get('language').value}}</button>
+            <button (click)="deleteLanguage(i)" class="btn btn-danger">{{ 'MONUMENT_ADD_DETAIL.DELETE_LANGUAGE' | translate }}</button>
         </div>
       </div>
     </div>
     <div class="form-row mb-3">
-      <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addNewLanguage()">Add new Language</button>
+      <button class="btn btn-outline-info float-right ml-1" type="button" role="button" (click)="addNewLanguage()">{{ 'MONUMENT_ADD_DETAIL.ADD_LANGUAGE' | translate }}</button>
     </div>
-    <button type="submit" class="btn btn-success" (click)="submitForm()">Save Monument</button>
+    <button type="submit" class="btn btn-success" (click)="submitForm()">{{ 'MONUMENT_ADD_DETAIL.SAVE_MONUMENT' | translate }}</button>
   </form>
 
   <pre>{{monumentForm.value | json}}</pre>
@@ -105,20 +110,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Area To Dropdown List</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'MONUMENT_ADD_DETAIL.MODAL_TITLE' | translate }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label>Area Name: </label>
-          <input type="text" id="areaInput" class="form-control" placeholder="Enter Area">
+          <label>{{ 'MONUMENT_ADD_DETAIL.MODAL_AREA' | translate }} </label>
+          <input type="text" id="areaInput" class="form-control" placeholder="{{ 'MONUMENT_ADD_DETAIL.MODAL_AREA_PLACE' | translate }}">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="addArea()">Save changes</button>
+        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">{{ 'MONUMENT_ADD_DETAIL.MODAL_CLOSE' | translate }}</button>
+        <button type="button" class="btn btn-success" (click)="addArea()">{{ 'MONUMENT_ADD_DETAIL.MODAL_SAVE' | translate }}</button>
       </div>
     </div>
   </div>

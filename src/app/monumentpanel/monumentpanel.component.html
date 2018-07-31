@@ -1,10 +1,10 @@
 <div class="container">
   <div class="container">
-    <h2 class="text-center mt-5 mb-5"><i class="fas fa-monument"></i> {{title}}</h2>
+    <h2 class="text-center mt-5 mb-5"><i class="fas fa-monument"></i> {{ 'MONUMENTPANEL.TITLE' | translate }}</h2>
     <div class="row">
       <div class="col-xs-12 col-md-8 col-lg-6" id="upperForm">
-        <input type="text" id="filterInput" class="form-control float-left mainLoginInput" placeholder="&#61442;  Search for name" [(ngModel)]='monSearchText'>
-        <a  [routerLink]="['/monuments/addmonument']" class="btn btn-primary">Add New Monument</a>
+        <input type="text" id="filterInput" class="form-control float-left mainLoginInput" placeholder="&#61442;  {{ 'MONUMENTPANEL.SEARCH' | translate }}" [(ngModel)]='monSearchText'>
+        <a  [routerLink]="['/monuments/addmonument']" class="btn btn-primary">{{ 'MONUMENTPANEL.ADD_LINK' | translate }}</a>
       </div>
     </div>
     <div class="row mt-5">
@@ -15,7 +15,7 @@
             <h5 class="card-title">{{monument.information[0].name}}</h5>
             <p class="card-text">{{monument.information[0].description.substring(0, 75)}}</p>
             <a [routerLink]="['/monuments', monument.id]" class="btn btn-success">
-              <i class="fas fa-edit"></i> Edit Monument</a>
+              <i class="fas fa-edit"></i> {{ 'MONUMENTPANEL.EDIT_BTN' | translate }}</a>
           </div>
         </div>
       </div>

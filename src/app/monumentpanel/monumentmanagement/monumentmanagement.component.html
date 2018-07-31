@@ -6,8 +6,8 @@
       <div class="col-12">
         <div>
           <label>{{ 'MONUMENT_ADD_DETAIL.MONUMENT_ID' | translate }}
-            <input type="text" class="form-control" formControlName="id" readonly>
           </label>
+            <input type="text" class="form-control" formControlName="id" readonly>
         </div>
         <div>
           <label>{{ 'MONUMENT_ADD_DETAIL.LATITUDE' | translate }}
@@ -60,6 +60,15 @@
                   <div formArrayName="question" >
                     <div *ngFor="let question of information.get('question').value; let j=index; trackBy:trackByFn" class="card mb-3">
                       <legend><h4>{{ 'MONUMENT_ADD_DETAIL.QUESTION_LEGEND' | translate }} {{j+1}}</h4></legend>
+                  <label>Description</label>
+                  <textarea type="text" class="form-control" placeholder="Add Description" formControlName="description"></textarea>
+                </div>
+
+                <!-- CONVERSATIONS PART -->
+                <div *ngIf="information.get('conversations').value" class="col-12 mt-5">
+                  <div formArrayName="conversations" >
+                    <div *ngFor="let conversations of information.get('conversations').value; let j=index; trackBy:trackByFn" class="card mb-3">
+                      <legend><h4>CONVERSATION {{j+1}}</h4></legend>
                       <div [formGroupName]="j">
                         <div class="form-group">
                           <label>{{ 'MONUMENT_ADD_DETAIL.QUESTION' | translate }}</label>

@@ -1,0 +1,39 @@
+{
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Denkmal-ID",
+    "LATITUDE": "Breitengrad",
+    "LONGITUDE": "Länge",
+    "AREA": "Zone:",
+    "AREA_SELECT": "zone",
+    "ADD_AREA": "Neuen Bereich hinzufügen",
+    "UPLOAD_IMG": "Bilder hier hochladen",
+    "INFORMATION_LEGEND": "SPRACHE-INFORMATIONEN",
+    "LANGUAGE": "Sprache",
+    "LANGUAGE_PLACEHOLDER": "Sprache hinzufügen",
+    "NANE": "Name",
+    "NAME_PLACEHOLDER": "Namen hinzufügen",
+    "DESCRIPTION": "Beschreibung",
+    "DESC_PLACEHOLDER": "Beschreibung hinzufügen",
+    "QUESTION_LEGEND": "FRAGE",
+    "QUESTION": "Frage",
+    "QUESTION_PLACEHOLDER": "Frage hinzufügen",
+    "ANSWER": "Antwort",
+    "ANSWER_PLACEHOLDER": "Antwort hinzufügen",
+    "DELETE_QUESTION": "Frage löschen",
+    "ADD_QUESTION": "Neue Frage hinzufügen",
+    "DELETE_LANGUAGE": "Sprache löschen",
+    "ADD_LANGUAGE": "Neue Sprache hinzufügen",
+    "SAVE_MONUMENT": "Denkmal zu retten",
+    "MODAL_TITLE": "Bereich für Dropdown-Liste hinzufügen",
+    "MODAL_AREA": "Bereichsnamen",
+    "MODAL_AREA_PLACE": "Art in einem Gebiet",
+    "MODAL_CLOSE": "In der Nähe",
+    "MODAL_SAVE": "Speichern Sie die Änderungen"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "Denkmal-Management - Monumente hinzufügen/bearbeiten",
+    "SEARCH": "  Suche nach Namen",
+    "ADD_LINK": "Fügen Sie neues Denkmal",
+    "EDIT_BTN": "Edit-Denkmal"
+  }
+}

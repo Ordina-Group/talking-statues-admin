@@ -1,0 +1,37 @@
+{
+  "LOGIN" : {
+    "TITLE": "UGO | beheerders paneel",
+    "SUBTITLE": "Meld hier aan",
+    "USERNAME": "Gebruikersnaam",
+    "USERNAME_PLACEHOLDER": "gebruikersnaam",
+    "PASSWORD": "Wachtwoord",
+    "PASSWORD_PLACEHOLDER": "wachtwoord",
+    "LOGIN_BTN": "Login",
+    "FOOTER": "Alle rechten voorbehouden. Copyright © 2018 - Antwerpen"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Beheer Paneel",
+    "NAV_MONUMENT": "Monument Beheer",
+    "NAV_USER": "Gebruiker Beheer",
+    "NAV_LOGOUT": "Afmelden"
+  },
+  "404": {
+    "ERROR": "Error 404 - Pagina niet gevonden!",
+    "RETURN": "Keer terug",
+    "HERE": "hier"
+  },
+  "USERPANEL": {
+    "TITLE": "Gebruiker Beheer |  Anonimiseren van gebruikers",
+    "SEARCH": "  Zoek naam",
+    "ID": "ID",
+    "FIRSTNAME": "Voornaam",
+    "LASTNAME": "Achternaam",
+    "HANDLE": "Handle",
+    "ACTION": "Actie",
+    "FORGET_BTN": "Gebruiker vergeten",
+    "MODAL_TITLE": "Actie Bevestigen",
+    "MODAL_BODY": "Bent u zeker dat u deze gebruiker wil anonimiseren?",
+    "MODAL_YES": "Ja, Ik ben zeker!",
+    "MODAL_NO": "Neen, anuleer actie"
+  }
+}

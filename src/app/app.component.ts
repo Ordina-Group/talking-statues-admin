@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {environment} from '../environments/environment.prod';
+import { environment } from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',

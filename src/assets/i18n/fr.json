@@ -1,0 +1,37 @@
+{
+  "LOGIN" : {
+    "TITLE": "UGO | Panneau de gestion",
+    "SUBTITLE": "Connectez-vous ici",
+    "USERNAME": "Nom d’utilisateur",
+    "USERNAME_PLACEHOLDER": "nom d’utilisateur",
+    "PASSWORD": "Mot de passe",
+    "PASSWORD_PLACEHOLDER": "mot de passe",
+    "LOGIN_BTN": "Ouverture de session",
+    "FOOTER": "Tous droits réservés. Copyright © 2018 - Anvers"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Panneau de gestion",
+    "NAV_MONUMENT": "Gestion de monument",
+    "NAV_USER": "Gestion des utilisateurs",
+    "NAV_LOGOUT": "Se Deconneter"
+  },
+  "404": {
+    "ERROR": "Erreur 404 - Page non trouvée !",
+    "RETURN": "Revenir",
+    "HERE": "ici"
+  },
+  "USERPANEL": {
+    "TITLE": "Gestion des utilisateurs | Anonymiser les utilisateurs",
+    "SEARCH": "  Recherche de nom",
+    "ID": "ID",
+    "FIRSTNAME": "Prénom",
+    "LASTNAME": "Nom de famille",
+    "HANDLE": "Handle",
+    "ACTION": "Action",
+    "FORGET_BTN": "Oubliez l’utilisateur",
+    "MODAL_TITLE": "Confirmer l'action",
+    "MODAL_BODY": "Êtes-vous sûr de que vouloir d’anonymiser cet utilisateur?",
+    "MODAL_YES": "Oui, je suis sûr!",
+    "MODAL_NO": "Aucune action annuler"
+  }
+}

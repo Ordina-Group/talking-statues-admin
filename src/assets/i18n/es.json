@@ -1,0 +1,37 @@
+{
+  "LOGIN" : {
+    "TITLE": "UGO | Panel de administración",
+    "SUBTITLE": "Inicio de sesión aquí",
+    "USERNAME": "Nombre de usuario",
+    "USERNAME_PLACEHOLDER": "nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_PLACEHOLDER": "contraseña",
+    "LOGIN_BTN": "Inicio de sesión",
+    "FOOTER": "Todos los derechos reservados. Copyright © 2018 - Antwerp"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Panel de administración",
+    "NAV_MONUMENT": "Manejo del monumento",
+    "NAV_USER": "Gestión de usuarios",
+    "NAV_LOGOUT": "Cierre de sesión"
+  },
+  "404": {
+    "ERROR": "Error 404 - página no encontrada!",
+    "RETURN": "Volver",
+    "HERE": "aquí"
+  },
+  "USERPANEL": {
+    "TITLE": "Administración de usuarios | Anonimizar los usuarios",
+    "SEARCH": "  Búsqueda por nombre",
+    "ID": "ID",
+    "FIRSTNAME": "Apellido",
+    "LASTNAME": "Apellidos",
+    "HANDLE": "nombre de usuario",
+    "ACTION": "Acción",
+    "FORGET_BTN": "Olvide usuario",
+    "MODAL_TITLE": "Confirmar acción",
+    "MODAL_BODY": "¿Está seguro que desea anonimizar este usuario?",
+    "MODAL_YES": "¡Sí, estoy seguro!",
+    "MODAL_NO": "No, cancelar acción"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "LOGIN" : {
+    "TITLE": "UGO | Management-Panel",
+    "SUBTITLE": "Melden Sie sich hier",
+    "USERNAME": "Benutzername",
+    "USERNAME_PLACEHOLDER": "benutzername",
+    "PASSWORD": "Passwort",
+    "PASSWORD_PLACEHOLDER": "passwort",
+    "LOGIN_BTN": "Login",
+    "FOOTER": "Alle Rechte vorbehalten. Copyright © 2018 - Antwerpen"
+  },
+  "NAVIGATION": {
+    "NAV_BRAND": "Mangement-Panel",
+    "NAV_MONUMENT": "Denkmal-Management",
+    "NAV_USER": "Benutzerverwaltung",
+    "NAV_LOGOUT": "Logout"
+  },
+  "404": {
+    "ERROR": "Fehler 404 - Seite nicht gefunden!",
+    "RETURN": "Rückkehr",
+    "HERE": "Hier"
+  },
+  "USERPANEL": {
+    "TITLE": "User-Management | Benutzer zu anonymisieren",
+    "SEARCH": " Suche nach Namen",
+    "ID": "ID",
+    "FIRSTNAME": "Vorname",
+    "LASTNAME": "Nachname",
+    "HANDLE": "Benutzername",
+    "ACTION": "Aktion",
+    "FORGET_BTN": "Vergessen Benutzer",
+    "MODAL_TITLE": "Bestätigen",
+    "MODAL_BODY": "Sind Sie sicher, dass Sie diesen Benutzer zu anonymisieren möchten?",
+    "MODAL_YES": "Ja, ich bin sicher!",
+    "MODAL_NO": "Nein, die Aktion abzubrechen"
+  }
+}

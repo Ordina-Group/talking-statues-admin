@@ -1,0 +1,41 @@
+{
+  "MONUMENT_ADD_DETAIL": {
+    "MONUMENT_ID": "Monument ID",
+    "LATITUDE": "Latitude",
+    "LONGITUDE": "Longitude",
+    "AREA": "Zone:",
+    "AREA_SELECT": "zone",
+    "ADD_AREA": "Niewe Zone Toevoegen",
+    "UPLOAD_IMG": "Upload Foto Hier",
+    "INFORMATION_LEGEND": "TAAL INFORMATIE",
+    "LANGUAGE": "TAAL",
+    "LANGUAGE_PLACEHOLDER": "Taal Toevoegen",
+    "NANE": "Naam",
+    "NAME_PLACEHOLDER": "Naam Toevoegen",
+    "DESCRIPTION": "Beschrijving",
+    "DESC_PLACEHOLDER": "Beschrijving Toevoegen",
+    "QUESTION_LEGEND": "VRAAG",
+    "QUESTION": "Vraag",
+    "QUESTION_PLACEHOLDER": "Vraag Toevoegen",
+    "ANSWER": "Antwoord",
+    "ANSWER_PLACEHOLDER": "Antwoord Toevoegen",
+    "DELETE_QUESTION": "Verwijder Vraag",
+    "ADD_QUESTION": "Nieuwe Vraag Toevoegen",
+    "DELETE_LANGUAGE": "Verwijder Taal",
+    "ADD_LANGUAGE": "Nieuwe Taal Toevoegen",
+    "SAVE_MONUMENT": "Monument Opslaan",
+    "MODAL_TITLE": "Nieuwe Zone toevoegen aan Keuzelijst",
+    "MODAL_AREA": "Zone Naam",
+    "MODAL_AREA_PLACE": "Geef zone in",
+    "MODAL_CLOSE": "Sluiten",
+    "MODAL_SAVE": "Wijzigingen Opslaan"
+  },
+  "MONUMENTPANEL": {
+    "TITLE": "Monument Beheer - Toevoegen/Wijzigen Monumenten",
+    "SEARCH": "  Search for name",
+    "ADD_LINK": "Monument Toevoegen",
+    "CARD_TITLE": "{{monument.information[0].name}}",
+    "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
+    "EDIT_BTN": "Monument Wijzigen"
+  }
+}

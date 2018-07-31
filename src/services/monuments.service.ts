@@ -35,10 +35,10 @@ export class MonumentsService {
     return this._http.get<Monument>(environment.backendUrl + '/monuments/' + id, {withCredentials: true});
   }
 
-  addMonument(monument: Monument) {
+  addMonument(monument: Monument): Observable<Monument> {
+    console.log('ready to send new added monument: ', monument);
     httpOptions.headers = httpOptions.headers.append('Accept', 'application/json');
-    return this._http.put(environment.backendUrl + '/monuments', monument,
-      httpOptions);
+    return this._http.put<Monument>(environment.backendUrl + '/monuments/', monument);
   }
 
   removeMonument(monument: Monument) {

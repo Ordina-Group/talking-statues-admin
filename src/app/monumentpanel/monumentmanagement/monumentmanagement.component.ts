@@ -1,12 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslatorService } from '../../shared/services/translator.service';
 import { TranslateService } from '../../../../node_modules/@ngx-translate/core';
 import { log } from 'util';
+import { environment } from '../../../environments/environment.prod';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-monumentmanagement',
@@ -19,27 +21,10 @@ export class MonumentmanagementComponent implements OnInit {
   monumentFound = false;
   areas: String[] = [];
   monument: Monument;
+  backEndUrl = environment.backendUrl;
+  selectedFile: File = null;
+  img;
 
-
-  data = {
-    id: '123344566',
-    latitude: '',
-    longitude: '',
-    area: '',
-    information: [
-      {
-        language: 'EN',
-        name: 'name',
-        description: 'description',
-        conversations: [
-          {
-            question: 'example question',
-            answer: 'example answer'
-          }
-        ]
-      }
-    ]
-  };
   monumentForm: FormGroup;
 
   constructor(
@@ -47,6 +32,8 @@ export class MonumentmanagementComponent implements OnInit {
     private fb: FormBuilder,
     private _monumentService: MonumentsService,
     private _route: ActivatedRoute,
+    private _http: HttpClient,
+    private cd: ChangeDetectorRef,
     private _translate: TranslateService
   ) {
     this.monumentForm = this.fb.group({
@@ -100,6 +87,7 @@ export class MonumentmanagementComponent implements OnInit {
       latitude: [monument ? monument.latitude : ''],
       longitude: [monument ? monument.longitude : ''],
       area: [monument ? monument.area : ''],
+      picture: [monument ? monument.picture : ''],
       information: this.fb.array([])
     });
     this.setLanguages();
@@ -111,11 +99,32 @@ export class MonumentmanagementComponent implements OnInit {
       latitude: [''],
       longitude: [''],
       area: this.areas,
+      picture: [''],
       information: this.fb.array([])
     });
   }
+
+  onFileSelected(selectedImg) {
+    console.log('selected image: ', selectedImg);
+
+    this.selectedFile = <File>selectedImg.target.files[0];
+
+    this.img = selectedImg.target.files[0].name;
+    const reader = new FileReader();
+    console.log(selectedImg.target.files[0].name);
+    reader.onload = (e: any) => {
+      this.img = e.target.result;
+      this.monumentForm.patchValue({
+        picture: this.selectedFile
+      });
+    };
+    reader.readAsDataURL(selectedImg.target.files[0]);
+  }
+
+
+
   addNewLanguage() {
-    let control = <FormArray>this.monumentForm.controls.information;
+    const control = <FormArray>this.monumentForm.controls.information;
     control.push(
       this.fb.group({
         language: [''],
@@ -127,7 +136,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   deleteLanguage(index) {
-    let control = <FormArray>this.monumentForm.controls.information;
+    const control = <FormArray>this.monumentForm.controls.information;
     control.removeAt(index);
   }
 
@@ -144,7 +153,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   setLanguages() {
-    let control = <FormArray>this.monumentForm.controls.information;
+    const control = <FormArray>this.monumentForm.controls.information;
     this.monument.information.forEach(x => {
       control.push(this.fb.group({
         language: x.language,
@@ -155,7 +164,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   setQuestions(x) {
-    let arr = new FormArray([]);
+    const arr = new FormArray([]);
     x.conversations.forEach(y => {
       arr.push(this.fb.group({
         question: y.question ,

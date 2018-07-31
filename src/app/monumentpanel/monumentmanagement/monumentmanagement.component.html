@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- QUESTIONS PART -->
-                <div *ngIf="information.get('question').value" class="col-12 mt-5">
+                <div *ngIf="information.get('question')?.value" class="col-12 mt-5">
                   <div formArrayName="question" >
                     <div *ngFor="let question of information.get('question').value; let j=index; trackBy:trackByFn" class="card mb-3">
                       <legend><h4>{{ 'MONUMENT_ADD_DETAIL.QUESTION_LEGEND' | translate }} {{j+1}}</h4></legend>

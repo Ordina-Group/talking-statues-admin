@@ -7,6 +7,7 @@
     "AREA_SELECT": "zone",
     "ADD_AREA": "Neuen Bereich hinzufügen",
     "UPLOAD_IMG": "Bilder hier hochladen",
+    "UPLOAD_BTN": "Wählen Sie ein Bild",
     "INFORMATION_LEGEND": "SPRACHE-INFORMATIONEN",
     "LANGUAGE": "Sprache",
     "LANGUAGE_PLACEHOLDER": "Sprache hinzufügen",
@@ -34,6 +35,7 @@
     "TITLE": "Denkmal-Management - Monumente hinzufügen/bearbeiten",
     "SEARCH": "  Suche nach Namen",
     "ADD_LINK": "Fügen Sie neues Denkmal",
-    "EDIT_BTN": "Edit-Denkmal"
+    "EDIT_BTN": "Edit-Denkmal",
+    "DEL_BTN": "Denkmal löschen"
   }
 }

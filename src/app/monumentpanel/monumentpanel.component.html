@@ -10,12 +10,14 @@
     <div class="row mt-5">
       <div *ngFor="let monument of monuments | monumentFilter: monSearchText; let idx = index" class=" mb-5 col-12 col-xs-12 col-md-6 col-lg-4">
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{backEndUrl}}/images/{{monument.id}}" alt="Card image cap">
+          <img *ngIf="monument.picture" class="card-img-top" src="{{backEndUrl}}/images/{{monument.id}}" alt="Card image cap">
+          <img *ngIf="!monument.picture" class="card-img-top" src="../../assets/img/No_Image_Available.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{monument.information[0].name}}</h5>
             <p class="card-text">{{monument.information[0].description.substring(0, 75)}}</p>
             <a [routerLink]="['/monuments', monument.id]" class="btn btn-success">
               <i class="fas fa-edit"></i> {{ 'MONUMENTPANEL.EDIT_BTN' | translate }}</a>
+            <a class="btn btn-danger mt-2" (click)="deleteMonument(monument)"><i class="fas fa-trash-alt"> {{ 'MONUMENTPANEL.DEL_BTN' | translate }}</i></a>
           </div>
         </div>
       </div>

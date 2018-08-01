@@ -7,6 +7,7 @@
     "AREA_SELECT": "zone",
     "ADD_AREA": "Niewe Zone Toevoegen",
     "UPLOAD_IMG": "Upload Foto Hier",
+    "UPLOAD_BTN": "Kies een Foto",
     "INFORMATION_LEGEND": "TAAL INFORMATIE",
     "LANGUAGE": "TAAL",
     "LANGUAGE_PLACEHOLDER": "Taal Toevoegen",
@@ -36,6 +37,7 @@
     "ADD_LINK": "Monument Toevoegen",
     "CARD_TITLE": "{{monument.information[0].name}}",
     "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
-    "EDIT_BTN": "Monument Wijzigen"
+    "EDIT_BTN": "Monument Wijzigen",
+    "DEL_BTN": "Monument Verwijderen"
   }
 }

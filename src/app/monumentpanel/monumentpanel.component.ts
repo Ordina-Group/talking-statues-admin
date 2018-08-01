@@ -47,5 +47,9 @@ export class MonumentpanelComponent implements OnInit {
     this.monumentService.saveData(data);
     this.router.navigate(['/editmonument']);
   }
+
+  deleteMonument(monument: Monument){
+    this.monumentService.removeMonument(monument)
+  }
 }
 

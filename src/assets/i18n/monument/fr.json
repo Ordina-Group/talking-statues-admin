@@ -7,6 +7,7 @@
     "AREA_SELECT": "zone",
     "ADD_AREA": "Ajouter une nouvelle zone",
     "UPLOAD_IMG": "Télécharger l’Image ici",
+    "UPLOAD_BTN": "Choisir une image",
     "INFORMATION_LEGEND": "INFORMATIONS DE LANGAGE",
     "LANGUAGE": "Langue",
     "LANGUAGE_PLACEHOLDER": "Ajouter Langue",
@@ -36,6 +37,7 @@
     "ADD_LINK": "Ajouter nouveau Monument",
     "CARD_TITLE": "{{monument.information[0].name}}",
     "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
-    "EDIT_BTN": "Modifier Monument"
+    "EDIT_BTN": "Modifier Monument",
+    "DEL_BTN": "Supprimer le Monument"
   }
 }

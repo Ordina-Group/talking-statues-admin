@@ -17,6 +17,7 @@
             <p class="card-text">{{monument.information[0].description.substring(0, 75)}}</p>
             <a [routerLink]="['/monuments', monument.id]" class="btn btn-success">
               <i class="fas fa-edit"></i> {{ 'MONUMENTPANEL.EDIT_BTN' | translate }}</a>
+            <a class="btn btn-danger mt-2" (click)="deleteMonument(monument)"><i class="fas fa-trash-alt"> {{ 'MONUMENTPANEL.DEL_BTN' | translate }}</i></a>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@
     "AREA_SELECT": "area",
     "ADD_AREA": "Add New Area",
     "UPLOAD_IMG": "Upload Images Here",
+    "UPLOAD_BTN": "Choose a picture",
     "INFORMATION_LEGEND": "LAGUAGE INFORMATION",
     "LANGUAGE": "Language",
     "LANGUAGE_PLACEHOLDER": "Add Language",
@@ -34,6 +35,7 @@
     "TITLE": "Monument Management - Add/Edit Monuments",
     "SEARCH": "  Search for name",
     "ADD_LINK": "Add New Monument",
-    "EDIT_BTN": "Edit Monument"
+    "EDIT_BTN": "Edit Monument",
+    "DEL_BTN": "Delete Monument"
   }
 }

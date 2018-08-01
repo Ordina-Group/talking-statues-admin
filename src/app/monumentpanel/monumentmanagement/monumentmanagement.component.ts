@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
 import { ActivatedRoute } from '@angular/router';
-import { Information, Monument, Question } from '../../../models/AppUser';
-import { Subscription } from 'rxjs/index';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Monument, Question } from '../../../models/AppUser';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { TranslatorService } from '../../shared/services/translator.service';
 import { TranslateService } from '../../../../node_modules/@ngx-translate/core';
 
@@ -19,7 +18,8 @@ export class MonumentmanagementComponent implements OnInit {
   areas: String[] = [];
   monument: Monument;
   informationQuestions: Question[] = [];
-
+  selectedFile: File = null;
+  img;
 
   data = {
     id: '123344566',
@@ -112,6 +112,24 @@ export class MonumentmanagementComponent implements OnInit {
       information: this.fb.array([])
     });
   }
+
+  onFileSelected(selectedImg) {
+    console.log('selected image: ', selectedImg);
+
+    this.selectedFile = <File>selectedImg.target.files[0];
+
+    this.img = this.selectedFile.name;
+    const reader = new FileReader();
+    console.log(this.img);
+    reader.onload = (e: any) => {
+      this.img = e.target.result;
+      this.monumentForm.patchValue({
+        picture: this.selectedFile.name
+      });
+    };
+    reader.readAsDataURL(selectedImg.target.files[0]);
+  }
+
   addNewLanguage() {
     let control = <FormArray>this.monumentForm.controls.information;
     control.push(
@@ -153,7 +171,7 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   setQuestions(x) {
-    let arr = new FormArray([])
+    let arr = new FormArray([]);
     x.question.forEach(y => {
       arr.push(this.fb.group({
         question: y.question ,

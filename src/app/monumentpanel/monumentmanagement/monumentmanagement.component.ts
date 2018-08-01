@@ -1,12 +1,10 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
-import { ActivatedRoute, Data } from '@angular/router';
-import { Information, Monument, Question } from '../../../models/AppUser';
-import { Subscription } from 'rxjs/index';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Monument } from '../../../models/AppUser';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { TranslatorService } from '../../shared/services/translator.service';
 import { TranslateService } from '../../../../node_modules/@ngx-translate/core';
-import { log } from 'util';
 import { environment } from '../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 

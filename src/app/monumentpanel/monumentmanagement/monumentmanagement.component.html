@@ -19,13 +19,11 @@
             <input type="text" class="form-control" formControlName="longitude">
           </label>
         </div>
-
-
-        <div *ngIf="monumentForm.get('picture').value || img">
-          <img [src]="img" src="{{backEndUrl}}/images/{{monumentForm.get('id').value}}">
-        </div>
         <div class="form-group">
           <label for="exampleFormControlFile1">Upload Image Here</label>
+          <div *ngIf="monumentForm.get('picture').value || img">
+            <img id="imagePreview" [src]="img" src="{{backEndUrl}}/images/{{monumentForm.get('id').value}}">
+          </div>
           <input type="file" (change)="onFileSelected($event)" class="form-control-file" id="exampleFormControlFile1"
                  file-model="myFile" accept="image/*">
         </div>
@@ -123,8 +121,6 @@
     </div>
   </form>
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -20,12 +20,23 @@
           </label>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlFile1">Upload Image Here</label>
+          <!-- <label for="exampleFormControlFile1">Upload Image Here</label> -->
           <div *ngIf="monumentForm.get('picture').value || img">
             <img id="imagePreview" [src]="img" src="{{backEndUrl}}/images/{{monumentForm.get('id').value}}">
           </div>
-          <input type="file" (change)="onFileSelected($event)" class="form-control-file" id="exampleFormControlFile1"
-                 file-model="myFile" accept="image/*">
+          <div class="form-group">
+            <label for="exampleFormControlFile1">{{ 'MONUMENT_ADD_DETAIL.UPLOAD_IMG' | translate }}</label>
+            <input #fileInput
+                style="display: none" type="file"
+                (change)="onFileSelected($event)" id="exampleFormControlFile1"
+                file-model="myFile" accept="image/*">
+                <p *ngIf="selectedFile">{{ selectedFile.name }}</p>
+          </div>
+          <div class="form-group">
+              <button type="button" class="btn btn-primary mt-3" (click)="fileInput.click()">{{ 'MONUMENT_ADD_DETAIL.UPLOAD_BTN' | translate }}</button>
+          </div>
+          <!-- <input type="file" (change)="onFileSelected($event)" class="form-control-file" id="exampleFormControlFile1"
+                 file-model="myFile" accept="image/*"> -->
         </div>
 
 
@@ -42,17 +53,7 @@
             <i class="fas fa-plus-square"></i> {{ 'MONUMENT_ADD_DETAIL.ADD_AREA' | translate }}
           </button>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlFile1">{{ 'MONUMENT_ADD_DETAIL.UPLOAD_IMG' | translate }}</label>
-          <input #fileInput
-              style="display: none" type="file"
-              (change)="onFileSelected($event)" id="exampleFormControlFile1"
-              file-model="myFile" accept="image/*">
-              <p *ngIf="selectedFile">{{ selectedFile.name }}</p>
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-primary mt-3" (click)="fileInput.click()">{{ 'MONUMENT_ADD_DETAIL.UPLOAD_BTN' | translate }}</button>
-        </div>
+
       </div>
 
       <!-- LANGUAGE INFORMATION PART -->

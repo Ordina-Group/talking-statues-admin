@@ -59,7 +59,16 @@ export class MonumentsService {
     console.log('ready to send edited monument: ', monument);
     // return this._http.put<Monument>('', monument, {withCredentials: true});
     return this._http.put<Monument>(environment.backendUrl + '/monuments/' +  monument.id, monument,
-      httpOptions);
+      httpOptions).pipe(
+        tap(_ => {
+          console.log(`Monument ${monument.information[0].name} edited`);
+        }),
+        catchError((error: any) => {
+          console.error(`En error occured while editing monument ${monument.information[0].name}`);
+          console.error(`error: ${error.message}`);
+          return of(error);
+        })
+      );
   }
 
   uploadImage(file: File, monument: Monument) {

@@ -183,11 +183,12 @@ export class MonumentmanagementComponent implements OnInit {
       console.log('saved Data: ', this.monumentForm.value);
 
       if (this.monumentForm.get('id').value !== '') {
-        this._monumentService.editMonument(this.monumentForm.value).subscribe( _ => {
+        this._monumentService.editMonument(this.monumentForm.value).subscribe( () => {
           console.log('Making call to endpoint editMonument');
+          console.log(`Forms values: ${this.monumentForm.value}`);
         });
       } else {
-        this._monumentService.addMonument(this.monumentForm.value).subscribe( __ => {
+        this._monumentService.addMonument(this.monumentForm.value).subscribe( () => {
           console.log('Making call to endpoint addMonument');
         });
       }

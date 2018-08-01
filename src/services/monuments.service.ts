@@ -54,7 +54,7 @@ export class MonumentsService {
   }
 
   uploadImage(file: File, monument: Monument) {
-    return this._http.post(environment.backendUrl + '/images/' + monument.id, file, {withCredentials: true});
+    return this._http.put(environment.backendUrl + '/images/' + monument.id, file, {withCredentials: true});
   }
 
   saveData(str) {

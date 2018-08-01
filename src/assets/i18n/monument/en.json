@@ -35,6 +35,7 @@
     "TITLE": "Monument Management - Add/Edit Monuments",
     "SEARCH": "  Search for name",
     "ADD_LINK": "Add New Monument",
-    "EDIT_BTN": "Edit Monument"
+    "EDIT_BTN": "Edit Monument",
+    "DEL_BTN": "Delete Monument"
   }
 }

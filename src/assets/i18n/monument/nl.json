@@ -37,6 +37,7 @@
     "ADD_LINK": "Monument Toevoegen",
     "CARD_TITLE": "{{monument.information[0].name}}",
     "CARD_BODY": "{{monument.information[0].description.substring(0, 75)}}",
-    "EDIT_BTN": "Monument Wijzigen"
+    "EDIT_BTN": "Monument Wijzigen",
+    "DEL_BTN": "Monument Verwijderen"
   }
 }

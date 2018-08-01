@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MonumentsService } from '../../../services/monuments.service';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Information, Monument, Question } from '../../../models/AppUser';
 import { Subscription } from 'rxjs/index';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,6 +32,7 @@ export class MonumentmanagementComponent implements OnInit {
     private fb: FormBuilder,
     private _monumentService: MonumentsService,
     private _route: ActivatedRoute,
+    private _router: Router,
     private _http: HttpClient,
     private cd: ChangeDetectorRef,
     private _translate: TranslateService
@@ -192,7 +193,7 @@ export class MonumentmanagementComponent implements OnInit {
           console.log('Making call to endpoint addMonument');
         });
       }
-
+      this._router.navigate(['/monuments']);
     }
   }
 

@@ -31,9 +31,7 @@ export class MonumentpanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.nav.show();
-    this.monumentService.getMonuments().subscribe(
-      data => this.monuments = data
-    );
+    this.getMonuments();
     this.translate.initTranslate();
     this.translate.lang.subscribe(lang => this._translate.use(lang));
     this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -43,13 +41,23 @@ export class MonumentpanelComponent implements OnInit {
     });
   }
 
+  getMonuments() {
+    this.monumentService.getMonuments().subscribe(
+      data => this.monuments = data
+    );
+  }
+
   send(data) {
     this.monumentService.saveData(data);
     this.router.navigate(['/editmonument']);
   }
 
-  deleteMonument(monument: Monument){
-    this.monumentService.removeMonument(monument)
+  deleteMonument(monument: Monument) {
+    this.monumentService.removeMonument(monument).subscribe(() => {
+      console.log(`Deleting monument ${monument.information[0].name}`);
+      this.getMonuments();
+    });
   }
+
 }
 

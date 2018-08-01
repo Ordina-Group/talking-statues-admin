@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Monument} from '../models/AppUser';
 import {environment} from '../environments/environment.prod';
-import {map, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs/internal/Observable';
+import { Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -41,8 +41,17 @@ export class MonumentsService {
     return this._http.put<Monument>(environment.backendUrl + '/monuments/', monument);
   }
 
-  removeMonument(monument: Monument) {
-    return this._http.delete(environment.backendUrl + '/monuments/' + monument.id, {withCredentials: true});
+  removeMonument(monument: Monument): Observable<{}> {
+    return this._http.delete(environment.backendUrl + '/monuments/' + monument.id, {withCredentials: true}).pipe(
+      tap(_ => {
+        console.log(`Monument ${monument.information[0].name} deleted`);
+      }),
+      catchError((error: any) => {
+        console.error(`En error occured while deleting monument ${monument.information[0].name}`);
+        console.error(`error: ${error.message}`);
+        return of(error);
+      })
+    );
   }
 
   editMonument(monument: Monument): Observable<Monument> {

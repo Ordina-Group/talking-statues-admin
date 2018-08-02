@@ -179,21 +179,19 @@ export class MonumentmanagementComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.monumentForm.get('area').touched) {
-      console.log('saved Data: ', this.monumentForm.value);
-
+    // if (this.monumentForm.get('area').touched) {
       if (this.monumentForm.get('id').value !== '') {
+        console.log('Making call to endpoint editMonument');
         this._monumentService.editMonument(this.monumentForm.value).subscribe( () => {
-          console.log('Making call to endpoint editMonument');
-          console.log(`Forms values: ${this.monumentForm.value}`);
+          this._router.navigate(['/monuments']);
         });
       } else {
+        console.log('Making call to endpoint addMonument');
         this._monumentService.addMonument(this.monumentForm.value).subscribe( () => {
-          console.log('Making call to endpoint addMonument');
+          this._router.navigate(['/monuments']);
         });
       }
-      this._router.navigate(['/monuments']);
-    }
+    // }
   }
 
   // Om error te omzeilen in template
